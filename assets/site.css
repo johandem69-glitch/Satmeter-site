@@ -77,12 +77,16 @@ th{font-weight:700;color:var(--text);font-size:12.5px;text-transform:uppercase;l
 td{color:var(--text-2)}
 td.num{font-variant-numeric:tabular-nums;font-weight:600;color:var(--orange-deep)}
 tbody tr:hover{background:var(--surface-2)}
-/* On phones a comparison table is wider than the viewport, which used to push
-   the whole page sideways. Make the table its own horizontal scroll area so it
-   scrolls inside the column instead of shifting the layout. Desktop unchanged. */
+/* On phones a comparison table wants to be wider than the viewport, which used
+   to push the whole page sideways. table-layout:fixed makes the columns divide
+   the available width instead of growing to fit their content, so the table can
+   never widen the page. hyphens:auto then breaks long words at real syllable
+   boundaries rather than mid-word. Desktop is unchanged.
+   Do not use display:block here — that disables table-layout:fixed. */
 @media (max-width:700px){
-  table{display:block;overflow-x:auto;-webkit-overflow-scrolling:touch;font-size:13px}
-  th,td{padding:9px 10px}
+  table{table-layout:fixed;width:100%;font-size:12.5px}
+  th,td{padding:8px 8px;overflow-wrap:break-word;hyphens:auto}
+  th:first-child,td:first-child{width:32%}
 }
 /* Long unbroken strings (URLs, addresses) must never widen the page either. */
 p,li,td,th,h1,h2,h3{overflow-wrap:break-word}

@@ -135,6 +135,30 @@
       "width:38px;height:38px;border-radius:999px;background:var(--surface,#fff);",
       "border:1px solid var(--border,#dfe3e8);cursor:pointer;margin-left:auto;order:99;}",
       "@media (max-width:900px){.sm-hamburger{display:inline-flex;}}",
+
+      /* ---- Mobile layout hardening -------------------------------------
+         These rules live here rather than in site.css for two reasons:
+         this file is injected at runtime so it always lands last in the
+         cascade (beating the inline styles on index.html), and it is a new
+         file, so visitors holding a long-cached site.css still get the fix. */
+
+      /* The hamburger adds 38px to the topbar. Combined with longer labels
+         in Spanish that pushed the row past a phone viewport and the whole
+         page shifted sideways. The drawer already carries a Converter link,
+         so the topbar one is redundant once the hamburger is showing. */
+      "@media (max-width:560px){.topbar .back-link{display:none;}}",
+      "@media (max-width:900px){.topbar{flex-wrap:wrap;}.topbar>*{min-width:0;}}",
+
+      /* Comparison tables must divide the available width instead of growing
+         to fit their content. Never use display:block here: that silently
+         disables table-layout:fixed and the overflow comes straight back. */
+      "@media (max-width:700px){",
+      "article table{table-layout:fixed;width:100%;font-size:12.5px;display:table;}",
+      "article th,article td{padding:8px 8px;overflow-wrap:break-word;hyphens:auto;}",
+      "article th:first-child,article td:first-child{width:32%;}",
+      "}",
+      /* ------------------------------------------------------------------ */
+
       ".sm-hamburger span{display:block;width:16px;height:2px;background:var(--text,#050505);",
       "position:relative;}",
       ".sm-hamburger span::before,.sm-hamburger span::after{content:'';position:absolute;left:0;",
