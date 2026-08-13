@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Contact — Bitcoin to Groceries Converter | Satmeter</title>
+<meta name="description" content="How to get in touch about the Bitcoin to Groceries converter: corrections, suggestions, press and business enquiries.">
+<meta name="robots" content="index, follow">
+<meta name="theme-color" content="#1877f2">
+<meta name="author" content="Johan Demmers">
+<meta name="copyright" content="&copy; Johan Demmers (Satmeter). All rights reserved.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2040%2040%22%3E%3Ccircle%20cx%3D%2220%22%20cy%3D%2220%22%20r%3D%2219%22%20fill%3D%22%23f7931a%22%2F%3E%3Cpath%20d%3D%22M9.5%2025.5%20A11.5%2011.5%200%200%201%2030.5%2025.5%22%20fill%3D%22none%22%20stroke%3D%22%23fff%22%20stroke-opacity%3D%22.55%22%20stroke-width%3D%222.4%22%20stroke-linecap%3D%22round%22%2F%3E%3Cline%20x1%3D%2220%22%20y1%3D%2225.5%22%20x2%3D%2227%22%20y2%3D%2214.5%22%20stroke%3D%22%23fff%22%20stroke-width%3D%222.6%22%20stroke-linecap%3D%22round%22%2F%3E%3Ccircle%20cx%3D%2220%22%20cy%3D%2225.5%22%20r%3D%222.6%22%20fill%3D%22%23fff%22%2F%3E%3Ctext%20x%3D%2220%22%20y%3D%2214.5%22%20font-family%3D%22Arial%22%20font-size%3D%2211%22%20font-weight%3D%22bold%22%20fill%3D%22%23fff%22%20text-anchor%3D%22middle%22%3E%E2%82%BF%3C%2Ftext%3E%3C%2Fsvg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#f0f2f5; --bg-accent-1:#e3f0ff; --bg-accent-2:#fff3e0;
+    --surface:#fff; --surface-2:#f0f2f5; --border:#dfe3e8; --border-strong:#ccd0d5;
+    --blue:#1877f2; --blue-deep:#0b5fce; --blue-soft:#e7f0fe;
+    --orange:#f7931a; --orange-deep:#e07d05;
+    --purple:#8b5cf6; --pink:#f43f8e;
+    --text:#050505; --text-2:#3a3b3c; --muted:#65676b;
+    --shadow-sm:0 1px 2px rgba(0,0,0,.1); --shadow-md:0 2px 8px rgba(0,0,0,.1);
+    --radius:14px;
+  }
+  html[data-theme="dark"]{
+    --bg:#18191a; --bg-accent-1:#1c2733; --bg-accent-2:#2a2117;
+    --surface:#242526; --surface-2:#3a3b3c; --border:#3e4042; --border-strong:#54565a;
+    --blue:#2d88ff; --blue-deep:#5ba4ff; --blue-soft:#1c2b3f;
+    --orange:#f7931a; --orange-deep:#ffab3d;
+    --purple:#a78bfa; --pink:#f9739f;
+    --text:#e4e6eb; --text-2:#c8cbd0; --muted:#b0b3b8;
+    --shadow-sm:0 1px 2px rgba(0,0,0,.4); --shadow-md:0 2px 10px rgba(0,0,0,.5);
+  }
+  *{box-sizing:border-box;}
+  body{
+    margin:0;
+    font-family:'Inter',-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+    background:var(--bg);
+    background-image:
+      radial-gradient(ellipse 80% 50% at 15% -5%, var(--bg-accent-1) 0%, transparent 60%),
+      radial-gradient(ellipse 70% 45% at 90% 0%, var(--bg-accent-2) 0%, transparent 55%);
+    background-repeat:no-repeat;
+    color:var(--text); min-height:100vh; padding:28px 18px 70px;
+    -webkit-font-smoothing:antialiased;
+  }
+  .wrap{max-width:780px;margin:0 auto;}
+  .topbar{display:flex;justify-content:space-between;align-items:center;gap:10px;margin-bottom:22px;flex-wrap:wrap;}
+  .brand{display:inline-flex;align-items:center;gap:9px;text-decoration:none;color:var(--text);font-weight:800;font-size:16.5px;letter-spacing:-.02em;}
+  .brand img{width:28px;height:28px;display:block;}
+  .brand .bm-sat{color:var(--text);}
+  .brand .bm-meter{color:var(--orange-deep);}
+  .brand:hover .bm-meter{color:var(--orange);}
+  .brand .bm-tld{font-size:10.5px;font-weight:700;color:var(--muted);background:var(--surface-2);border-radius:5px;padding:2px 5px;margin-left:1px;letter-spacing:.03em;}
+  .back-link{
+    display:inline-flex;align-items:center;gap:7px;
+    background:var(--surface);border:1px solid var(--border);color:var(--text-2);
+    border-radius:999px;padding:7px 15px;font-size:12.5px;font-weight:500;
+    text-decoration:none;box-shadow:var(--shadow-sm);transition:all .18s ease;
+  }
+  .back-link:hover{border-color:var(--blue);color:var(--blue);}
+  .theme-toggle{
+    display:inline-flex;align-items:center;gap:7px;
+    background:var(--surface);border:1px solid var(--border);color:var(--text-2);
+    border-radius:999px;padding:7px 14px;font-size:12.5px;font-weight:500;
+    font-family:inherit;cursor:pointer;box-shadow:var(--shadow-sm);transition:all .18s ease;
+  }
+  .theme-toggle:hover{border-color:var(--blue);color:var(--blue);}
+  h1{
+    font-size:clamp(26px,4vw,38px);line-height:1.15;letter-spacing:-.025em;
+    margin:0 0 10px;font-weight:800;
+  }
+  h1 .gradient-text{
+    background:linear-gradient(100deg, var(--blue) 0%, var(--purple) 50%, var(--pink) 100%);
+    -webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;color:var(--blue);
+  }
+  .updated{font-size:12.5px;color:var(--muted);margin:0 0 26px;}
+  .card{
+    background:var(--surface);border:1px solid var(--border);border-radius:20px;
+    padding:30px 28px;box-shadow:var(--shadow-md);
+  }
+  h2{font-size:19px;font-weight:700;letter-spacing:-.015em;margin:30px 0 10px;}
+  h2:first-of-type{margin-top:0;}
+  h3{font-size:15.5px;font-weight:700;margin:20px 0 8px;}
+  p, li{color:var(--text-2);font-size:14.5px;line-height:1.75;}
+  p{margin:0 0 14px;}
+  ul{margin:0 0 14px;padding-left:22px;}
+  li{margin-bottom:7px;}
+  a{color:var(--blue);font-weight:500;}
+  strong{color:var(--text);}
+  .callout{
+    background:var(--blue-soft);border:1px solid rgba(24,119,242,.25);
+    border-radius:12px;padding:16px 18px;margin:18px 0;
+  }
+  .callout p{margin:0;font-size:13.5px;}
+  .contact-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:14px;margin:18px 0;}
+  .contact-item{
+    background:var(--surface-2);border:1px solid var(--border);border-radius:12px;padding:16px;
+  }
+  .contact-item .label{
+    font-size:10.5px;text-transform:uppercase;letter-spacing:.08em;
+    color:var(--muted);font-weight:600;margin-bottom:5px;
+  }
+  .contact-item .value{font-size:14.5px;font-weight:600;}
+  html[data-theme="dark"]
+  footer{
+    text-align:center;color:var(--muted);font-size:12.5px;
+    margin-top:26px;padding-top:18px;line-height:1.75;
+  }
+  footer a{color:var(--blue);text-decoration:none;}
+  footer a:hover{text-decoration:underline;}
+  .copyline{font-size:13px;font-weight:700;color:var(--text-2);display:block;margin-bottom:5px;}
+</style>
+
+<!-- ============================================================
+     CLOUDFLARE WEB ANALYTICS
+     Cookieless, so no consent banner is needed for it.
+     Get your token at: Cloudflare dashboard → Analytics & Logs →
+     Web Analytics → Add a site → satmeter.io. Then paste the token
+     below and remove the comment markers.
+     ============================================================ -->
+<!--
+<script defer src="https://static.cloudflareinsights.com/beacon.min.js"
+        data-cf-beacon='{"token": "PASTE_YOUR_CLOUDFLARE_TOKEN_HERE"}'></script>
+-->
+<!-- Consent Mode v2 defaults — must load before adsbygoogle.js -->
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('consent', 'default', {
+    'ad_storage': 'denied',
+    'ad_user_data': 'denied',
+    'ad_personalization': 'denied',
+    'analytics_storage': 'denied',
+    'wait_for_update': 500
+  });
+</script>
+<script defer src="assets/consent.js"></script>
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8258777689852315"
+     crossorigin="anonymous"></script>
+</head>
+<body>
+<div class="wrap">
+
+  <div class="topbar">
+    <a class="brand" href="index.html" aria-label="Satmeter home"><img src="assets/logo.svg" alt="" width="28" height="28"><span><span class="bm-sat">Sat</span><span class="bm-meter">meter</span></span><span class="bm-tld">.io</span></a>
+    <a class="back-link" href="index.html">&larr; Back to the converter</a>
+    <button class="theme-toggle" id="themeToggle" type="button"><span id="themeIcon">&#127769;</span><span id="themeText">Dark mode</span></button>
+  </div>
+
+  <h1><span class="gradient-text">Contact</span></h1>
+  <p class="updated">Last updated: <span id="lastUpdated">12 August 2026</span></p>
+
+  <div class="card">
+    <h2>Get in touch</h2>
+    <p>Questions, corrections, suggestions for new items, or business enquiries — all welcome. This is a one-person project, so replies come from me &mdash; Johan Demmers &mdash; rather than a support desk.</p>
+
+    <div class="contact-grid">
+      <div class="contact-item">
+        <div class="label">Email &mdash; everything</div>
+        <div class="value"><a href="mailto:info@satmeter.io">info@satmeter.io</a></div>
+      </div>
+      <div class="contact-item">
+        <div class="label">Who you reach</div>
+        <div class="value">Johan Demmers</div>
+      </div>
+      <div class="contact-item">
+        <div class="label">Based in</div>
+        <div class="value">The Netherlands</div>
+      </div>
+      <div class="contact-item">
+        <div class="label">Typical reply time</div>
+        <div class="value">2&ndash;5 working days</div>
+      </div>
+    </div>
+
+    <h2>What to include</h2>
+    <p>To get a useful answer quickly:</p>
+    <ul>
+      <li><strong>Price corrections</strong> — tell me the item, your country, and the price you actually pay. Local prices vary enormously and reader input is the best source.</li>
+      <li><strong>Bugs</strong> — mention your browser and whether the live price loaded. If the price bar showed an error panel, quote the technical detail line at the bottom of it.</li>
+      <li><strong>Feature ideas</strong> — a short description of what you were trying to do is more useful than a proposed solution.</li>
+    </ul>
+
+    <h2>Things I cannot help with</h2>
+    <p>To save you time, a few common requests that fall outside what this site does:</p>
+    <ul>
+      <li><strong>Investment advice.</strong> I cannot tell you whether to buy Bitcoin, when to buy, or how much. I am not a licensed financial adviser and would be doing you a disservice by guessing.</li>
+      <li><strong>Recovering lost funds or wallets.</strong> This site holds no funds, has no accounts, and cannot access anyone's wallet. Be aware that anyone contacting you offering paid "recovery services" is almost certainly a scam.</li>
+      <li><strong>Price disputes with exchanges.</strong> The prices shown here come from public APIs and are indicative. For a trade you actually made, your exchange's own record is the authoritative one.</li>
+    </ul>
+
+    <div class="callout">
+      <p><strong>Security note:</strong> I will never contact you first asking for a private key, seed phrase, wallet access, or payment. Nobody legitimate ever needs your seed phrase. If you receive such a message claiming to be from this site, it is fraudulent.</p>
+    </div>
+  </div>
+
+  <footer>
+    <a href="index.html">Converter</a> &middot;
+    <a href="about.html">About</a> &middot;
+    <a href="contact.html">Contact</a> &middot;
+    <a href="privacy.html">Privacy</a> &middot;
+    <a href="terms.html">Terms</a>
+    <div style="margin-top:16px;padding-top:14px;border-top:1px solid var(--border)">
+      <span class="copyline">&copy; <span id="year">2026</span> Satmeter. All rights reserved.</span>
+      <span>The design, text and code of this site are protected by copyright.</span>
+    </div>
+  </footer>
+</div>
+<script>
+(function(){
+  var KEY="btc_grocery_theme";
+  var t=document.getElementById("themeToggle"),i=document.getElementById("themeIcon"),x=document.getElementById("themeText");
+  function apply(th){
+    document.documentElement.setAttribute("data-theme",th);
+    var dark=th==="dark";
+    i.textContent=dark?"\u2600\uFE0F":"\uD83C\uDF19";
+    x.textContent=dark?"Light mode":"Dark mode";
+    var m=document.querySelector('meta[name="theme-color"]');
+    if(m) m.setAttribute("content", dark?"#18191a":"#1877f2");
+  }
+  var s=null; try{s=localStorage.getItem(KEY);}catch(e){}
+  if(!s) s=(window.matchMedia&&window.matchMedia("(prefers-color-scheme: dark)").matches)?"dark":"light";
+  apply(s);
+  t.addEventListener("click",function(){
+    var n=document.documentElement.getAttribute("data-theme")==="dark"?"light":"dark";
+    apply(n); try{localStorage.setItem(KEY,n);}catch(e){}
+  });
+  var y=document.getElementById("year"); if(y) y.textContent=new Date().getFullYear();
+})();
+</script>
+<script src="assets/nav.js" defer></script>
+</body>
+</html>

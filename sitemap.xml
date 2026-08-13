@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Satmeter.io — submit this file in Google Search Console after going live.
+     Add a <url> block for every new guide you publish. -->
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <url><loc>https://satmeter.io/</loc><changefreq>daily</changefreq><priority>1.0</priority></url>
+  <url><loc>https://satmeter.io/es/</loc><changefreq>daily</changefreq><priority>1.0</priority></url>
+  <url><loc>https://satmeter.io/es/articles/where-to-store-your-sats.html</loc><changefreq>weekly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://satmeter.io/es/articles/groceries-in-bitcoin-argentina.html</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://satmeter.io/articles/index.html</loc><changefreq>weekly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://satmeter.io/articles/bitcoin-big-mac-index.html</loc><changefreq>weekly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://satmeter.io/articles/bitcoin-halving-countdown-grocery-prices.html</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://satmeter.io/articles/bitcoin-vs-inflation-groceries.html</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://satmeter.io/articles/groceries-in-bitcoin-argentina.html</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://satmeter.io/articles/groceries-in-bitcoin-india.html</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://satmeter.io/articles/groceries-in-bitcoin-nigeria.html</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://satmeter.io/articles/groceries-in-bitcoin-turkey.html</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://satmeter.io/articles/groceries-in-bitcoin-united-states.html</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://satmeter.io/articles/how-many-sats-is-a-beer.html</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://satmeter.io/articles/how-many-sats-is-a-cinema-ticket.html</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://satmeter.io/articles/how-many-sats-is-a-coffee.html</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://satmeter.io/articles/how-many-sats-is-a-dozen-eggs.html</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://satmeter.io/articles/how-many-sats-is-a-gallon-of-gas.html</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://satmeter.io/articles/how-many-sats-is-a-loaf-of-bread.html</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://satmeter.io/articles/where-to-store-your-sats.html</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://satmeter.io/articles/how-to-think-in-sats.html</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://satmeter.io/articles/monthly-phone-plan-in-satoshis.html</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://satmeter.io/articles/netflix-in-satoshis.html</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://satmeter.io/articles/sats-grocery-index.html</loc><changefreq>weekly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://satmeter.io/articles/sats-per-dollar-today.html</loc><changefreq>weekly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://satmeter.io/articles/what-is-a-satoshi.html</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://satmeter.io/about.html</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://satmeter.io/contact.html</loc><changefreq>monthly</changefreq><priority>0.5</priority></url>
+  <url><loc>https://satmeter.io/privacy.html</loc><changefreq>yearly</changefreq><priority>0.3</priority></url>
+  <url><loc>https://satmeter.io/terms.html</loc><changefreq>yearly</changefreq><priority>0.3</priority></url>
+</urlset>

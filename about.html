@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>About — Bitcoin to Groceries Converter | Satmeter</title>
+<meta name="description" content="Who is behind the Bitcoin to Groceries converter, why it exists, and how the sats figures are calculated.">
+<meta name="robots" content="index, follow">
+<meta name="theme-color" content="#1877f2">
+<meta name="author" content="Johan Demmers">
+<meta name="copyright" content="&copy; Johan Demmers (Satmeter). All rights reserved.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2040%2040%22%3E%3Ccircle%20cx%3D%2220%22%20cy%3D%2220%22%20r%3D%2219%22%20fill%3D%22%23f7931a%22%2F%3E%3Cpath%20d%3D%22M9.5%2025.5%20A11.5%2011.5%200%200%201%2030.5%2025.5%22%20fill%3D%22none%22%20stroke%3D%22%23fff%22%20stroke-opacity%3D%22.55%22%20stroke-width%3D%222.4%22%20stroke-linecap%3D%22round%22%2F%3E%3Cline%20x1%3D%2220%22%20y1%3D%2225.5%22%20x2%3D%2227%22%20y2%3D%2214.5%22%20stroke%3D%22%23fff%22%20stroke-width%3D%222.6%22%20stroke-linecap%3D%22round%22%2F%3E%3Ccircle%20cx%3D%2220%22%20cy%3D%2225.5%22%20r%3D%222.6%22%20fill%3D%22%23fff%22%2F%3E%3Ctext%20x%3D%2220%22%20y%3D%2214.5%22%20font-family%3D%22Arial%22%20font-size%3D%2211%22%20font-weight%3D%22bold%22%20fill%3D%22%23fff%22%20text-anchor%3D%22middle%22%3E%E2%82%BF%3C%2Ftext%3E%3C%2Fsvg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#f0f2f5; --bg-accent-1:#e3f0ff; --bg-accent-2:#fff3e0;
+    --surface:#fff; --surface-2:#f0f2f5; --border:#dfe3e8; --border-strong:#ccd0d5;
+    --blue:#1877f2; --blue-deep:#0b5fce; --blue-soft:#e7f0fe;
+    --orange:#f7931a; --orange-deep:#e07d05;
+    --purple:#8b5cf6; --pink:#f43f8e;
+    --text:#050505; --text-2:#3a3b3c; --muted:#65676b;
+    --shadow-sm:0 1px 2px rgba(0,0,0,.1); --shadow-md:0 2px 8px rgba(0,0,0,.1);
+    --radius:14px;
+  }
+  html[data-theme="dark"]{
+    --bg:#18191a; --bg-accent-1:#1c2733; --bg-accent-2:#2a2117;
+    --surface:#242526; --surface-2:#3a3b3c; --border:#3e4042; --border-strong:#54565a;
+    --blue:#2d88ff; --blue-deep:#5ba4ff; --blue-soft:#1c2b3f;
+    --orange:#f7931a; --orange-deep:#ffab3d;
+    --purple:#a78bfa; --pink:#f9739f;
+    --text:#e4e6eb; --text-2:#c8cbd0; --muted:#b0b3b8;
+    --shadow-sm:0 1px 2px rgba(0,0,0,.4); --shadow-md:0 2px 10px rgba(0,0,0,.5);
+  }
+  *{box-sizing:border-box;}
+  body{
+    margin:0;
+    font-family:'Inter',-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+    background:var(--bg);
+    background-image:
+      radial-gradient(ellipse 80% 50% at 15% -5%, var(--bg-accent-1) 0%, transparent 60%),
+      radial-gradient(ellipse 70% 45% at 90% 0%, var(--bg-accent-2) 0%, transparent 55%);
+    background-repeat:no-repeat;
+    color:var(--text); min-height:100vh; padding:28px 18px 70px;
+    -webkit-font-smoothing:antialiased;
+  }
+  .wrap{max-width:780px;margin:0 auto;}
+  .topbar{display:flex;justify-content:space-between;align-items:center;gap:10px;margin-bottom:22px;flex-wrap:wrap;}
+  .brand{display:inline-flex;align-items:center;gap:9px;text-decoration:none;color:var(--text);font-weight:800;font-size:16.5px;letter-spacing:-.02em;}
+  .brand img{width:28px;height:28px;display:block;}
+  .brand .bm-sat{color:var(--text);}
+  .brand .bm-meter{color:var(--orange-deep);}
+  .brand:hover .bm-meter{color:var(--orange);}
+  .brand .bm-tld{font-size:10.5px;font-weight:700;color:var(--muted);background:var(--surface-2);border-radius:5px;padding:2px 5px;margin-left:1px;letter-spacing:.03em;}
+  .back-link{
+    display:inline-flex;align-items:center;gap:7px;
+    background:var(--surface);border:1px solid var(--border);color:var(--text-2);
+    border-radius:999px;padding:7px 15px;font-size:12.5px;font-weight:500;
+    text-decoration:none;box-shadow:var(--shadow-sm);transition:all .18s ease;
+  }
+  .back-link:hover{border-color:var(--blue);color:var(--blue);}
+  .theme-toggle{
+    display:inline-flex;align-items:center;gap:7px;
+    background:var(--surface);border:1px solid var(--border);color:var(--text-2);
+    border-radius:999px;padding:7px 14px;font-size:12.5px;font-weight:500;
+    font-family:inherit;cursor:pointer;box-shadow:var(--shadow-sm);transition:all .18s ease;
+  }
+  .theme-toggle:hover{border-color:var(--blue);color:var(--blue);}
+  h1{
+    font-size:clamp(26px,4vw,38px);line-height:1.15;letter-spacing:-.025em;
+    margin:0 0 10px;font-weight:800;
+  }
+  h1 .gradient-text{
+    background:linear-gradient(100deg, var(--blue) 0%, var(--purple) 50%, var(--pink) 100%);
+    -webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;color:var(--blue);
+  }
+  .updated{font-size:12.5px;color:var(--muted);margin:0 0 26px;}
+  .card{
+    background:var(--surface);border:1px solid var(--border);border-radius:20px;
+    padding:30px 28px;box-shadow:var(--shadow-md);
+  }
+  h2{font-size:19px;font-weight:700;letter-spacing:-.015em;margin:30px 0 10px;}
+  h2:first-of-type{margin-top:0;}
+  h3{font-size:15.5px;font-weight:700;margin:20px 0 8px;}
+  p, li{color:var(--text-2);font-size:14.5px;line-height:1.75;}
+  p{margin:0 0 14px;}
+  ul{margin:0 0 14px;padding-left:22px;}
+  li{margin-bottom:7px;}
+  a{color:var(--blue);font-weight:500;}
+  strong{color:var(--text);}
+  .callout{
+    background:var(--blue-soft);border:1px solid rgba(24,119,242,.25);
+    border-radius:12px;padding:16px 18px;margin:18px 0;
+  }
+  .callout p{margin:0;font-size:13.5px;}
+  .contact-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:14px;margin:18px 0;}
+  .contact-item{
+    background:var(--surface-2);border:1px solid var(--border);border-radius:12px;padding:16px;
+  }
+  .contact-item .label{
+    font-size:10.5px;text-transform:uppercase;letter-spacing:.08em;
+    color:var(--muted);font-weight:600;margin-bottom:5px;
+  }
+  .contact-item .value{font-size:14.5px;font-weight:600;}
+  html[data-theme="dark"]
+  footer{
+    text-align:center;color:var(--muted);font-size:12.5px;
+    margin-top:26px;padding-top:18px;line-height:1.75;
+  }
+  footer a{color:var(--blue);text-decoration:none;}
+  footer a:hover{text-decoration:underline;}
+  .copyline{font-size:13px;font-weight:700;color:var(--text-2);display:block;margin-bottom:5px;}
+</style>
+
+<!-- ============================================================
+     CLOUDFLARE WEB ANALYTICS
+     Cookieless, so no consent banner is needed for it.
+     Get your token at: Cloudflare dashboard → Analytics & Logs →
+     Web Analytics → Add a site → satmeter.io. Then paste the token
+     below and remove the comment markers.
+     ============================================================ -->
+<!--
+<script defer src="https://static.cloudflareinsights.com/beacon.min.js"
+        data-cf-beacon='{"token": "PASTE_YOUR_CLOUDFLARE_TOKEN_HERE"}'></script>
+-->
+<!-- Consent Mode v2 defaults — must load before adsbygoogle.js -->
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('consent', 'default', {
+    'ad_storage': 'denied',
+    'ad_user_data': 'denied',
+    'ad_personalization': 'denied',
+    'analytics_storage': 'denied',
+    'wait_for_update': 500
+  });
+</script>
+<script defer src="assets/consent.js"></script>
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8258777689852315"
+     crossorigin="anonymous"></script>
+</head>
+<body>
+<div class="wrap">
+
+  <div class="topbar">
+    <a class="brand" href="index.html" aria-label="Satmeter home"><img src="assets/logo.svg" alt="" width="28" height="28"><span><span class="bm-sat">Sat</span><span class="bm-meter">meter</span></span><span class="bm-tld">.io</span></a>
+    <a class="back-link" href="index.html">&larr; Back to the converter</a>
+    <button class="theme-toggle" id="themeToggle" type="button"><span id="themeIcon">&#127769;</span><span id="themeText">Dark mode</span></button>
+  </div>
+
+  <h1><span class="gradient-text">About this site</span></h1>
+  <p class="updated">Last updated: <span id="lastUpdated">12 August 2026</span></p>
+
+  <div class="card">
+    <h2>What this site does</h2>
+    <p>This site answers one deceptively simple question: <strong>what do everyday things cost in Bitcoin?</strong></p>
+    <p>Most Bitcoin calculators convert a number into another number. That tells you very little. Knowing that 0.000025 BTC equals $2.50 is abstract. Knowing that a loaf of bread costs 2,500 satoshis is something you can actually feel — and remember.</p>
+    <p>So instead of an empty input box, this converter starts with a shopping list: bread, milk, coffee, eggs, a Big Mac, a tank of gas, a Netflix subscription. Every item is priced live in Bitcoin and in satoshis. You can edit any price to match your own local shop, add your own items, and switch between dollars and euros.</p>
+
+    <h2>Why it exists</h2>
+    <p>Bitcoin is usually discussed as an investment — a price chart going up or down. That framing hides something more interesting: Bitcoin is also a <em>unit of account</em>. When you start pricing ordinary purchases in satoshis, you begin to see purchasing power rather than exchange rates.</p>
+    <p>A coffee that cost 25,000 sats a few years ago and costs 3,800 sats today tells a story that a dollar price never will. This site exists to make that story visible to anyone, in a few seconds, without signing up for anything.</p>
+
+    <h2>How the numbers are calculated</h2>
+    <p>The maths is intentionally simple and fully transparent:</p>
+    <ul>
+      <li>The item's price is divided by the current Bitcoin price in the same currency.</li>
+      <li>That result is the amount in BTC. Multiplied by 100,000,000 it becomes satoshis.</li>
+      <li>Example: a $2.50 loaf of bread at a $100,000 BTC price is 0.000025 BTC, or 2,500 sats.</li>
+    </ul>
+    <p>Internally every item price is stored in one base currency, so the satoshi figure stays correct whichever fiat currency you choose to display. Switching from dollars to euros changes the price label — not the number of sats.</p>
+
+    <h2>Where the live price comes from</h2>
+    <p>Relying on a single price API means a single point of failure. This page asks five independent public sources at the same time — <strong>CoinGecko, Coinbase, Kraken, Bitstamp and Blockchain.info</strong> — and uses whichever responds first. If one is down or rate-limiting, you will not notice. If all five are unreachable, you can enter a price manually and everything keeps working.</p>
+
+    <h2>Who is behind it</h2>
+    <p>Satmeter is built and maintained by <strong>Johan Demmers</strong>, an independent developer based in the Netherlands. It is a personal project rather than a company, and it is not affiliated with, sponsored by, or endorsed by any exchange, wallet provider, or price data provider mentioned on the site.</p>
+    <p>I am not a financial adviser and hold no licence to give investment advice. I built this because pricing ordinary things in satoshis turned out to be a genuinely useful way to think about money, and no existing tool did it with everyday groceries. Everything on the site reflects my own reading of public data, and where I am uncertain I say so on the page rather than papering over it.</p>
+    <p>You can reach me directly at <a href="mailto:info@satmeter.io">info@satmeter.io</a>. Corrections are welcome and I do read them &mdash; several of the default prices on this site were changed because readers told me they were wrong for their country.</p>
+
+    <h2>What this site is not</h2>
+    <div class="callout">
+      <p><strong>This is not financial advice.</strong> This is an educational and entertainment tool. It does not recommend buying, selling or holding Bitcoin or any other asset. Bitcoin's price is highly volatile and the figures shown here change constantly. Never make a financial decision based on a converter — always do your own research and consider speaking to a qualified, licensed adviser.</p>
+    </div>
+
+    <h2>Corrections and suggestions</h2>
+    <p>If a default price looks wrong for your country, or you think an item is missing, please say so via the <a href="contact.html">contact page</a>. Suggestions from readers are how the default list gets better.</p>
+  </div>
+
+  <footer>
+    <a href="index.html">Converter</a> &middot;
+    <a href="about.html">About</a> &middot;
+    <a href="contact.html">Contact</a> &middot;
+    <a href="privacy.html">Privacy</a> &middot;
+    <a href="terms.html">Terms</a>
+    <div style="margin-top:16px;padding-top:14px;border-top:1px solid var(--border)">
+      <span class="copyline">&copy; <span id="year">2026</span> Satmeter. All rights reserved.</span>
+      <span>The design, text and code of this site are protected by copyright.</span>
+    </div>
+  </footer>
+</div>
+<script>
+(function(){
+  var KEY="btc_grocery_theme";
+  var t=document.getElementById("themeToggle"),i=document.getElementById("themeIcon"),x=document.getElementById("themeText");
+  function apply(th){
+    document.documentElement.setAttribute("data-theme",th);
+    var dark=th==="dark";
+    i.textContent=dark?"\u2600\uFE0F":"\uD83C\uDF19";
+    x.textContent=dark?"Light mode":"Dark mode";
+    var m=document.querySelector('meta[name="theme-color"]');
+    if(m) m.setAttribute("content", dark?"#18191a":"#1877f2");
+  }
+  var s=null; try{s=localStorage.getItem(KEY);}catch(e){}
+  if(!s) s=(window.matchMedia&&window.matchMedia("(prefers-color-scheme: dark)").matches)?"dark":"light";
+  apply(s);
+  t.addEventListener("click",function(){
+    var n=document.documentElement.getAttribute("data-theme")==="dark"?"light":"dark";
+    apply(n); try{localStorage.setItem(KEY,n);}catch(e){}
+  });
+  var y=document.getElementById("year"); if(y) y.textContent=new Date().getFullYear();
+})();
+</script>
+<script src="assets/nav.js" defer></script>
+</body>
+</html>
