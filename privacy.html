@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Privacy Policy — Bitcoin to Groceries Converter | Satmeter</title>
+<meta name="description" content="Privacy policy for the Bitcoin to Groceries converter: what data is stored, what third parties are involved, cookies, and your rights under GDPR.">
+<meta name="robots" content="index, follow">
+<meta name="theme-color" content="#1877f2">
+<meta name="author" content="Johan Demmers">
+<meta name="copyright" content="&copy; Johan Demmers (Satmeter). All rights reserved.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2040%2040%22%3E%3Ccircle%20cx%3D%2220%22%20cy%3D%2220%22%20r%3D%2219%22%20fill%3D%22%23f7931a%22%2F%3E%3Cpath%20d%3D%22M9.5%2025.5%20A11.5%2011.5%200%200%201%2030.5%2025.5%22%20fill%3D%22none%22%20stroke%3D%22%23fff%22%20stroke-opacity%3D%22.55%22%20stroke-width%3D%222.4%22%20stroke-linecap%3D%22round%22%2F%3E%3Cline%20x1%3D%2220%22%20y1%3D%2225.5%22%20x2%3D%2227%22%20y2%3D%2214.5%22%20stroke%3D%22%23fff%22%20stroke-width%3D%222.6%22%20stroke-linecap%3D%22round%22%2F%3E%3Ccircle%20cx%3D%2220%22%20cy%3D%2225.5%22%20r%3D%222.6%22%20fill%3D%22%23fff%22%2F%3E%3Ctext%20x%3D%2220%22%20y%3D%2214.5%22%20font-family%3D%22Arial%22%20font-size%3D%2211%22%20font-weight%3D%22bold%22%20fill%3D%22%23fff%22%20text-anchor%3D%22middle%22%3E%E2%82%BF%3C%2Ftext%3E%3C%2Fsvg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#f0f2f5; --bg-accent-1:#e3f0ff; --bg-accent-2:#fff3e0;
+    --surface:#fff; --surface-2:#f0f2f5; --border:#dfe3e8; --border-strong:#ccd0d5;
+    --blue:#1877f2; --blue-deep:#0b5fce; --blue-soft:#e7f0fe;
+    --orange:#f7931a; --orange-deep:#e07d05;
+    --purple:#8b5cf6; --pink:#f43f8e;
+    --text:#050505; --text-2:#3a3b3c; --muted:#65676b;
+    --shadow-sm:0 1px 2px rgba(0,0,0,.1); --shadow-md:0 2px 8px rgba(0,0,0,.1);
+    --radius:14px;
+  }
+  html[data-theme="dark"]{
+    --bg:#18191a; --bg-accent-1:#1c2733; --bg-accent-2:#2a2117;
+    --surface:#242526; --surface-2:#3a3b3c; --border:#3e4042; --border-strong:#54565a;
+    --blue:#2d88ff; --blue-deep:#5ba4ff; --blue-soft:#1c2b3f;
+    --orange:#f7931a; --orange-deep:#ffab3d;
+    --purple:#a78bfa; --pink:#f9739f;
+    --text:#e4e6eb; --text-2:#c8cbd0; --muted:#b0b3b8;
+    --shadow-sm:0 1px 2px rgba(0,0,0,.4); --shadow-md:0 2px 10px rgba(0,0,0,.5);
+  }
+  *{box-sizing:border-box;}
+  body{
+    margin:0;
+    font-family:'Inter',-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+    background:var(--bg);
+    background-image:
+      radial-gradient(ellipse 80% 50% at 15% -5%, var(--bg-accent-1) 0%, transparent 60%),
+      radial-gradient(ellipse 70% 45% at 90% 0%, var(--bg-accent-2) 0%, transparent 55%);
+    background-repeat:no-repeat;
+    color:var(--text); min-height:100vh; padding:28px 18px 70px;
+    -webkit-font-smoothing:antialiased;
+  }
+  .wrap{max-width:780px;margin:0 auto;}
+  .topbar{display:flex;justify-content:space-between;align-items:center;gap:10px;margin-bottom:22px;flex-wrap:wrap;}
+  .brand{display:inline-flex;align-items:center;gap:9px;text-decoration:none;color:var(--text);font-weight:800;font-size:16.5px;letter-spacing:-.02em;}
+  .brand img{width:28px;height:28px;display:block;}
+  .brand .bm-sat{color:var(--text);}
+  .brand .bm-meter{color:var(--orange-deep);}
+  .brand:hover .bm-meter{color:var(--orange);}
+  .brand .bm-tld{font-size:10.5px;font-weight:700;color:var(--muted);background:var(--surface-2);border-radius:5px;padding:2px 5px;margin-left:1px;letter-spacing:.03em;}
+  .back-link{
+    display:inline-flex;align-items:center;gap:7px;
+    background:var(--surface);border:1px solid var(--border);color:var(--text-2);
+    border-radius:999px;padding:7px 15px;font-size:12.5px;font-weight:500;
+    text-decoration:none;box-shadow:var(--shadow-sm);transition:all .18s ease;
+  }
+  .back-link:hover{border-color:var(--blue);color:var(--blue);}
+  .theme-toggle{
+    display:inline-flex;align-items:center;gap:7px;
+    background:var(--surface);border:1px solid var(--border);color:var(--text-2);
+    border-radius:999px;padding:7px 14px;font-size:12.5px;font-weight:500;
+    font-family:inherit;cursor:pointer;box-shadow:var(--shadow-sm);transition:all .18s ease;
+  }
+  .theme-toggle:hover{border-color:var(--blue);color:var(--blue);}
+  h1{
+    font-size:clamp(26px,4vw,38px);line-height:1.15;letter-spacing:-.025em;
+    margin:0 0 10px;font-weight:800;
+  }
+  h1 .gradient-text{
+    background:linear-gradient(100deg, var(--blue) 0%, var(--purple) 50%, var(--pink) 100%);
+    -webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;color:var(--blue);
+  }
+  .updated{font-size:12.5px;color:var(--muted);margin:0 0 26px;}
+  .card{
+    background:var(--surface);border:1px solid var(--border);border-radius:20px;
+    padding:30px 28px;box-shadow:var(--shadow-md);
+  }
+  h2{font-size:19px;font-weight:700;letter-spacing:-.015em;margin:30px 0 10px;}
+  h2:first-of-type{margin-top:0;}
+  h3{font-size:15.5px;font-weight:700;margin:20px 0 8px;}
+  p, li{color:var(--text-2);font-size:14.5px;line-height:1.75;}
+  p{margin:0 0 14px;}
+  ul{margin:0 0 14px;padding-left:22px;}
+  li{margin-bottom:7px;}
+  a{color:var(--blue);font-weight:500;}
+  strong{color:var(--text);}
+  .callout{
+    background:var(--blue-soft);border:1px solid rgba(24,119,242,.25);
+    border-radius:12px;padding:16px 18px;margin:18px 0;
+  }
+  .callout p{margin:0;font-size:13.5px;}
+  .contact-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:14px;margin:18px 0;}
+  .contact-item{
+    background:var(--surface-2);border:1px solid var(--border);border-radius:12px;padding:16px;
+  }
+  .contact-item .label{
+    font-size:10.5px;text-transform:uppercase;letter-spacing:.08em;
+    color:var(--muted);font-weight:600;margin-bottom:5px;
+  }
+  .contact-item .value{font-size:14.5px;font-weight:600;}
+  html[data-theme="dark"]
+  footer{
+    text-align:center;color:var(--muted);font-size:12.5px;
+    margin-top:26px;padding-top:18px;line-height:1.75;
+  }
+  footer a{color:var(--blue);text-decoration:none;}
+  footer a:hover{text-decoration:underline;}
+  .copyline{font-size:13px;font-weight:700;color:var(--text-2);display:block;margin-bottom:5px;}
+</style>
+
+<!-- ============================================================
+     CLOUDFLARE WEB ANALYTICS
+     Cookieless, so no consent banner is needed for it.
+     Get your token at: Cloudflare dashboard → Analytics & Logs →
+     Web Analytics → Add a site → satmeter.io. Then paste the token
+     below and remove the comment markers.
+     ============================================================ -->
+<!--
+<script defer src="https://static.cloudflareinsights.com/beacon.min.js"
+        data-cf-beacon='{"token": "PASTE_YOUR_CLOUDFLARE_TOKEN_HERE"}'></script>
+-->
+<!-- Consent Mode v2 defaults — must load before adsbygoogle.js -->
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('consent', 'default', {
+    'ad_storage': 'denied',
+    'ad_user_data': 'denied',
+    'ad_personalization': 'denied',
+    'analytics_storage': 'denied',
+    'wait_for_update': 500
+  });
+</script>
+<script defer src="assets/consent.js"></script>
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8258777689852315"
+     crossorigin="anonymous"></script>
+</head>
+<body>
+<div class="wrap">
+
+  <div class="topbar">
+    <a class="brand" href="index.html" aria-label="Satmeter home"><img src="assets/logo.svg" alt="" width="28" height="28"><span><span class="bm-sat">Sat</span><span class="bm-meter">meter</span></span><span class="bm-tld">.io</span></a>
+    <a class="back-link" href="index.html">&larr; Back to the converter</a>
+    <button class="theme-toggle" id="themeToggle" type="button"><span id="themeIcon">&#127769;</span><span id="themeText">Dark mode</span></button>
+  </div>
+
+  <h1><span class="gradient-text">Privacy Policy</span></h1>
+  <p class="updated">Last updated: <span id="lastUpdated">12 August 2026</span></p>
+
+  <div class="card">
+    <p>This policy explains what happens to data when you use this site. The short version: <strong>there are no accounts, no logins, and nothing you type here is sent to me.</strong></p>
+
+    <h2>1. Data stored on your own device</h2>
+    <p>The site saves a few things in your browser's <code>localStorage</code>, which lives on your computer and is never transmitted anywhere:</p>
+    <ul>
+      <li><strong>Your item list and prices</strong> — so your edits and added items are still there next visit.</li>
+      <li><strong>Your language choice.</strong></li>
+      <li><strong>Your light/dark theme preference.</strong></li>
+    </ul>
+    <p>You can erase all of it at any time by clearing site data in your browser settings. Nothing is lost that I hold a copy of, because I do not hold a copy.</p>
+
+    <h2>2. No account, no personal data collected by me</h2>
+    <p>This site has no registration, no newsletter, no comment section and no contact form. I do not ask for your name, email address, wallet address or any other personal detail. If you email me voluntarily, I hold that email in order to reply to it — nothing more, and I do not add you to any list.</p>
+
+    <h2>3. Third parties that receive your IP address</h2>
+    <p>Some features require your browser to contact other companies. When it does, those companies necessarily see your IP address and basic technical details, and their own privacy policies apply:</p>
+    <ul>
+      <li><strong>Bitcoin price providers</strong> — CoinGecko, Coinbase, Kraken, Bitstamp and Blockchain.info. Your browser requests the current price directly from them.</li>
+      <li><strong>Unsplash</strong> — serves the photographs on the page from its image CDN.</li>
+      <li><strong>Google Fonts</strong> — serves the Inter typeface.</li>
+      <li><strong>Google AdSense</strong> — if and when advertising is enabled (see below).</li>
+      <li><strong>The hosting provider</strong> — keeps standard server logs, as all web hosts do.</li>
+    </ul>
+    <p>Note that no information about <em>what you calculated</em> is sent to any of these parties. A price request asks "what is Bitcoin worth right now" and nothing else.</p>
+
+    <h2>4. Advertising and cookies</h2>
+    <p>This site may display advertising through <strong>Google AdSense</strong>. Where it does:</p>
+    <ul>
+      <li>Google and its partners may set cookies or use similar technologies to serve and measure ads, and in some cases to personalise them based on your previous browsing.</li>
+      <li>You can control ad personalisation at <a href="https://myadcenter.google.com/" target="_blank" rel="noopener">Google My Ad Center</a>, and opt out of personalised advertising at <a href="https://www.aboutads.info/choices/" target="_blank" rel="noopener">aboutads.info</a>.</li>
+      <li>For visitors in the EEA, UK and Switzerland, a consent banner is required before any non-essential cookies are set, and advertising will only be personalised if you consent.</li>
+    </ul>
+
+    <h2>5. Analytics</h2>
+    <p>This site uses <strong>Cloudflare Web Analytics</strong> to count visits and see which pages are useful.</p>
+    <p>It was chosen deliberately because of how little it collects:</p>
+    <ul>
+      <li><strong>No cookies are set</strong> and no identifier is stored on your device.</li>
+      <li><strong>No cross-site tracking</strong> and no advertising profile is built.</li>
+      <li>Data is aggregated. I can see that a page was visited; I cannot see who visited it.</li>
+      <li>Nothing is sold or shared with data brokers.</li>
+    </ul>
+    <p>Because it is cookieless and builds no profile, this analytics does not require a consent banner under the GDPR. Note that this is separate from advertising: if and when AdSense is enabled, that <em>does</em> require consent, as described in section 4.</p>
+
+    <h2>6. Children</h2>
+    <p>This site is not directed at children under 13 and does not knowingly collect any data from them.</p>
+
+    <h2>7. Your rights</h2>
+    <p>If you are in the EU, EEA or UK, the GDPR gives you the right to access, correct, delete, restrict or object to the processing of your personal data, and to lodge a complaint with your national data protection authority. Because this site holds no personal data about you beyond any email you choose to send, most of these rights have very little to act upon — but requests are always welcome at <a href="mailto:info@satmeter.io">info@satmeter.io</a>.</p>
+    <p>Dutch visitors can contact the <a href="https://autoriteitpersoonsgegevens.nl/" target="_blank" rel="noopener">Autoriteit Persoonsgegevens</a>.</p>
+
+    <h2>8. Changes to this policy</h2>
+    <p>If this policy changes materially, the "last updated" date at the top of this page changes with it. Continued use of the site after a change means you accept the revised policy.</p>
+
+    <h2>9. Contact</h2>
+    <p>The person responsible for this site and for any data described above is <strong>Johan Demmers</strong>, based in the Netherlands. Privacy questions can go to <a href="mailto:info@satmeter.io">info@satmeter.io</a>.</p>
+
+    <div class="callout">
+      <p><strong>Plain-English summary:</strong> your item list stays in your browser, I never see it, I have no account system, and the only companies involved are the price APIs, the image and font CDNs, the host, and — once enabled — Google's advertising.</p>
+    </div>
+  </div>
+
+  <footer>
+    <a href="index.html">Converter</a> &middot;
+    <a href="about.html">About</a> &middot;
+    <a href="contact.html">Contact</a> &middot;
+    <a href="privacy.html">Privacy</a> &middot;
+    <a href="terms.html">Terms</a>
+    <div style="margin-top:16px;padding-top:14px;border-top:1px solid var(--border)">
+      <span class="copyline">&copy; <span id="year">2026</span> Satmeter. All rights reserved.</span>
+      <span>The design, text and code of this site are protected by copyright.</span>
+    </div>
+  </footer>
+</div>
+<script>
+(function(){
+  var KEY="btc_grocery_theme";
+  var t=document.getElementById("themeToggle"),i=document.getElementById("themeIcon"),x=document.getElementById("themeText");
+  function apply(th){
+    document.documentElement.setAttribute("data-theme",th);
+    var dark=th==="dark";
+    i.textContent=dark?"\u2600\uFE0F":"\uD83C\uDF19";
+    x.textContent=dark?"Light mode":"Dark mode";
+    var m=document.querySelector('meta[name="theme-color"]');
+    if(m) m.setAttribute("content", dark?"#18191a":"#1877f2");
+  }
+  var s=null; try{s=localStorage.getItem(KEY);}catch(e){}
+  if(!s) s=(window.matchMedia&&window.matchMedia("(prefers-color-scheme: dark)").matches)?"dark":"light";
+  apply(s);
+  t.addEventListener("click",function(){
+    var n=document.documentElement.getAttribute("data-theme")==="dark"?"light":"dark";
+    apply(n); try{localStorage.setItem(KEY,n);}catch(e){}
+  });
+  var y=document.getElementById("year"); if(y) y.textContent=new Date().getFullYear();
+})();
+</script>
+<script src="assets/nav.js" defer></script>
+</body>
+</html>
