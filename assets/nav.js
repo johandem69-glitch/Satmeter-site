@@ -173,11 +173,20 @@
       ".ad-banner:empty,.ad-box:empty{display:none;}",
       /* ------------------------------------------------------------------ */
 
-      ".sm-hamburger span{display:block;width:16px;height:2px;background:var(--text,#050505);",
+      /* The three icon lines are drawn with position:absolute (one real line
+         plus two pseudo-elements offset above/below it), which means their
+         own box is only 2px tall — too thin for the flex layout to notice.
+         On mobile that was invisible because nothing else shared the row,
+         but next to the desktop label the lines drew straight over the
+         text. sm-hamburger-icon reserves a real 16px-tall box so the lines
+         stay inside their own space instead of spilling onto the label. */
+      ".sm-hamburger-icon{position:relative;display:inline-flex;align-items:center;",
+      "justify-content:center;width:16px;height:16px;flex-shrink:0;}",
+      ".sm-hamburger-icon span{display:block;width:16px;height:2px;background:var(--text,#050505);",
       "position:relative;}",
-      ".sm-hamburger span::before,.sm-hamburger span::after{content:'';position:absolute;left:0;",
+      ".sm-hamburger-icon span::before,.sm-hamburger-icon span::after{content:'';position:absolute;left:0;",
       "width:16px;height:2px;background:var(--text,#050505);}",
-      ".sm-hamburger span::before{top:-5px;} .sm-hamburger span::after{top:5px;}",
+      ".sm-hamburger-icon span::before{top:-5px;} .sm-hamburger-icon span::after{top:5px;}",
       "#sm-nav-backdrop{position:fixed;inset:0;background:rgba(0,0,0,.5);z-index:10000;",
       "opacity:0;pointer-events:none;transition:opacity .2s ease;}",
       "#sm-nav-backdrop.open{opacity:1;pointer-events:auto;}",
@@ -290,7 +299,9 @@
     btn.type = "button";
     btn.className = "sm-hamburger";
     btn.setAttribute("aria-label", L.guides);
-    btn.innerHTML = "<span></span><span class=\"sm-hamburger-label\">" + L.guides + "</span>";
+    btn.innerHTML =
+      "<span class=\"sm-hamburger-icon\"><span></span></span>" +
+      "<span class=\"sm-hamburger-label\">" + L.guides + "</span>";
     btn.addEventListener("click", controls.open);
     topbar.appendChild(btn);
   }

@@ -143,6 +143,36 @@ donker/licht-knop in plaats van als kaal rond icoontje. Mobiel is pixel voor
 pixel ongewijzigd. Getest met jsdom op homepage, een Engels artikel en de
 Spaanse homepage: knop en label verschijnen overal correct vertaald.
 
+## 14 augustus: Twee echte bugs gevonden en opgelost na melding van Johan
+
+Johan meldde dat het menuknopje er rommelig uitzag en dat de foto's,
+affiliate-links en advertentievakken ontbraken. Live site nagekeken met de
+browser in plaats van alleen lokaal te testen — dat maakte meteen twee losse,
+echte problemen zichtbaar die eerdere lokale tests niet konden vangen:
+
+**1. Rommelig menuknopje (CSS-bug).** De drie lijntjes van het hamburgerpictogram
+worden getekend met `position:absolute`, waardoor hun eigen doosje maar 2px
+hoog is. Op mobiel viel dat niet op omdat er niets naast stond, maar naast
+het nieuwe tekst-label op desktop tekenden de lijntjes gewoon over de tekst
+heen. Fix: het icoontje zit nu in een eigen vast doosje van 16x16px
+(`.sm-hamburger-icon`), zodat het niet meer buiten zijn eigen ruimte tekent.
+
+**2. Foto's en affiliate-links ontbraken echt (geen cache-probleem).**
+`assets/affiliate.js` bleek helemaal niet op GitHub te staan, gecontroleerd
+via de GitHub-bestandenlijst zelf. Het bestand stond wel steeds in de zips
+die hier zijn gebouwd, dus het is onderweg verdwenen, hoogstwaarschijnlijk
+doordat Windows Defender of de browser bestanden met "affiliate" in de naam
+als verdacht behandelt en ze stil weglaat bij het uitpakken. Opgelost door
+het bestand te hernoemen naar `assets/wallet-picks.js` (functioneel
+identiek), alle 26 pagina's daarnaar te laten verwijzen, en de oude
+bestandsnaam nergens meer te gebruiken. Geverifieerd op de live site zelf:
+`assets/affiliate.js` gaf een 404, alle andere bestanden (site.css, sats.js,
+nav.js, de twee foto's) stonden er wel gewoon.
+
+Deze twee bugs bewijzen de waarde van het teruglezen van de live site na een
+deploy in plaats van alleen op "het commit-venster zag er goed uit" te
+vertrouwen — dat wordt vanaf nu vaker gedaan bij visuele wijzigingen.
+
 ## Wat nog open staat
 
 Op volgorde van wat het snelst geld oplevert.
@@ -157,6 +187,13 @@ meest relevant is, dus daar zit de groei.
 ## Valkuilen die we tegenkwamen
 
 Bewaard zodat je er niet nog een keer een avond aan kwijt bent.
+
+**Bestanden met "affiliate" in de naam kunnen stil verdwijnen.** Windows
+Defender of de browser behandelt `.js`-bestanden met woorden als "affiliate"
+soms als verdacht en laat ze onopgemerkt weg bij het uitpakken van een zip.
+Daarom heet het script nu `wallet-picks.js` in plaats van `affiliate.js`.
+Check na het uitpakken van een toekomstige zip altijd even of het aantal
+bestanden in `assets/` klopt met wat er in de zip zat.
 
 **Hostinger mapveld leeg laten.** Dat veld is relatief ten opzichte van
 `public_html`. Vul je daar `public_html` in, dan krijg je
