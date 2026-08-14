@@ -82,6 +82,14 @@ Nog een losse constatering: `bitcoin-boodschappen.html` is een Nederlandse
 pagina die nergens vandaan gelinkt is en niet in de sitemap staat. Doet geen
 kwaad, maar levert ook niets op. Ooit fatsoenlijk inhangen of weghalen.
 
+## 14 augustus: Cloudflare Web Analytics ingesteld
+
+Het echte token staat nu in alle 31 pagina's, de placeholder is overal
+vervangen. Cloudflare telt vanaf nu bezoekers per pagina, zonder cookies, dus
+zonder toestemmingsbanner. Na een paar dagen verkeer is in het Cloudflare-
+dashboard te zien welke artikelen het meest bekeken worden, en daar kan de
+affiliate-plaatsing dan op afgestemd worden.
+
 ## Wat nog open staat
 
 Op volgorde van wat het snelst geld oplevert.
@@ -90,20 +98,14 @@ Op volgorde van wat het snelst geld oplevert.
 Sitemap opnieuw indienen en indexering aanvragen voor de nieuwe Spaanse pagina
 en de gewijzigde pagina's. Alleen jij kunt hierbij, geen toegang van buitenaf.
 
-### 2. Cloudflare Web Analytics token
-Staat als `PASTE_YOUR_CLOUDFLARE_TOKEN_HERE` in alle pagina's. Zonder dit weet
-je niet welke pagina's bezoekers trekken, en dus ook niet waar de affiliate-
-blokken het beste renderen. Token: Cloudflare dashboard → Analytics & Logs →
-Web Analytics → Add a site → satmeter.io.
-
-### 3. Productfoto's bij de affiliate-kaarten
+### 2. Productfoto's bij de affiliate-kaarten
 De kaarten zijn nu tekst. Foto's converteren doorgaans beter. Download de
 affiliate-creatives, verklein naar circa 600px op de lange zijde, zet ze in
 `assets/`, en vul `IMG_BITBOX` en `IMG_TREZOR` in bovenaan
 `assets/affiliate.js`. Hotlink de originelen niet: 3000x4000px en meerdere
 megabytes, dat sloopt je laadtijd en daarmee je AdSense-opbrengst.
 
-### 4. Spaanse vertalingen
+### 3. Spaanse vertalingen
 2 van 22 gidsen gedaan (`where-to-store-your-sats`, `groceries-in-bitcoin-argentina`).
 Afspraak was twee per week. De Spaanstalige markt is waar in sats denken het
 meest relevant is, dus daar zit de groei.
