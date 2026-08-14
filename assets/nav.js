@@ -131,10 +131,19 @@
   function injectStyles() {
     if (document.getElementById("sm-nav-style")) return;
     var css = [
-      ".sm-hamburger{display:none;align-items:center;justify-content:center;",
+      ".sm-hamburger{display:inline-flex;align-items:center;justify-content:center;",
       "width:38px;height:38px;border-radius:999px;background:var(--surface,#fff);",
       "border:1px solid var(--border,#dfe3e8);cursor:pointer;margin-left:auto;order:99;}",
-      "@media (max-width:900px){.sm-hamburger{display:inline-flex;}}",
+      ".sm-hamburger-label{display:none;}",
+      /* On desktop the icon-only circle would look like a stray dot next to
+         the labelled theme-toggle button, so it grows into a matching
+         labelled pill instead. Mobile keeps the plain 38px circle exactly
+         as before — nothing here changes on narrow screens. */
+      "@media (min-width:901px){",
+      ".sm-hamburger{width:auto;padding:0 14px 0 12px;gap:8px;border-radius:999px;}",
+      ".sm-hamburger-label{display:inline;font-size:13px;font-weight:600;",
+      "color:var(--text,#050505);white-space:nowrap;}",
+      "}",
 
       /* ---- Mobile layout hardening -------------------------------------
          These rules live here rather than in site.css for two reasons:
@@ -280,8 +289,8 @@
     var btn = document.createElement("button");
     btn.type = "button";
     btn.className = "sm-hamburger";
-    btn.setAttribute("aria-label", L.menu);
-    btn.innerHTML = "<span></span>";
+    btn.setAttribute("aria-label", L.guides);
+    btn.innerHTML = "<span></span><span class=\"sm-hamburger-label\">" + L.guides + "</span>";
     btn.addEventListener("click", controls.open);
     topbar.appendChild(btn);
   }

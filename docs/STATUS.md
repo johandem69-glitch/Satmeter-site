@@ -130,6 +130,19 @@ Het hamburgermenu ontsloot deze pagina's al voor Google, maar nu staan ze
 ook als directe klikbare link in de hoofdtekst — dat weegt zwaarder mee voor
 zowel SEO als voor hoeveel bezoekers echt doorklikken.
 
+## 14 augustus: Gidsenmenu ook op desktop zichtbaar gemaakt
+
+Johan wees erop dat het hamburgermenu er alleen voor mobiel stond; op
+desktop was er nooit een vervanging gekomen voor de destijds gevraagde
+sidebar of pull-down met alle gidsen. Dat was juist: `.sm-hamburger` had
+`display:none` behalve onder 900px breed.
+
+Fix: hetzelfde, al geteste menu (zelfde schuifpaneel, zelfde inhoud) staat nu
+ook op desktop, als een label-knop ("All guides" / "Guías") naast de
+donker/licht-knop in plaats van als kaal rond icoontje. Mobiel is pixel voor
+pixel ongewijzigd. Getest met jsdom op homepage, een Engels artikel en de
+Spaanse homepage: knop en label verschijnen overal correct vertaald.
+
 ## Wat nog open staat
 
 Op volgorde van wat het snelst geld oplevert.
@@ -138,12 +151,6 @@ Op volgorde van wat het snelst geld oplevert.
 2 van 22 gidsen gedaan (`where-to-store-your-sats`, `groceries-in-bitcoin-argentina`).
 Afspraak was twee per week. De Spaanstalige markt is waar in sats denken het
 meest relevant is, dus daar zit de groei.
-
-### 3. Interne links dichter maken
-De homepage linkt nu maar naar 4 van de 22 gidsen in de tekst zelf (het
-hamburgermenu heeft ze wel allemaal). Meer directe links vanaf de homepage
-en tussen gidsen onderling levert extra paginaweergaven op per bezoeker,
-en dus meer advertentie-impressies.
 
 ---
 
