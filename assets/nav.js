@@ -157,6 +157,11 @@
       "article th,article td{padding:8px 8px;overflow-wrap:break-word;hyphens:auto;}",
       "article th:first-child,article td:first-child{width:32%;}",
       "}",
+
+      /* Empty ad containers must render as nothing. They stay in the markup
+         only as placement anchors. Visible empty dashed boxes make the site
+         look unfinished, a known reason for AdSense to reject a review. */
+      ".ad-banner:empty,.ad-box:empty{display:none;}",
       /* ------------------------------------------------------------------ */
 
       ".sm-hamburger span{display:block;width:16px;height:2px;background:var(--text,#050505);",
