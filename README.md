@@ -54,6 +54,7 @@ Hier staan de plannen die we onderweg hebben gemaakt:
 
 | Bestand | Waarover |
 | --- | --- |
+| `docs/STATUS.md` | **Waar we staan, wat er nog open is, en de valkuilen** |
 | `docs/DEPLOY.md` | De site live zetten op Hostinger |
 | `docs/ADSENSE-EN-AFFILIATE.md` | Werkplan voor AdSense-goedkeuring en affiliates |
 | `docs/MONETIZATION-PLAN.md` | Verdienmodel, realistische cijfers, valkuilen |
