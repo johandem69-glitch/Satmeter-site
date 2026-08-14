@@ -113,17 +113,28 @@ met jsdom op de homepage, een Engels artikel en de Spaanse wallet-gids: de
 `?v=1` toegevoegd aan beide bestandsnamen zodat je meteen het nieuwe plaatje
 ziet zonder handmatig de asset-versie op te hogen.
 
+## 14 augustus: Interne links op de homepage uitgebreid
+
+De homepage linkte in de tekst zelf maar naar 3 van de 22 gidsen. Uitgebreid
+naar 6: de bestaande drie (Big Mac Index, koffie, wat is een satoshi) plus
+"Where to Store Your Sats" (de wallet-gids, dus meer verkeer naar de
+affiliate-kaarten), "How Many Sats Is a Beer?" en de Netflix-gids. Alle 6
+doelbestanden bestaan, gecontroleerd.
+
+Op de Spaanse homepage zijn 2 kaarten toegevoegd die naar de 2 bestaande
+Spaanse vertalingen linken (wallet-gids en Argentinië), met Spaanse titel en
+tekst. De overige 3 kaarten op die pagina wijzen nog naar de Engelse versie,
+want die gidsen zijn nog niet vertaald.
+
+Het hamburgermenu ontsloot deze pagina's al voor Google, maar nu staan ze
+ook als directe klikbare link in de hoofdtekst — dat weegt zwaarder mee voor
+zowel SEO als voor hoeveel bezoekers echt doorklikken.
+
 ## Wat nog open staat
 
 Op volgorde van wat het snelst geld oplevert.
 
-### 1. Interne links dichter maken
-De homepage linkt nu maar naar 4 van de 22 gidsen in de tekst zelf (het
-hamburgermenu heeft ze wel allemaal). Meer directe links vanaf de homepage
-en tussen gidsen onderling levert extra paginaweergaven op per bezoeker, en
-dus meer advertentie-impressies.
-
-### 2. Spaanse vertalingen
+### 1. Spaanse vertalingen
 2 van 22 gidsen gedaan (`where-to-store-your-sats`, `groceries-in-bitcoin-argentina`).
 Afspraak was twee per week. De Spaanstalige markt is waar in sats denken het
 meest relevant is, dus daar zit de groei.
