@@ -39,8 +39,8 @@
      3000x4000px and several megabytes, which would wreck page speed.
 
      Example:  var IMG_BITBOX = "bitbox02.jpg";                          */
-  var IMG_BITBOX = "";
-  var IMG_TREZOR = "";
+  var IMG_BITBOX = "bitbox02.jpg?v=1";
+  var IMG_TREZOR = "trezor-safe5.jpg?v=1";
 
   /* ======================= END CONFIG ======================= */
 

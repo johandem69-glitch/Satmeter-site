@@ -90,25 +90,49 @@ zonder toestemmingsbanner. Na een paar dagen verkeer is in het Cloudflare-
 dashboard te zien welke artikelen het meest bekeken worden, en daar kan de
 affiliate-plaatsing dan op afgestemd worden.
 
+## 14 augustus: Google Search Console gecontroleerd
+
+Sitemap stond al ingediend (12 augustus) en succesvol verwerkt, 30 pagina's
+ontdekt. Losse controle van de belangrijkste URL's uitgevoerd via de
+URL-inspectietool: homepage, Spaanse homepage, Engelse en Spaanse
+wallet-gids, Big Mac Index. Op één geval na (`/es/index.html`, wat gewoon
+de niet-canonieke variant van `/es/` bleek te zijn, geen probleem) stond
+alles al gewoon goed. Niets te repareren, alleen bevestigd.
+
+## 14 augustus: Productfoto's toegevoegd aan de affiliate-kaarten
+
+Trezor Safe 5 (eigen creative, 768x768) en BitBox02 (uitgesneden uit een
+device+telefoon-beeld, alleen het apparaat overgehouden) zijn verkleind naar
+600px, platgeslagen op een witte achtergrond en opgeslagen als
+`assets/trezor-safe5.jpg` (36kB) en `assets/bitbox02.jpg` (12kB). De originele
+creatives (3000x4000px, meerdere megabytes) zijn dus nergens gebruikt.
+
+`IMG_BITBOX` en `IMG_TREZOR` in `assets/affiliate.js` zijn ingevuld. Getest
+met jsdom op de homepage, een Engels artikel en de Spaanse wallet-gids: de
+`<img>`-tags verschijnen overal met het juiste relatieve pad. Cache-buster
+`?v=1` toegevoegd aan beide bestandsnamen zodat je meteen het nieuwe plaatje
+ziet zonder handmatig de asset-versie op te hogen.
+
 ## Wat nog open staat
 
 Op volgorde van wat het snelst geld oplevert.
 
-### 1. Google Search Console
-Sitemap opnieuw indienen en indexering aanvragen voor de nieuwe Spaanse pagina
-en de gewijzigde pagina's. Alleen jij kunt hierbij, geen toegang van buitenaf.
+### 1. Interne links dichter maken
+De homepage linkt nu maar naar 4 van de 22 gidsen in de tekst zelf (het
+hamburgermenu heeft ze wel allemaal). Meer directe links vanaf de homepage
+en tussen gidsen onderling levert extra paginaweergaven op per bezoeker, en
+dus meer advertentie-impressies.
 
-### 2. Productfoto's bij de affiliate-kaarten
-De kaarten zijn nu tekst. Foto's converteren doorgaans beter. Download de
-affiliate-creatives, verklein naar circa 600px op de lange zijde, zet ze in
-`assets/`, en vul `IMG_BITBOX` en `IMG_TREZOR` in bovenaan
-`assets/affiliate.js`. Hotlink de originelen niet: 3000x4000px en meerdere
-megabytes, dat sloopt je laadtijd en daarmee je AdSense-opbrengst.
-
-### 3. Spaanse vertalingen
+### 2. Spaanse vertalingen
 2 van 22 gidsen gedaan (`where-to-store-your-sats`, `groceries-in-bitcoin-argentina`).
 Afspraak was twee per week. De Spaanstalige markt is waar in sats denken het
 meest relevant is, dus daar zit de groei.
+
+### 3. Interne links dichter maken
+De homepage linkt nu maar naar 4 van de 22 gidsen in de tekst zelf (het
+hamburgermenu heeft ze wel allemaal). Meer directe links vanaf de homepage
+en tussen gidsen onderling levert extra paginaweergaven op per bezoeker,
+en dus meer advertentie-impressies.
 
 ---
 
