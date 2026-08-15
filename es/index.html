@@ -1199,6 +1199,8 @@
       <option value="id">🌐 Indonesia</option>
       <option value="vi">🌐 Tiếng Việt</option>
       <option value="nl">🌐 Nederlands</option>
+      <option value="de">🌐 Deutsch</option>
+      <option value="tr">🌐 Türkçe</option>
     </select>
     <button class="theme-toggle" id="themeToggle" type="button">
       <span id="themeIcon">🌙</span><span id="themeText" data-i18n="themeDark">Dark mode</span>
@@ -2132,6 +2134,108 @@
       adLabel:"", adHintRail:"",
       adHintBanner:"",
       items:["Brood (heel)","Melk (1 liter)","Kop koffie (café)","Eieren (12 stuks)","Boter (250 g)","Reep chocolade","Avocado","Bier (flesje, winkel)","Gallon benzine","Big Mac-menu","Pizza (bezorgd)","Bioscoopkaartje","Netflix (maand)","Mobiel abonnement (maand)"]
+    },
+
+    de: { name:"Deutsch", dir:"ltr",
+      themeDark:"Dunkler Modus", themeLight:"Heller Modus",
+      badge:"Live-Preis · aktualisiert automatisch",
+      h1:"Bitcoin ↔ Lebensmittel",
+      tagline:"Vergleiche Bitcoin mit deinen Lebenshaltungskosten – nicht nur mit seinem Preis. Sieh live, was Brot, Kaffee und Lebensmittel in Sats kosten.",
+      intro:"Die meisten Bitcoin-Tracker zeigen dir nur einen Preis. Satmeter ist anders: Es vergleicht Bitcoin und Satoshis mit den Dingen, die du tatsächlich kaufst – Kaffee, Brot, Lebensmittel und alles, was du selbst hinzufügst – damit du echte Kaufkraft siehst, nicht nur eine Zahl im Chart. Wie viele Sats kostet heute eine Tasse Kaffee? Finde es live heraus, in BTC und Satoshis, in USD oder EUR.",
+      proofText:"Schließ dich allen an, die lernen, <strong>in Sats zu denken</strong> 🎉",
+      cap1:"Ein voller Einkaufswagen", cap2:"Dein Morgenkaffee", cap3:"Ein Einkaufsbummel",
+      loadingPrice:"BTC-Preis wird geladen…", refresh:"Aktualisieren",
+      quickConverter:"Schnellumrechner", amountIn:"Betrag in", bitcoinLabel:"Bitcoin",
+      groceriesTitle:"Lebensmittel in Bitcoin",
+      groceriesHint:"Preise sind bearbeitbar – gib deinen eigenen lokalen Preis ein. Fahre über eine Karte und klicke auf ×, um sie zu entfernen.",
+      resetBtn:"Standardliste wiederherstellen", addOwnTitle:"Eigenen Artikel hinzufügen",
+      namePh:"Name (z. B. Käse 500g)", pricePh:"Preis", addBtn:"Artikel hinzufügen",
+      shareBtn:"📋 Zum Teilen kopieren", copied:"✓ Kopiert!",
+      emptyState:"Deine Liste ist leer 🛒<br>Füge unten einen Artikel hinzu oder klicke auf „Standardliste wiederherstellen“, um die Originale zurückzuholen.",
+      lsTitle:"Heute Lebensmittel, morgen Sats 🛒",
+      lsText:"Sobald du anfängst, alltägliche Dinge in Satoshis zu bepreisen, bleiben dir die Zahlen im Kopf. Dieser Kaffee kostet nicht mehr 3,80 $ – er ist ein bestimmtes Stück eines Bitcoins. Komm nächste Woche wieder und sieh, wie derselbe Kaffee eine andere Anzahl Sats kostet.",
+      satsInBtc:"Sats in 1 BTC", itemsTracked:"erfasste Artikel", liveWord:"Live", priceAlways:"Preis, immer",
+      lmTitle:"Wähle deinen Standort und deine Sprache", lmSub:"Preise wechseln zur Währung der gewählten Region. Du kannst die Währung jederzeit separat ändern.", lmSearchPh:"Sprache, Land oder Währung suchen…", lmFoot:"Deine Wahl wird auf diesem Gerät gespeichert. Bitcoin hat einen weltweiten Preis — nur die Anzeigewährung ändert sich.",
+      readMoreTitle:"Mehr lesen", readMoreHint:"Guides und Indizes, die auf denselben Live-Preisdaten basieren.",
+      faqTitle:"Häufig gestellte Fragen",
+      q1:"Wie viele Sats kostet eine Tasse Kaffee?",
+      a1:"Das hängt vom aktuellen Bitcoin-Preis ab und davon, was Kaffee bei dir kostet. Diese Seite teilt den Preis des Artikels durch den aktuellen BTC-Preis, um die genaue Anzahl an Satoshis in diesem Moment zu zeigen. Bei einem BTC-Preis von 100.000 $ entspricht ein Kaffee für 4,00 $ ungefähr 4.000 Sats.",
+      q2:"Was ist ein Satoshi (Sat)?",
+      a2:"Ein Satoshi, oder „Sat“, ist die kleinste Einheit von Bitcoin. Ein Bitcoin entspricht 100.000.000 Satoshis – ähnlich wie ein Dollar 100 Cent entspricht. Weil ein ganzer Bitcoin teuer ist, sind Sats die praktische Einheit für alltägliche Beträge.",
+      q3:"Wie wird der Preis in Bitcoin berechnet?",
+      a3:"Der Preis des Artikels wird durch den aktuellen Bitcoin-Preis in derselben Währung geteilt. Zum Beispiel entspricht ein Brot für 2,50 $ bei einem BTC-Preis von 100.000 $ 0,000025 BTC, also 2.500 Sats. Dieselbe Rechnung gilt in Euro: Ein Brot für 2,30 € bei 92.000 € pro BTC ergibt ebenfalls etwa 2.500 Sats.",
+      q4:"Kann ich die Währung ändern?",
+      a4:"Ja – wähle aus 21 Währungen in der Preisleiste, von Dollar und Euro bis Yen, Rupien, Naira und Rupiah. Jeder Preis auf der Seite wechselt mit. Beim Sprachwechsel wechselt auch automatisch die Währung zu der, die von den Sprechern dieser Sprache am häufigsten verwendet wird; wählst du selbst eine Währung, wird stattdessen diese Wahl gespeichert. Die Anzahl der Sats ändert sich dabei nie, denn Sats ist es egal, mit welcher Fiat-Währung du gestartet bist.",
+      q5:"Woher kommt der Live-Bitcoin-Preis?",
+      a5:"Die Seite fragt gleichzeitig fünf unabhängige öffentliche Quellen ab – CoinGecko, Coinbase, Kraken, Bitstamp und Blockchain.info – und verwendet die, die zuerst antwortet. So lässt ein einzelner Ausfall oder ein Ratenlimit die Seite nie ohne Preis stehen. Sind alle Quellen nicht erreichbar, kannst du einen Preis manuell eingeben.",
+      q6:"Kann ich eigene Artikel hinzufügen und entfernen?",
+      a6:"Ja. Nutze das Formular „Eigenen Artikel hinzufügen“, um Artikel mit deinen eigenen Preisen zu erstellen, und fahre über eine Karte und klicke auf das × in der Ecke, um sie zu entfernen. Alles wird in deinem Browser gespeichert, sodass deine Liste beim nächsten Besuch noch da ist – und „Standardliste wiederherstellen“ bringt die Originalartikel zurück.",
+      footerSources:"Live-BTC-Preis von CoinGecko, Coinbase, Kraken, Bitstamp und Blockchain.info – wer zuerst antwortet. Keine Finanzberatung – Preise können stark schwanken.",
+      photosBy:"Fotos von", footerToolsLink:"Kostenlose Rechner", builtFor:"© {year} Satmeter. Alle Rechte vorbehalten.", rightsNote:"Design, Text und Code dieser Seite sind urheberrechtlich geschützt. Vervielfältigung oder Weiterverbreitung ohne schriftliche Genehmigung ist nicht gestattet. Bitcoin-Preisdaten gehören den jeweiligen Anbietern.",
+      sourceLabel:"Quelle", updatedLabel:"aktualisiert", connecting:"verbinde…",
+      unavailable:"Live-Preis nicht verfügbar", noneReachable:"keine Quelle erreichbar", manualEntry:"manuelle Eingabe",
+      helpTitle:"⚠️ Keine Preisquelle erreichbar",
+      helpIntro:"Alle fünf Feeds (CoinGecko, Coinbase, Kraken, Bitstamp, Blockchain.info) sind fehlgeschlagen. Die häufigsten Ursachen:",
+      helpFile:"<strong>Du hast diese Datei direkt von deinem Computer geöffnet (file://).</strong> Browser blockieren API-Anfragen von lokalen Dateien aus Sicherheitsgründen. Das ist fast sicher der Grund. Hoste die Seite – schon ein einfacher lokaler Server reicht – und der Live-Preis lädt.",
+      helpNet:"Keine Internetverbindung, oder eine Firewall/VPN blockiert diese APIs.",
+      helpBlocker:"Ein Werbeblocker oder eine Datenschutz-Erweiterung blockiert Krypto-API-Anfragen – versuche, ihn für diese Seite zu deaktivieren.",
+      helpLimit:"Alle fünf Dienste limitieren dich gleichzeitig (selten).",
+      helpManual:"Gib in der Zwischenzeit den aktuellen Bitcoin-Preis ein, dann funktioniert alles auf dieser Seite weiter:",
+      helpPricePh:"BTC-Preis in USD", helpUse:"Diesen Preis verwenden", helpRetry:"Erneut versuchen", helpDetail:"Technisches Detail",
+      adLabel:"", adHintRail:"",
+      adHintBanner:"",
+      items:["Brot (Laib)","Milch (1 Liter)","Tasse Kaffee (Café)","Eier (12er-Packung)","Butter (250g)","Tafel Schokolade","Avocado","Bier (Flasche, Laden)","Gallone Benzin","Big-Mac-Menü","Pizza (Lieferung)","Kinokarte","Netflix (Monat)","Handyvertrag (Monat)"]
+    },
+
+    tr: { name:"Türkçe", dir:"ltr",
+      themeDark:"Karanlık mod", themeLight:"Aydınlık mod",
+      badge:"Canlı fiyat · otomatik güncellenir",
+      h1:"Bitcoin ↔ Market Alışverişi",
+      tagline:"Bitcoin'i sadece fiyatıyla değil, yaşam maliyetinle karşılaştır. Ekmek, kahve ve market alışverişinin sat cinsinden kaç para tuttuğunu canlı olarak gör.",
+      intro:"Çoğu Bitcoin takip aracı sana sadece bir fiyat gösterir. Satmeter farklı: Bitcoin ve satoshi'yi gerçekten satın aldığın şeylerle karşılaştırır — kahve, ekmek, market alışverişi ve eklediğin her şey — böylece grafikteki bir sayı değil, gerçek satın alma gücünü görürsün. Bugün bir fincan kahve kaç sat? BTC ve satoshi cinsinden, USD veya EUR ile canlı olarak öğren.",
+      proofText:"<strong>Sat cinsinden düşünmeyi</strong> öğrenen herkese katıl 🎉",
+      cap1:"Dolu bir market arabası", cap2:"Sabah kahven", cap3:"Bir alışveriş çılgınlığı",
+      loadingPrice:"BTC fiyatı yükleniyor…", refresh:"Yenile",
+      quickConverter:"Hızlı çevirici", amountIn:"Tutar", bitcoinLabel:"Bitcoin",
+      groceriesTitle:"Bitcoin Cinsinden Market Alışverişi",
+      groceriesHint:"Fiyatlar düzenlenebilir — kendi yerel fiyatını gir. Bir kartın üzerine gel ve kaldırmak için × işaretine tıkla.",
+      resetBtn:"Varsayılan listeye sıfırla", addOwnTitle:"Kendi ürününü ekle",
+      namePh:"İsim (örn. Peynir 500g)", pricePh:"Fiyat", addBtn:"Ürün ekle",
+      shareBtn:"📋 Paylaşmak için kopyala", copied:"✓ Kopyalandı!",
+      emptyState:"Listen boş 🛒<br>Aşağıya bir ürün ekle, ya da orijinal listeyi geri getirmek için “Varsayılan listeye sıfırla”ya tıkla.",
+      lsTitle:"Bugün market, yarın sat 🛒",
+      lsText:"Günlük şeylere satoshi cinsinden fiyat vermeye başladığında, rakamlar aklında kalıcı hale gelir. O kahve artık 3,80 $ değil — Bitcoin'in belirli bir dilimi. Gelecek hafta tekrar gel ve aynı kahvenin farklı sayıda sat tuttuğunu gör.",
+      satsInBtc:"1 BTC'deki sat", itemsTracked:"izlenen ürün", liveWord:"Canlı", priceAlways:"her zaman fiyat",
+      lmTitle:"Konumunu ve dilini seç", lmSub:"Fiyatlar seçtiğin bölgenin para birimine geçer. Para birimini istediğin zaman ayrıca değiştirebilirsin.", lmSearchPh:"Dil, ülke veya para birimi ara…", lmFoot:"Seçimin bu cihazda hatırlanır. Bitcoin'in tek bir küresel fiyatı vardır — sadece görüntülenen para birimi değişir.",
+      readMoreTitle:"Daha fazla oku", readMoreHint:"Aynı canlı fiyat verileriyle hazırlanmış rehberler ve endeksler.",
+      faqTitle:"Sıkça sorulan sorular",
+      q1:"Bir fincan kahve kaç sat eder?",
+      a1:"Bu, canlı Bitcoin fiyatına ve bulunduğun yerde kahvenin fiyatına bağlıdır. Bu sayfa, ürünün fiyatını güncel BTC fiyatına bölerek şu anki tam satoshi sayısını gösterir. 100.000 $'lık bir BTC fiyatında, 4,00 $'lık bir kahve yaklaşık 4.000 sat eder.",
+      q2:"Satoshi (sat) nedir?",
+      a2:"Satoshi, ya da \"sat\", Bitcoin'in en küçük birimidir. Bir Bitcoin, 100.000.000 satoshiye eşittir — tıpkı bir doların 100 sent'e eşit olması gibi. Bir bütün Bitcoin pahalı olduğu için, sat günlük tutarlar için pratik bir birimdir.",
+      q3:"Bitcoin cinsinden fiyat nasıl hesaplanır?",
+      a3:"Ürünün fiyatı, aynı para biriminden güncel Bitcoin fiyatına bölünür. Örneğin, 100.000 $'lık bir BTC fiyatında 2,50 $'lık bir somun ekmek 0,000025 BTC, yani 2.500 sat eder. Aynı hesap euro için de geçerlidir: BTC başına 92.000 €'da 2,30 €'luk bir ekmek de yaklaşık 2.500 sat eder.",
+      q4:"Para birimini değiştirebilir miyim?",
+      a4:"Evet — fiyat çubuğunda dolar ve avrodan yen, rupi, naira ve rupiaya kadar 21 para biriminden birini seçebilirsin. Sayfadaki her fiyat onunla birlikte değişir. Dili değiştirmek, o dili konuşanların en yaygın kullandığı para birimine de otomatik olarak geçer; kendin bir para birimi seçersen bu seçim hatırlanır. Sat sayısı hiçbir durumda değişmez, çünkü sat, hangi fiat para biriminden başladığınla ilgilenmez.",
+      q5:"Canlı Bitcoin fiyatı nereden geliyor?",
+      a5:"Sayfa aynı anda beş bağımsız genel kaynağa soruyor — CoinGecko, Coinbase, Kraken, Bitstamp ve Blockchain.info — ve ilk yanıt vereni kullanıyor. Böylece tek bir kesinti veya hız sınırı, sayfayı asla fiyatsız bırakmaz. Tüm kaynaklara ulaşılamazsa, fiyatı elle girebilirsin.",
+      q6:"Kendi ürünlerimi ekleyip kaldırabilir miyim?",
+      a6:"Evet. Kendi fiyatlarınla ürün oluşturmak için \"Kendi ürününü ekle\" formunu kullan, kaldırmak için herhangi bir kartın üzerine gel ve köşesindeki ×'e tıkla. Her şey tarayıcında saklanır, böylece listen bir sonraki ziyaretinde de orada olur — ve \"Varsayılan listeye sıfırla\" orijinal ürünleri geri getirir.",
+      footerSources:"Canlı BTC fiyatı CoinGecko, Coinbase, Kraken, Bitstamp ve Blockchain.info'dan — hangisi önce yanıt verirse. Finansal tavsiye değildir — fiyatlar aşırı oynak olabilir.",
+      photosBy:"Fotoğraflar", footerToolsLink:"Ücretsiz hesaplayıcılar", builtFor:"© {year} Satmeter. Tüm hakları saklıdır.", rightsNote:"Bu sayfanın tasarımı, metni ve kodu telif hakkıyla korunmaktadır. Yazılı izin olmadan çoğaltılamaz veya yeniden dağıtılamaz. Bitcoin fiyat verileri ilgili sağlayıcılara aittir.",
+      sourceLabel:"kaynak", updatedLabel:"güncellendi", connecting:"bağlanıyor…",
+      unavailable:"Canlı fiyat kullanılamıyor", noneReachable:"hiçbiri erişilemiyor", manualEntry:"manuel giriş",
+      helpTitle:"⚠️ Hiçbir fiyat kaynağına ulaşılamadı",
+      helpIntro:"Beş kaynağın tümü (CoinGecko, Coinbase, Kraken, Bitstamp, Blockchain.info) başarısız oldu. En yaygın nedenler:",
+      helpFile:"<strong>Bu dosyayı doğrudan bilgisayarından açtın (file://).</strong> Tarayıcılar, güvenlik nedeniyle yerel dosyalardan gelen API isteklerini engeller. Neredeyse kesinlikle sebep bu. Sayfayı barındır — basit bir yerel sunucu bile yeterlidir — canlı fiyat yüklenecektir.",
+      helpNet:"İnternet bağlantısı yok, ya da bir güvenlik duvarı / VPN bu API'leri engelliyor.",
+      helpBlocker:"Bir reklam engelleyici veya gizlilik uzantısı kripto API isteklerini engelliyor — bu sayfa için devre dışı bırakmayı dene.",
+      helpLimit:"Beş hizmet de aynı anda seni sınırlandırıyor (nadir).",
+      helpManual:"Bu arada, güncel Bitcoin fiyatını gir, sayfadaki her şey çalışmaya devam etsin:",
+      helpPricePh:"USD cinsinden BTC fiyatı", helpUse:"Bu fiyatı kullan", helpRetry:"Tekrar dene", helpDetail:"Teknik detay",
+      adLabel:"", adHintRail:"",
+      adHintBanner:"",
+      items:["Ekmek (somun)","Süt (1 litre)","Fincan kahve (kafe)","Yumurta (12'li)","Tereyağı (250g)","Çikolata","Avokado","Bira (şişe, market)","Bir galon benzin","Big Mac menü","Pizza (paket servis)","Sinema bileti","Netflix (aylık)","Cep telefonu hattı (aylık)"]
     }
   };
 
@@ -2336,6 +2440,7 @@
   const LANG_CURRENCY = {
     en:"USD", zh:"CNY", hi:"INR", ar:"SAR", fr:"EUR", bn:"BDT",
     ru:"RUB", ja:"JPY", ko:"KRW", id:"IDR", vi:"VND", nl:"EUR",
+    de:"EUR", tr:"TRY",
     // Regional variants get their own currency
     "es-ES":"EUR", "es-MX":"MXN",
     "pt-PT":"EUR", "pt-BR":"BRL"
@@ -3035,7 +3140,9 @@
     "ko":    {flag:"\uD83C\uDDF0\uD83C\uDDF7", name:"\uD55C\uAD6D\uC5B4", region:"\uB300\uD55C\uBBFC\uAD6D", code:"KO"},
     "id":    {flag:"\uD83C\uDDEE\uD83C\uDDE9", name:"Bahasa Indonesia", region:"Indonesia", code:"ID"},
     "vi":    {flag:"\uD83C\uDDFB\uD83C\uDDF3", name:"Ti\u1EBFng Vi\u1EC7t", region:"Vi\u1EC7t Nam", code:"VI"},
-    "nl":    {flag:"\uD83C\uDDF3\uD83C\uDDF1", name:"Nederlands", region:"Nederland", code:"NL"}
+    "nl":    {flag:"\uD83C\uDDF3\uD83C\uDDF1", name:"Nederlands", region:"Nederland", code:"NL"},
+    "de":    {flag:"\uD83C\uDDE9\uD83C\uDDEA", name:"Deutsch", region:"Deutschland", code:"DE"},
+    "tr":    {flag:"\uD83C\uDDF9\uD83C\uDDF7", name:"T\u00FCrk\u00E7e", region:"T\u00FCrkiye", code:"TR"}
   };
 
   var pill = document.getElementById("localePill");
@@ -3071,7 +3178,8 @@
     ru:"russia", ja:"japan nippon", ko:"korea south korea", bn:"bangladesh",
     vi:"vietnam", id:"indonesia", "es-ES":"spain", "es-MX":"mexico",
     "pt-PT":"portugal", "pt-BR":"brazil", nl:"netherlands holland dutch",
-    fr:"france", en:"usa united states america"
+    fr:"france", en:"usa united states america",
+    de:"germany deutschland", tr:"turkey turkiye"
   };
 
   function buildList(filter){

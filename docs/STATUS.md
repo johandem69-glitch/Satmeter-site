@@ -351,6 +351,39 @@ Alleen bitcoin-naar-fiat.html is aangepast zoals gevraagd; de andere drie tools
 tonen nu ook via dezelfde `SatmeterLocale.currencyName()`-functie een pad om
 dit later uit te breiden, mocht Johan dat ook daar willen.
 
+## 15 augustus: Duits en Turks toegevoegd als volwaardige taal op satmeter.io
+
+Johan meldde dat Duits en Turks nog ontbraken als taalkeuze op satmeter.io zelf
+(tools.satmeter.io had ze al) en dat de reclameblokken ook in die talen mee
+moesten veranderen.
+
+**`index.html` en `es/index.html`:** twee complete nieuwe taalblokken toegevoegd
+aan de `I18N`-vertaaltabel — `de` (Duits) en `tr` (Turks) — elk met alle 78
+sleutels die Engels ook heeft (gecontroleerd met een script: geen ontbrekende
+of overtollige sleutels). Verder, op beide plekken hetzelfde gedaan:
+- Twee nieuwe `<option>`s in de verborgen taal-`<select>`.
+- Nieuwe regels in `LOCALE_META` (vlag, naam, regio) voor de taalkiezer-pil
+  en het zoekbare taalmenu.
+- Nieuwe regels in `LANG_CURRENCY` (de → EUR, tr → TRY) zodat de valuta
+  automatisch meeschakelt bij het kiezen van die taal. TRY bestond al als
+  valuta-optie op de site, dus daar was niets voor nodig.
+- Nieuwe regels in `REGION_ALIASES` zodat "germany"/"turkey" ook als
+  zoekterm werken in de taalkiezer.
+
+**Reclameblokken:** geen wijziging nodig. `assets/wallet-picks.js` had bij de
+vorige update van vandaag al 16 talen inclusief Duits en Turks, en luistert
+al live naar een taalwissel. Zodra een bezoeker Duits of Turks kiest,
+schakelen de BitBox/Trezor-kaarten vanzelf mee.
+
+Geen cache-bust nodig: dit raakt alleen de inline `<style>`/`<script>` van
+`index.html` en `es/index.html` zelf, niet `assets/nav.js`, `assets/site.css`
+of `assets/wallet-picks.js`.
+
+Gecontroleerd: syntax-check op beide bestanden geslaagd, en met een klein
+Node-scriptje bevestigd dat de nieuwe `de`- en `tr`-blokken exact dezelfde 78
+sleutels hebben als het Engelse blok (dus geen vergeten tekst die op een lege
+Engelse fallback zou blijven hangen).
+
 ## Wat nog open staat
 
 Op volgorde van wat het snelst geld oplevert.
