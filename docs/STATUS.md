@@ -215,6 +215,28 @@ de regel `google.com, pub-8258777689852315, DIRECT, f08c47fec0942fa0`
 Zonder dit bestand keurt Google de site niet goed voor advertenties. Geen
 `?v=`-ophoging nodig, dit is geen CSS/JS-asset.
 
+## 15 augustus: Nieuwe land-gids toegevoegd — Brazilië
+
+Op verzoek van Johan een zesde land-gids gemaakt, zelfde format als de
+bestaande vijf: `articles/groceries-in-bitcoin-brazil.html`. Gecontroleerd
+dat BRL een echte, live ondersteunde valuta is in `assets/sats.js` (geen
+proxy-valuta nodig zoals bij de Argentinië-gids, die vanwege meerdere
+wisselkoersen een noodgreep gebruikt) — Brazilië kon dus net als de VS-gids
+met een directe, betrouwbare koers geschreven worden. Inhoud: eigen
+weekboodschappenmandje in BRL, de geschiedenis van Braziliaanse
+hyperinflatie (jaren '80-'90, Plano Real in 1994), en de gebruikelijke
+uren-werk-vergelijking en disclaimer.
+
+Toegevoegd op de gebruikelijke plekken:
+- `articles/index.html` (gidsenoverzicht, land-gidsen sectie)
+- `sitemap.xml`
+- Wederzijdse links: Brazilië-gids linkt naar VS en Argentinië, en die twee
+  linken nu ook terug naar Brazilië ("Keep reading"-sectie) — dezelfde
+  interne-link-aanpak als eerder toegepast op de homepage.
+
+Geen `?v=`-ophoging nodig: geen wijziging aan `assets/site.css`, `nav.js`
+of `wallet-picks.js`, alleen nieuwe/bestaande HTML-pagina's.
+
 ## Wat nog open staat
 
 Op volgorde van wat het snelst geld oplevert.
