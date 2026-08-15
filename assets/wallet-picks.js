@@ -53,7 +53,14 @@
      Example:  var IMG_BITBOX = "bitbox02.jpg";                          */
   var IMG_BITBOX = "bitbox02.jpg?v=1";
   var IMG_TREZOR = "trezor-safe5.jpg?v=1";
-  var IMG_LEDGER = "";  /* no creative on file yet — text-only card until one is added */
+
+  /* Ledger has three creatives — one is picked at random per page load so
+     visitors see a mix across the site instead of always the same shot. */
+  var IMG_LEDGER = [
+    "ledger-nano-s-plus-gold.jpg?v=1",
+    "ledger-nano-s-plus-orange.jpg?v=1",
+    "ledger-nano-s-plus-box.jpg?v=1"
+  ];
 
   /* ======================= END CONFIG ======================= */
 
@@ -72,6 +79,14 @@
   function assetUrl(file) {
     return file ? toRoot + "assets/" + file : "";
   }
+
+  /* Picked once per page load, so the in-content card and the rail card
+     (if both are on the page) show the same shot, but a different visitor
+     — or the same visitor on a different page — is likely to see a
+     different one of the three Ledger creatives. */
+  var ledgerImg = Array.isArray(IMG_LEDGER)
+    ? IMG_LEDGER[Math.floor(Math.random() * IMG_LEDGER.length)]
+    : IMG_LEDGER;
 
   function walletGuideUrl() {
     return toRoot + (isSpanishPath ? "es/articles/" : "articles/") +
@@ -362,7 +377,7 @@
       '<div class="sm-aff-grid">' +
         productCard(L, "BitBox02", L.bbTag, L.bbDesc, L.bbPrice, BITBOX, IMG_BITBOX) +
         productCard(L, "Trezor Safe 5", L.tzTag, L.tzDesc, L.tzPrice, TREZOR, IMG_TREZOR) +
-        productCard(L, "Ledger Nano S Plus", L.ledgerTag, L.ledgerDesc, L.ledgerPrice, LEDGER, IMG_LEDGER) +
+        productCard(L, "Ledger Nano S Plus", L.ledgerTag, L.ledgerDesc, L.ledgerPrice, LEDGER, ledgerImg) +
       '</div>' +
       '<p class="sm-aff-metal">&#128737;&#65039; <a href="' + TREZOR_METAL + '" ' + REL + '>' +
         L.metal + '</a></p>' +

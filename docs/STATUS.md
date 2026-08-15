@@ -438,6 +438,43 @@ Rechtstreeks gewijzigd op de laptop van Johan via de device-koppeling (geen
 zip deze keer — de wijzigingen staan al in de lokale map, klaar om te
 committen in GitHub Desktop).
 
+## 15 augustus: Drie Ledger-productfoto's toegevoegd, willekeurig gemixt
+
+Johan stuurde alsnog drie echte productfoto's (goud, oranje, en de doos met
+Secret Recovery Sheet) en vroeg om alle drie te gebruiken, gemixt over de
+site — niet één vaste foto zoals bij BitBox/Trezor.
+
+**Foto's verwerkt:** alle drie verkleind naar max. 600px op de lange zijde,
+opgeslagen als JPG (`ledger-nano-s-plus-gold.jpg` 26kB, `-orange.jpg` 6kB,
+`-box.jpg` 47kB) in `assets/` én de identieke kopie in `tools/assets/`. De
+oranje foto was origineel al klein (208×243px) — de bron die Johan stuurde
+was zelf laagresolutie, dus die is niet kunstmatig scherper gemaakt.
+
+**`assets/wallet-picks.js` (beide kopieën):** `IMG_LEDGER` is nu een array
+van de drie bestandsnamen in plaats van één string. Nieuwe `ledgerImg`-
+variabele kiest er willekeurig één (`Math.random()`) bij het laden van de
+pagina — dezelfde foto wordt gebruikt voor zowel de in-content kaart als de
+zijbalk-kaart op die ene pagina (voor consistentie binnen één weergave),
+maar een andere pagina of een volgende bezoeker krijgt met gelijke kans een
+van de andere twee te zien. `assetUrl()`/de bestaande padlogica is
+ongewijzigd, dus dit werkt automatisch correct op elke mappendiepte
+(root, `articles/`, `es/`, `es/articles/`, `tools/`).
+
+**Cache-busting:** `wallet-picks.js` is opnieuw aangeraakt, dus opnieuw
+verhoogd: `?v=7` → `?v=8` op alle 28 pagina's van satmeter.io, `?v=3` → `?v=4`
+op alle 5 pagina's van tools.satmeter.io. Gecontroleerd met grep: geen oude
+versienummers meer over voor dit bestand.
+
+**Gecontroleerd:** syntax-check op het volledige bestand geslaagd. jsdom-test
+van 30 paginaladingen op de homepage laat alle drie bestandsnamen exact
+terugkomen (`Math.random()` werkt zoals bedoeld, geen scheve verdeling of
+bug die altijd dezelfde foto pakt). Padresolutie apart getest op een Engels
+artikel (`../assets/...`), een Spaans artikel (`../../assets/...`) en de
+tools-hub (`assets/...`) — alle drie kloppen. Alle zes bestanden (drie foto's
+× twee kopieën) gecontroleerd op daadwerkelijk aanwezig zijn op schijf.
+
+Rechtstreeks gewijzigd op de laptop van Johan via de device-koppeling.
+
 ## Wat nog open staat
 
 Op volgorde van wat het snelst geld oplevert.
