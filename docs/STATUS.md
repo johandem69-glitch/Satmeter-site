@@ -204,6 +204,17 @@ Dit is een tekstuele wijziging; het duurt normaal een paar dagen tot weken
 voordat Google's AI Overview een nieuwe samenvatting laat zien, dus niet
 meteen verwachten dat het zoekresultaat al verandert.
 
+## 15 augustus: ads.txt toegevoegd (AdSense gaf "Niet gevonden")
+
+Johan zag in AdSense onder "Uw sites beheren" dat de Ads.txt-status
+"Niet gevonden" was. Gecontroleerd door `satmeter.io/ads.txt` direct in de
+browser te openen: gaf echt een 404, het bestand bestond nergens (niet
+lokaal, niet live). Nieuw bestand `ads.txt` toegevoegd in de site-root met
+de regel `google.com, pub-8258777689852315, DIRECT, f08c47fec0942fa0`
+(publisher-ID overgenomen uit het bestaande AdSense-script in `index.html`).
+Zonder dit bestand keurt Google de site niet goed voor advertenties. Geen
+`?v=`-ophoging nodig, dit is geen CSS/JS-asset.
+
 ## Wat nog open staat
 
 Op volgorde van wat het snelst geld oplevert.
