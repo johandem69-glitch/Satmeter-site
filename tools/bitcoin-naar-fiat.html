@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Bitcoin naar Fiat Converter — live BTC koers in EUR, USD, GBP | Satmeter Tools</title>
+<meta name="description" content="Reken Bitcoin live om naar euro, dollar, pond en meer. Directe koers uit vijf redundante bronnen, geen vertraging.">
+<link rel="canonical" href="https://tools.satmeter.io/bitcoin-naar-fiat.html">
+<meta property="og:title" content="Bitcoin naar Fiat Converter — live koers">
+<meta property="og:description" content="BTC omrekenen naar EUR, USD, GBP en meer, live bijgewerkt.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://tools.satmeter.io/bitcoin-naar-fiat.html">
+<meta name="twitter:card" content="summary">
+<meta name="theme-color" content="#1877f2">
+<link rel="icon" href="assets/logo.svg" type="image/svg+xml">
+<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" onload="this.onload=null;this.rel='stylesheet'">
+<noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"></noscript>
+<link rel="stylesheet" href="assets/site.css?v=1">
+<link rel="stylesheet" href="assets/tools-extra.css?v=2">
+
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"WebApplication","name":"Bitcoin naar Fiat Converter","applicationCategory":"FinanceApplication","operatingSystem":"Any","url":"https://tools.satmeter.io/bitcoin-naar-fiat.html","description":"BTC omrekenen naar EUR, USD, GBP en meer op basis van een live koers.","offers":{"@type":"Offer","price":"0","priceCurrency":"EUR"},"publisher":{"@type":"Organization","name":"Satmeter","url":"https://satmeter.io/"}}
+</script>
+
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('consent', 'default', {
+    'ad_storage': 'denied','ad_user_data': 'denied','ad_personalization': 'denied',
+    'analytics_storage': 'denied','wait_for_update': 500
+  });
+</script>
+<script defer src="assets/consent.js?v=1"></script>
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8258777689852315"
+     crossorigin="anonymous"></script>
+</head>
+<body class="page-fiat">
+<div class="shell">
+<div class="ad-rail"><div class="ad-sticky"><div class="ad-box"></div></div></div>
+<main>
+  <div class="topbar">
+    <a class="brand" href="index.html"><img src="assets/logo.svg" alt="Satmeter"><span class="bm-sat">sat</span><span class="bm-meter">meter</span><span class="bm-tld">TOOLS</span></a>
+    <div style="display:flex;gap:8px;flex-wrap:wrap">
+      <a class="back-link" href="https://satmeter.io/" target="_blank" rel="noopener">🛒 Naar satmeter.io</a>
+      <button class="theme-toggle" id="themeToggle" type="button"><span id="themeIcon">🌙</span><span id="themeText">Dark mode</span></button>
+    </div>
+  </div>
+
+  <span class="kicker">Converter</span>
+  <h1>Bitcoin naar <span class="gradient-text">Fiat</span></h1>
+  <p class="standfirst">Vul een BTC-bedrag in en zie direct de waarde in euro, dollar, pond en meer — met een live koers uit vijf redundante bronnen.</p>
+  <p class="byline"><span class="live-dot"></span>bron: <span data-source>…</span> · <span data-updated>…</span></p>
+
+  <div class="card">
+    <div class="field-grid" style="grid-template-columns:1fr">
+      <div class="field">
+        <label for="btcIn">Bitcoin (BTC)</label>
+        <div class="winput"><span>₿</span><input type="number" id="btcIn" inputmode="decimal" placeholder="0.01" min="0" step="0.00000001" value="0.01"></div>
+      </div>
+    </div>
+
+    <div class="result-grid" id="fiatGrid">
+      <!-- filled by JS -->
+    </div>
+  </div>
+
+  <div class="tool-strip">
+    <p><strong>Wil je weten wat dat in boodschappen is?</strong> Satmeter zet Bitcoin naast je dagelijkse uitgaven.</p>
+    <a class="cta" style="margin:0;padding:10px 18px" href="https://satmeter.io/" target="_blank" rel="noopener">Bekijk satmeter.io →</a>
+  </div>
+
+  <div class="related">
+    <h3>Ook handig</h3>
+    <ul>
+      <li><a href="sats-naar-euro.html">Sats naar euro converter</a></li>
+      <li><a href="bitcoin-vs-hypotheek.html">Bitcoin vs. hypotheek calculator</a></li>
+      <li><a href="rente-op-rente-dca.html">Rente-op-rente / DCA calculator</a></li>
+      <li><a href="https://satmeter.io/" target="_blank" rel="noopener">satmeter.io</a> — Bitcoin naast je boodschappenlijst</li>
+    </ul>
+  </div>
+
+  <footer>
+    <span class="copyline">Satmeter Tools</span>
+    Gratis Bitcoin-rekentools, gemaakt door <a href="https://satmeter.io/" target="_blank" rel="noopener">satmeter.io</a>.<br>
+    <a href="privacy.html">Privacy</a> · <a href="terms.html">Voorwaarden</a> · <a href="index.html">Alle tools</a><br>
+    © <span id="year"></span> Satmeter. Geen financieel advies.
+  </footer>
+</main>
+<div class="ad-rail"><div class="ad-sticky"><div class="ad-box"></div></div></div>
+</div>
+<script src="assets/sats.js?v=1"></script>
+<script>
+(function(){
+  var btcIn = document.getElementById('btcIn'), grid = document.getElementById('fiatGrid');
+  var CODES = ['EUR','USD','GBP','CAD','AUD'];
+
+  function render(){
+    var btc = parseFloat(btcIn.value);
+    grid.innerHTML = '';
+    CODES.forEach(function(code){
+      var r = window.Sats && window.Sats.rate(code);
+      var card = document.createElement('div');
+      card.className = 'rcard';
+      var val = (r && isFinite(btc)) ? window.Sats.fmtFiat(btc * r, code) : '…';
+      card.innerHTML = '<div class="rl">' + code + '</div><div class="rv">' + val + '</div>';
+      grid.appendChild(card);
+    });
+  }
+  btcIn.addEventListener('input', render);
+  window.Sats && window.Sats.onUpdate(render);
+  render();
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Bitcoin vs. Hypotheek Calculator — extra aflossen of beleggen? | Satmeter Tools</title>
+<meta name="description" content="Vergelijk wat een vast maandbedrag oplevert als je extra aflost op je hypotheek, tegenover datzelfde bedrag maandelijks in Bitcoin zetten. Illustratief, geen advies.">
+<link rel="canonical" href="https://tools.satmeter.io/bitcoin-vs-hypotheek.html">
+<meta property="og:title" content="Bitcoin vs. Hypotheek Calculator">
+<meta property="og:description" content="Extra aflossen of in Bitcoin zetten? Bereken en vergelijk beide scenario's.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://tools.satmeter.io/bitcoin-vs-hypotheek.html">
+<meta name="twitter:card" content="summary">
+<meta name="theme-color" content="#1877f2">
+<link rel="icon" href="assets/logo.svg" type="image/svg+xml">
+<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" onload="this.onload=null;this.rel='stylesheet'">
+<noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"></noscript>
+<link rel="stylesheet" href="assets/site.css?v=1">
+<link rel="stylesheet" href="assets/tools-extra.css?v=2">
+
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"WebApplication","name":"Bitcoin vs. Hypotheek Calculator","applicationCategory":"FinanceApplication","operatingSystem":"Any","url":"https://tools.satmeter.io/bitcoin-vs-hypotheek.html","description":"Vergelijkt extra aflossen op een hypotheek met maandelijks in Bitcoin beleggen, op basis van door de gebruiker ingevulde aannames.","offers":{"@type":"Offer","price":"0","priceCurrency":"EUR"},"publisher":{"@type":"Organization","name":"Satmeter","url":"https://satmeter.io/"}}
+</script>
+
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('consent', 'default', {
+    'ad_storage': 'denied','ad_user_data': 'denied','ad_personalization': 'denied',
+    'analytics_storage': 'denied','wait_for_update': 500
+  });
+</script>
+<script defer src="assets/consent.js?v=1"></script>
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8258777689852315"
+     crossorigin="anonymous"></script>
+</head>
+<body class="page-hypo">
+<div class="shell">
+<div class="ad-rail"><div class="ad-sticky"><div class="ad-box"></div></div></div>
+<main>
+  <div class="topbar">
+    <a class="brand" href="index.html"><img src="assets/logo.svg" alt="Satmeter"><span class="bm-sat">sat</span><span class="bm-meter">meter</span><span class="bm-tld">TOOLS</span></a>
+    <div style="display:flex;gap:8px;flex-wrap:wrap">
+      <a class="back-link" href="https://satmeter.io/" target="_blank" rel="noopener">🛒 Naar satmeter.io</a>
+      <button class="theme-toggle" id="themeToggle" type="button"><span id="themeIcon">🌙</span><span id="themeText">Dark mode</span></button>
+    </div>
+  </div>
+
+  <span class="kicker">Calculator</span>
+  <h1>Bitcoin vs. <span class="gradient-text">Hypotheek</span></h1>
+  <p class="standfirst">Extra aflossen op je hypotheek is een gegarandeerd, risicovrij rendement gelijk aan je hypotheekrente. Bitcoin kan meer opleveren — of minder. Vul je eigen aannames in en vergelijk de twee scenario's.</p>
+
+  <div class="warn">
+    <p><strong>Dit is geen financieel advies.</strong> Het is een rekenmodel op basis van de aannames die jij invult. Extra aflossen is risicovrij; het Bitcoin-rendement hieronder is een schatting die jij zelf kiest, geen voorspelling. Historisch rendement is geen garantie voor de toekomst.</p>
+  </div>
+
+  <div class="card">
+    <div class="field-grid">
+      <div class="field">
+        <label for="pmt">Extra bedrag per maand</label>
+        <div class="winput"><span>€</span><input type="number" id="pmt" value="200" min="0" step="10"></div>
+      </div>
+      <div class="field">
+        <label for="years">Looptijd</label>
+        <div class="winput"><input type="number" id="years" value="10" min="1" max="40" step="1"><span>jaar</span></div>
+      </div>
+      <div class="field">
+        <label for="mortRate">Hypotheekrente</label>
+        <div class="winput"><input type="number" id="mortRate" value="4.0" min="0" max="15" step="0.1"><span>%</span></div>
+      </div>
+      <div class="field">
+        <label for="btcRate">Verwacht BTC-rendement</label>
+        <div class="winput"><input type="number" id="btcRate" value="15" min="-50" max="100" step="1"><span>%/jr</span></div>
+      </div>
+    </div>
+
+    <div class="result-grid">
+      <div class="rcard win">
+        <div class="rl">Extra aflossen levert op</div>
+        <div class="rv" id="outMortgage">…</div>
+      </div>
+      <div class="rcard" id="btcCard">
+        <div class="rl">In Bitcoin zetten levert op</div>
+        <div class="rv" id="outBtc">…</div>
+      </div>
+    </div>
+
+    <div class="bigresult">
+      <div class="br-num" id="diffLine">…</div>
+      <div class="br-sub" id="diffSub">Vul je eigen cijfers in hierboven</div>
+    </div>
+
+    <div class="callout">
+      <p><strong>Hoe wordt dit berekend?</strong> Beide kanten gebruiken dezelfde rente-op-rente-formule op je maandbedrag: bij aflossen bespaar je gegarandeerd je hypotheekrente over het afgeloste bedrag; bij Bitcoin reken je met het rendementspercentage dat je zelf instelt. Zet dat percentage lager om een voorzichtiger scenario te zien.</p>
+    </div>
+  </div>
+
+  <div class="tool-strip">
+    <p><strong>Benieuwd wat je Bitcoin nu al waard is in boodschappen?</strong> Satmeter zet Bitcoin naast je dagelijkse uitgaven.</p>
+    <a class="cta" style="margin:0;padding:10px 18px" href="https://satmeter.io/" target="_blank" rel="noopener">Bekijk satmeter.io →</a>
+  </div>
+
+  <div class="related">
+    <h3>Ook handig</h3>
+    <ul>
+      <li><a href="rente-op-rente-dca.html">Rente-op-rente / DCA calculator</a> — hetzelfde principe, los van je hypotheek</li>
+      <li><a href="sats-naar-euro.html">Sats naar euro converter</a></li>
+      <li><a href="bitcoin-naar-fiat.html">Bitcoin naar fiat converter</a></li>
+      <li><a href="https://satmeter.io/" target="_blank" rel="noopener">satmeter.io</a> — Bitcoin naast je boodschappenlijst</li>
+    </ul>
+  </div>
+
+  <footer>
+    <span class="copyline">Satmeter Tools</span>
+    Gratis Bitcoin-rekentools, gemaakt door <a href="https://satmeter.io/" target="_blank" rel="noopener">satmeter.io</a>.<br>
+    <a href="privacy.html">Privacy</a> · <a href="terms.html">Voorwaarden</a> · <a href="index.html">Alle tools</a><br>
+    © <span id="year"></span> Satmeter. Geen financieel advies.
+  </footer>
+</main>
+<div class="ad-rail"><div class="ad-sticky"><div class="ad-box"></div></div></div>
+</div>
+<script src="assets/sats.js?v=1"></script>
+<script>
+(function(){
+  var pmt = document.getElementById('pmt'), years = document.getElementById('years'),
+      mortRate = document.getElementById('mortRate'), btcRate = document.getElementById('btcRate'),
+      outMortgage = document.getElementById('outMortgage'), outBtc = document.getElementById('outBtc'),
+      btcCard = document.getElementById('btcCard'),
+      diffLine = document.getElementById('diffLine'), diffSub = document.getElementById('diffSub');
+
+  function fv(monthly, annualPct, yrs){
+    var i = (annualPct/100)/12, n = yrs*12;
+    if (Math.abs(i) < 1e-9) return monthly * n;
+    return monthly * ((Math.pow(1+i, n) - 1) / i);
+  }
+  function fmtEur(n){
+    return '€' + n.toLocaleString('nl-NL', {minimumFractionDigits:0, maximumFractionDigits:0});
+  }
+  function render(){
+    var p = parseFloat(pmt.value) || 0, y = parseFloat(years.value) || 0,
+        mr = parseFloat(mortRate.value) || 0, br = parseFloat(btcRate.value) || 0;
+    var fvMort = fv(p, mr, y), fvBtc = fv(p, br, y);
+    outMortgage.textContent = fmtEur(fvMort);
+    outBtc.textContent = fmtEur(fvBtc);
+    var diff = fvBtc - fvMort;
+    btcCard.className = 'rcard ' + (diff >= 0 ? 'win' : 'lose');
+    diffLine.textContent = (diff >= 0 ? '+' : '') + fmtEur(diff);
+    diffSub.textContent = (diff >= 0 ? 'Bitcoin-scenario ligt hoger dan aflossen' : 'Aflossen ligt hoger dan het Bitcoin-scenario')
+      + ' bij ' + p.toLocaleString('nl-NL') + '/maand over ' + y + ' jaar (BTC-aanname: ' + br + '%/jr, hypotheekrente: ' + mr + '%).';
+  }
+  [pmt, years, mortRate, btcRate].forEach(function(el){ el.addEventListener('input', render); });
+  render();
+})();
+</script>
+</body>
+</html>

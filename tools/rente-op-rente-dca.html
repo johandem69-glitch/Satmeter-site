@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Rente-op-Rente / DCA Calculator — maandelijks inleggen | Satmeter Tools</title>
+<meta name="description" content="Bereken hoeveel een vast maandbedrag wordt bij samengestelde groei (DCA). Zie de eindwaarde in euro's en, tegen de huidige koers, in sats.">
+<link rel="canonical" href="https://tools.satmeter.io/rente-op-rente-dca.html">
+<meta property="og:title" content="Rente-op-Rente / DCA Calculator">
+<meta property="og:description" content="Zie hoeveel een vast maandbedrag wordt bij samengestelde groei, en wat dat in sats is.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://tools.satmeter.io/rente-op-rente-dca.html">
+<meta name="twitter:card" content="summary">
+<meta name="theme-color" content="#1877f2">
+<link rel="icon" href="assets/logo.svg" type="image/svg+xml">
+<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" onload="this.onload=null;this.rel='stylesheet'">
+<noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"></noscript>
+<link rel="stylesheet" href="assets/site.css?v=1">
+<link rel="stylesheet" href="assets/tools-extra.css?v=2">
+
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"WebApplication","name":"Rente-op-Rente / DCA Calculator","applicationCategory":"FinanceApplication","operatingSystem":"Any","url":"https://tools.satmeter.io/rente-op-rente-dca.html","description":"Berekent de eindwaarde van een vast maandbedrag bij samengestelde groei (compound interest / dollar-cost averaging).","offers":{"@type":"Offer","price":"0","priceCurrency":"EUR"},"publisher":{"@type":"Organization","name":"Satmeter","url":"https://satmeter.io/"}}
+</script>
+
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('consent', 'default', {
+    'ad_storage': 'denied','ad_user_data': 'denied','ad_personalization': 'denied',
+    'analytics_storage': 'denied','wait_for_update': 500
+  });
+</script>
+<script defer src="assets/consent.js?v=1"></script>
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8258777689852315"
+     crossorigin="anonymous"></script>
+</head>
+<body class="page-dca">
+<div class="shell">
+<div class="ad-rail"><div class="ad-sticky"><div class="ad-box"></div></div></div>
+<main>
+  <div class="topbar">
+    <a class="brand" href="index.html"><img src="assets/logo.svg" alt="Satmeter"><span class="bm-sat">sat</span><span class="bm-meter">meter</span><span class="bm-tld">TOOLS</span></a>
+    <div style="display:flex;gap:8px;flex-wrap:wrap">
+      <a class="back-link" href="https://satmeter.io/" target="_blank" rel="noopener">🛒 Naar satmeter.io</a>
+      <button class="theme-toggle" id="themeToggle" type="button"><span id="themeIcon">🌙</span><span id="themeText">Dark mode</span></button>
+    </div>
+  </div>
+
+  <span class="kicker">Calculator</span>
+  <h1>Rente-op-rente / <span class="gradient-text">DCA</span></h1>
+  <p class="standfirst">Vul een vast maandbedrag, een verwacht jaarlijks rendement en een looptijd in. Zie hoe samengestelde groei je inleg vermenigvuldigt — en wat de eindwaarde vandaag in sats zou zijn.</p>
+
+  <div class="card">
+    <div class="field-grid">
+      <div class="field">
+        <label for="pmt">Inleg per maand</label>
+        <div class="winput"><span>€</span><input type="number" id="pmt" value="100" min="0" step="10"></div>
+      </div>
+      <div class="field">
+        <label for="years">Looptijd</label>
+        <div class="winput"><input type="number" id="years" value="15" min="1" max="50" step="1"><span>jaar</span></div>
+      </div>
+      <div class="field">
+        <label for="rate">Verwacht rendement</label>
+        <div class="winput"><input type="number" id="rate" value="8" min="-50" max="100" step="0.5"><span>%/jr</span></div>
+      </div>
+    </div>
+
+    <div class="result-grid">
+      <div class="rcard">
+        <div class="rl">Totaal ingelegd</div>
+        <div class="rv" id="outIn">…</div>
+      </div>
+      <div class="rcard win">
+        <div class="rl">Eindwaarde</div>
+        <div class="rv" id="outFv">…</div>
+      </div>
+      <div class="rcard win">
+        <div class="rl">Groei door rente-op-rente</div>
+        <div class="rv" id="outGrowth">…</div>
+      </div>
+    </div>
+
+    <div class="bigresult">
+      <div class="br-num" id="satsLine">…</div>
+      <div class="br-sub" id="satsSub">Dat is de eindwaarde, omgerekend naar sats tegen de koers van vandaag</div>
+    </div>
+
+    <div class="callout">
+      <p><strong>Waarom sats?</strong> Deze omrekening gebruikt de huidige BTC-koers, niet een voorspelde toekomstige koers — het laat alleen zien hoeveel koopkracht in Bitcoin die eindwaarde vandaag zou vertegenwoordigen, puur ter illustratie.</p>
+    </div>
+  </div>
+
+  <div class="tool-strip">
+    <p><strong>Wil je dat bedrag in boodschappen zien?</strong> Satmeter zet Bitcoin naast je dagelijkse uitgaven.</p>
+    <a class="cta" style="margin:0;padding:10px 18px" href="https://satmeter.io/" target="_blank" rel="noopener">Bekijk satmeter.io →</a>
+  </div>
+
+  <div class="related">
+    <h3>Ook handig</h3>
+    <ul>
+      <li><a href="bitcoin-vs-hypotheek.html">Bitcoin vs. hypotheek calculator</a></li>
+      <li><a href="sats-naar-euro.html">Sats naar euro converter</a></li>
+      <li><a href="bitcoin-naar-fiat.html">Bitcoin naar fiat converter</a></li>
+      <li><a href="https://satmeter.io/" target="_blank" rel="noopener">satmeter.io</a> — Bitcoin naast je boodschappenlijst</li>
+    </ul>
+  </div>
+
+  <footer>
+    <span class="copyline">Satmeter Tools</span>
+    Gratis Bitcoin-rekentools, gemaakt door <a href="https://satmeter.io/" target="_blank" rel="noopener">satmeter.io</a>.<br>
+    <a href="privacy.html">Privacy</a> · <a href="terms.html">Voorwaarden</a> · <a href="index.html">Alle tools</a><br>
+    © <span id="year"></span> Satmeter. Geen financieel advies.
+  </footer>
+</main>
+<div class="ad-rail"><div class="ad-sticky"><div class="ad-box"></div></div></div>
+</div>
+<script src="assets/sats.js?v=1"></script>
+<script>
+(function(){
+  var pmt = document.getElementById('pmt'), years = document.getElementById('years'), rate = document.getElementById('rate'),
+      outIn = document.getElementById('outIn'), outFv = document.getElementById('outFv'), outGrowth = document.getElementById('outGrowth'),
+      satsLine = document.getElementById('satsLine'), satsSub = document.getElementById('satsSub');
+
+  function fmtEur(n){ return '€' + n.toLocaleString('nl-NL', {minimumFractionDigits:0, maximumFractionDigits:0}); }
+
+  function render(){
+    var p = parseFloat(pmt.value) || 0, y = parseFloat(years.value) || 0, r = parseFloat(rate.value) || 0;
+    var n = y*12, i = (r/100)/12;
+    var fv = Math.abs(i) < 1e-9 ? p*n : p * ((Math.pow(1+i, n) - 1) / i);
+    var totalIn = p * n;
+    outIn.textContent = fmtEur(totalIn);
+    outFv.textContent = fmtEur(fv);
+    outGrowth.textContent = fmtEur(fv - totalIn);
+
+    var eurRate = window.Sats && window.Sats.rate('EUR');
+    if (eurRate) {
+      var sats = (fv / eurRate) * 1e8;
+      satsLine.textContent = window.Sats.fmtSats(sats) + ' sats';
+      satsSub.textContent = 'Dat is ' + window.Sats.fmtBTC(sats/1e8) + ' BTC tegen de koers van vandaag (1 BTC = ' + window.Sats.fmtFiat(eurRate,'EUR') + ')';
+    } else {
+      satsLine.textContent = '… sats';
+      satsSub.textContent = 'Wachten op live koers…';
+    }
+  }
+  [pmt, years, rate].forEach(function(el){ el.addEventListener('input', render); });
+  window.Sats && window.Sats.onUpdate(render);
+  render();
+})();
+</script>
+</body>
+</html>
