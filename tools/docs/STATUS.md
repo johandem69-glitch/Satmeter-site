@@ -156,6 +156,30 @@ sats-naar-euro-pagina). `?v=`-nummers verhoogd voor alle gewijzigde/nieuwe
 bestanden: `sats.js` (v1→v2), `tools-extra.css` (v2→v3, ook op privacy.html/
 terms.html), en `locale.js`/`wallet-picks.js` nieuw op `?v=1`.
 
+## 15 augustus, nog later: Duits en Turks toegevoegd
+
+Op Johans verzoek: Duits (`de`) en Turks (`tr`) toegevoegd aan de taalkeuze
+van tools.satmeter.io — dit gaat verder dan wat satmeter.io zelf momenteel
+heeft (die heeft nog geen Duits/Turks). Nu **18 talen** in de picker, met
+**volledige** vertaling (niet de Engelse fallback) voor: Engels, Nederlands,
+Spaans, Portugees, Frans, Duits en Turks. Duits gebruikt EUR als
+standaardvaluta, Turks gebruikt TRY (Turkse lira — stond al in `sats.js`'s
+valutalijst sinds de vorige ronde).
+
+Bijvangst tijdens het testen: in `bitcoin-vs-hypotheek.html` stond het
+Nederlandse woordje "bij" hardcoded in de resultaatzin (buiten het
+vertaalsysteem om) — viel op toen de zin bij een Duitse taalkeuze
+"...bij €250,00 pro Monat..." liet zien. Vervangen door een taal-neutraal
+streepje.
+
+**Gecontroleerd:** `locale.js` opnieuw door Node's syntax-checker gehaald
+(geen syntaxfouten), alle 5 pagina's opnieuw door jsdom (0 fouten), en met
+Playwright gecontroleerd dat Duits automatisch wordt gedetecteerd
+(browsertaal `de-DE`), dat "turk" zoeken in de modal Türkçe/Türkiye/TRY
+oplevert, en dat de hypotheek-calculator na het kiezen van Duits correct in
+euro's herrekent met een foutloze Duitse zin. `locale.js` verhoogd naar
+`?v=2` in alle 5 pagina's.
+
 ---
 
 ## Wat nog open staat

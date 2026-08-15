@@ -126,7 +126,7 @@
 --></div></div></div>
 </div>
 <script src="assets/sats.js?v=2"></script>
-<script src="assets/locale.js?v=1"></script>
+<script src="assets/locale.js?v=2"></script>
 <script src="assets/wallet-picks.js?v=1" defer></script>
 <script>
 (function(){
@@ -168,7 +168,7 @@
       satsSub.textContent = t('dcaThatIs','Dat is') + ' ' + window.Sats.fmtBTC(sats/1e8) + ' ' + t('dcaBtcAtToday','BTC tegen de koers van vandaag (1 BTC =') + ' ' + window.Sats.fmtFiat(rateVal,code) + ')';
     } else {
       satsLine.textContent = '… sats';
-      satsSub.textContent = 'Wachten op live koers…';
+      satsSub.textContent = t('euroWaiting', 'Wachten op live koers…');
     }
   }
   [pmt, years, rate].forEach(function(el){ el.addEventListener('input', render); });

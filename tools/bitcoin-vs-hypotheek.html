@@ -130,7 +130,7 @@
 --></div></div></div>
 </div>
 <script src="assets/sats.js?v=2"></script>
-<script src="assets/locale.js?v=1"></script>
+<script src="assets/locale.js?v=2"></script>
 <script src="assets/wallet-picks.js?v=1" defer></script>
 <script>
 (function(){
@@ -172,7 +172,7 @@
     btcCard.className = 'rcard ' + (diff >= 0 ? 'win' : 'lose');
     diffLine.textContent = (diff >= 0 ? '+' : '') + fmtCur(diff);
     diffSub.textContent = (diff >= 0 ? t('hypoWinsOver','Bitcoin-scenario ligt hoger dan aflossen') : t('hypoLosesOver','Aflossen ligt hoger dan het Bitcoin-scenario'))
-      + ' bij ' + fmtCur(p) + ' ' + t('hypoAssumption','per maand over') + ' ' + y + ' ' + t('hypoAssumption2','jaar (BTC-aanname:') + ' ' + br + t('hypoAssumption3','%/jr, hypotheekrente:') + ' ' + mr + '%).';
+      + ' — ' + fmtCur(p) + ' ' + t('hypoAssumption','per maand over') + ' ' + y + ' ' + t('hypoAssumption2','jaar (BTC-aanname:') + ' ' + br + t('hypoAssumption3','%/jr, hypotheekrente:') + ' ' + mr + '%).';
   }
   [pmt, years, mortRate, btcRate].forEach(function(el){ el.addEventListener('input', render); });
   updateCurUI();

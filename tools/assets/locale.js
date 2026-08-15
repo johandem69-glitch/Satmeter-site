@@ -1,16 +1,16 @@
 /* Satmeter Tools — shared language + currency picker.
    Same mechanism as satmeter.io itself: a pill in the topbar (flag + language
-   code + currency) that opens a searchable list of 16 languages / 21
+   code + currency) that opens a searchable list of 18 languages / 21
    currencies. Picking a language also switches the display currency to the
    one that language's speakers are most likely to use, unless the visitor
    picked a currency by hand already — same rule as the main site.
 
    Translated UI text (data-i18n) is provided in full for English, Dutch,
-   Spanish, Portuguese and French. The other 11 languages in the list fall
-   back to English text but the currency and flag still switch correctly —
-   this mirrors satmeter.io's own current translation coverage (see its
-   docs/STATUS.md, "Overige taalversies nog niet bijgewerkt"). Extend
-   TOOLS_I18N below to add more full translations later. © Satmeter. */
+   Spanish, Portuguese, French, German and Turkish (German/Turkish were
+   added on top of satmeter.io's own list, specifically for tools.satmeter.io).
+   The other 11 languages in the list fall back to English text but the
+   currency and flag still switch correctly. Extend TOOLS_I18N below to add
+   more full translations later. © Satmeter. */
 (function (global) {
   "use strict";
 
@@ -34,13 +34,16 @@
     "ko":    {flag:"🇰🇷", name:"한국어", region:"대한민국", code:"KO", base:"en"},
     "id":    {flag:"🇮🇩", name:"Bahasa Indonesia", region:"Indonesia", code:"ID", base:"en"},
     "vi":    {flag:"🇻🇳", name:"Tiếng Việt", region:"Việt Nam", code:"VI", base:"en"},
-    "nl":    {flag:"🇳🇱", name:"Nederlands", region:"Nederland", code:"NL", base:"nl"}
+    "nl":    {flag:"🇳🇱", name:"Nederlands", region:"Nederland", code:"NL", base:"nl"},
+    "de":    {flag:"🇩🇪", name:"Deutsch", region:"Deutschland", code:"DE", base:"de"},
+    "tr":    {flag:"🇹🇷", name:"Türkçe", region:"Türkiye", code:"TR", base:"tr"}
   };
 
   var LANG_CURRENCY = {
     en:"USD", zh:"CNY", hi:"INR", ar:"SAR", fr:"EUR", bn:"BDT",
     ru:"RUB", ja:"JPY", ko:"KRW", id:"IDR", vi:"VND", nl:"EUR",
-    "es-ES":"EUR", "es-MX":"MXN", "pt-PT":"EUR", "pt-BR":"BRL"
+    "es-ES":"EUR", "es-MX":"MXN", "pt-PT":"EUR", "pt-BR":"BRL",
+    de:"EUR", tr:"TRY"
   };
 
   var CUR_NAMES = {
@@ -56,7 +59,8 @@
     ru:"russia", ja:"japan nippon", ko:"korea south korea", bn:"bangladesh",
     vi:"vietnam", id:"indonesia", "es-ES":"spain", "es-MX":"mexico",
     "pt-PT":"portugal", "pt-BR":"brazil", nl:"netherlands holland dutch",
-    fr:"france", en:"usa united states america"
+    fr:"france", en:"usa united states america",
+    de:"germany deutschland", tr:"turkey turkiye"
   };
 
   /* ---------- translations ---------- */
@@ -280,6 +284,94 @@
       lmTitle:"Choisissez votre devise et votre langue", lmSub:"Les montants passent à la devise de la région choisie. Vous pouvez changer la devise séparément à tout moment.",
       lmSearchPh:"Rechercher langue, pays ou devise…",
       lmFoot:"Votre choix est mémorisé sur cet appareil. Le Bitcoin a un prix mondial unique — seule la devise affichée change."
+    },
+    de: {
+      backToSatmeter:"🛒 Zu satmeter.io", darkMode:"Dunkelmodus", lightMode:"Hellmodus",
+      footerMade:"Kostenlose Bitcoin-Rechner, erstellt von", footerPrivacy:"Datenschutz", footerTerms:"Nutzungsbedingungen",
+      footerAllTools:"Alle Tools", footerDisclaimer:"Keine Finanzberatung.",
+      relatedHeading:"Auch nützlich", ctaSatmeter:"satmeter.io ansehen →",
+      idxKicker:"Kostenlos · Live-Preise · kein Konto", idxH1a:"Bitcoin-Rechner von",
+      idxStandfirst:"Vier einfache Tools, die mit einem Live-Bitcoin-Kurs rechnen — keine Anmeldung, kein Download. Suchst du den vollständigen Vergleich, der Bitcoin neben deinen täglichen Einkauf stellt? Den findest du auf",
+      idxLiveVia:"Live-BTC-Kurs via", idxUpdated:"aktualisiert",
+      idxCard1t:"Sats-zu-Währung-Rechner", idxCard1b:"Rechne Satoshis in deine Währung um und zurück, basierend auf dem Live-BTC-Kurs.",
+      idxCard2t:"Bitcoin-zu-Fiat-Rechner", idxCard2b:"BTC live in EUR, USD, GBP und mehr umrechnen.",
+      idxCard3t:"Bitcoin-vs.-Hypothek-Rechner", idxCard3b:"Was bringt eine Sondertilgung im Vergleich zum gleichen Betrag in Bitcoin?",
+      idxCard4t:"Zinseszins- / DCA-Rechner", idxCard4b:"Sieh, was aus einem festen Monatsbetrag durch Zinseszins wird — und was das in Sats ist.",
+      idxOpen:"Tool öffnen →", idxDidYouKnow:"Wusstest du schon?",
+      idxDidYouKnowBody:"Satmeter zeigt live, was dein Einkauf, Kaffee oder deine Miete in Sats kostet — nicht nur einen Kurs.",
+      idxWhyH2:"Warum diese Tools?",
+      idxWhyP1:"Das sind kleine, schnelle Rechner, die eine Sache gut machen — kein Konto, keine Tracking-Formulare, sofort eine Antwort. Alle Kurse kommen live über dieselbe Fünf-Quellen-Preisengine, die auch auf",
+      idxWhyP2:"Keines dieser Tools ist Finanzberatung. Bitcoin ist volatil; nutze die Ergebnisse zur Veranschaulichung, nicht als Entscheidungsgrundlage.",
+      euroKicker:"Rechner", euroH1:"Sats zu", euroStandfirst:"Gib einen Betrag in Sats oder deiner gewählten Währung ein — die andere Seite rechnet automatisch mit, mit dem Live-Bitcoin-Kurs.",
+      euroSats:"Satoshis (Sats)", euroAmount:"Betrag", euroFillIn:"Betrag eingeben…", euroWaiting:"Warte auf Live-Kurs…",
+      euroKnowTitle:"Gut zu wissen:", euroKnowBody:"1 Bitcoin = 100.000.000 Sats. Ein „Sat“ (Satoshi) ist die kleinste Einheit von Bitcoin, benannt nach Satoshi Nakamoto.",
+      euroCurious:"Neugierig, was das in Einkäufen ist?", euroCuriousBody:"Satmeter stellt Bitcoin neben deine täglichen Ausgaben, nicht nur einen Kurs.",
+      fiatKicker:"Rechner", fiatH1:"Bitcoin zu", fiatStandfirst:"Gib einen BTC-Betrag ein und sieh sofort den Wert in mehreren Währungen gleichzeitig — mit einem Live-Kurs aus fünf redundanten Quellen.",
+      fiatBitcoin:"Bitcoin (BTC)", fiatCurious:"Willst du wissen, was das in Einkäufen ist?", fiatCuriousBody:"Satmeter stellt Bitcoin neben deine täglichen Ausgaben.",
+      hypoKicker:"Rechner", hypoH1a:"Bitcoin vs.", hypoH1b:"Hypothek",
+      hypoStandfirst:"Eine Sondertilgung deiner Hypothek ist eine garantierte, risikofreie Rendite in Höhe deines Hypothekenzinses. Bitcoin könnte mehr — oder weniger — bringen. Gib deine eigenen Annahmen ein und vergleiche beide Szenarien.",
+      hypoWarnTitle:"Dies ist keine Finanzberatung.", hypoWarnBody:"Es ist ein Rechenmodell auf Basis der von dir eingegebenen Annahmen. Die Sondertilgung ist risikofrei; die Bitcoin-Rendite unten ist eine von dir selbst gewählte Schätzung, keine Vorhersage. Vergangene Renditen sind keine Garantie für die Zukunft.",
+      hypoPmt:"Zusätzlicher Betrag pro Monat", hypoYears:"Laufzeit", hypoYearsUnit:"Jahre", hypoMortRate:"Hypothekenzins", hypoBtcRate:"Erwartete BTC-Rendite",
+      hypoResMort:"Sondertilgung bringt dir", hypoResBtc:"In Bitcoin anlegen bringt dir",
+      hypoHowTitle:"Wie wird das berechnet?", hypoHowBody:"Beide Seiten nutzen dieselbe Zinseszins-Formel auf deinen Monatsbetrag: Bei der Sondertilgung sparst du garantiert deinen Hypothekenzins auf den getilgten Betrag; bei Bitcoin wird mit dem von dir selbst festgelegten Renditeprozentsatz gerechnet. Senke diesen Prozentsatz, um ein vorsichtigeres Szenario zu sehen.",
+      hypoCurious:"Neugierig, was dein Bitcoin schon jetzt in Einkäufen wert ist?", hypoCuriousBody:"Satmeter stellt Bitcoin neben deine täglichen Ausgaben.",
+      hypoWinsOver:"Bitcoin-Szenario liegt höher als die Tilgung", hypoLosesOver:"Die Tilgung liegt höher als das Bitcoin-Szenario",
+      hypoAssumption:"pro Monat über", hypoAssumption2:"Jahre (BTC-Annahme:", hypoAssumption3:"%/Jahr, Hypothekenzins:",
+      dcaKicker:"Rechner", dcaH1a:"Zinseszins /", dcaH1b:"DCA",
+      dcaStandfirst:"Gib einen festen Monatsbetrag, eine erwartete jährliche Rendite und eine Laufzeit ein. Sieh, wie Zinseszins deine Einzahlungen vervielfacht — und was der Endwert heute in Sats wäre.",
+      dcaPmt:"Monatliche Einzahlung", dcaYears:"Laufzeit", dcaYearsUnit:"Jahre", dcaRate:"Erwartete Rendite",
+      dcaResIn:"Gesamt eingezahlt", dcaResFv:"Endwert", dcaResGrowth:"Wachstum durch Zinseszins",
+      dcaSatsSub:"Das ist der Endwert, umgerechnet in Sats zum heutigen Kurs",
+      dcaWhySats:"Warum Sats?", dcaWhySatsBody:"Diese Umrechnung nutzt den aktuellen BTC-Kurs, keinen vorhergesagten zukünftigen Kurs — sie zeigt nur, wie viel Bitcoin-Kaufkraft dieser Endwert heute darstellen würde, rein zur Veranschaulichung.",
+      dcaCurious:"Willst du diesen Betrag in Einkäufen sehen?", dcaCuriousBody:"Satmeter stellt Bitcoin neben deine täglichen Ausgaben.",
+      dcaThatIs:"Das sind", dcaBtcAtToday:"BTC zum heutigen Kurs (1 BTC =",
+      lmTitle:"Wähle deine Währung und Sprache", lmSub:"Beträge wechseln zur Währung der gewählten Region. Du kannst die Währung jederzeit separat ändern.",
+      lmSearchPh:"Sprache, Land oder Währung suchen…",
+      lmFoot:"Deine Wahl wird auf diesem Gerät gespeichert. Bitcoin hat einen weltweiten Preis — nur die angezeigte Währung ändert sich."
+    },
+    tr: {
+      backToSatmeter:"🛒 satmeter.io'ya git", darkMode:"Koyu mod", lightMode:"Açık mod",
+      footerMade:"Ücretsiz Bitcoin hesaplayıcıları, geliştiren:", footerPrivacy:"Gizlilik", footerTerms:"Koşullar",
+      footerAllTools:"Tüm araçlar", footerDisclaimer:"Finansal tavsiye değildir.",
+      relatedHeading:"Ayrıca faydalı", ctaSatmeter:"satmeter.io'yu görüntüle →",
+      idxKicker:"Ücretsiz · canlı fiyatlar · hesap gerekmez", idxH1a:"Bitcoin hesaplayıcıları,",
+      idxStandfirst:"Canlı Bitcoin fiyatıyla hesaplayan dört basit araç — kayıt yok, indirme yok. Bitcoin'i günlük market alışverişinizle karşılaştıran tam karşılaştırmayı mı arıyorsunuz? O da",
+      idxLiveVia:"Canlı BTC fiyatı kaynağı:", idxUpdated:"güncellendi",
+      idxCard1t:"Sats'tan para birimine çevirici", idxCard1b:"Satoshi'yi canlı BTC fiyatına göre kendi para biriminize ve geri çevirin.",
+      idxCard2t:"Bitcoin'den fiat'a çevirici", idxCard2b:"BTC'yi canlı olarak EUR, USD, GBP ve daha fazlasına çevirin.",
+      idxCard3t:"Bitcoin vs. mortgage hesaplayıcısı", idxCard3b:"Ekstra ödeme yapmak, aynı tutarı Bitcoin'e yatırmakla karşılaştırıldığında ne kazandırır?",
+      idxCard4t:"Bileşik faiz / DCA hesaplayıcısı", idxCard4b:"Sabit bir aylık tutarın bileşik büyümeyle neye dönüştüğünü görün — ve bunun sats karşılığını.",
+      idxOpen:"Aracı aç →", idxDidYouKnow:"Biliyor muydunuz?",
+      idxDidYouKnowBody:"Satmeter, market alışverişinizin, kahvenizin veya kiranızın sats cinsinden ne kadar tuttuğunu canlı olarak gösterir — sadece bir fiyat değil.",
+      idxWhyH2:"Bu araçlar neden var?",
+      idxWhyP1:"Bunlar tek bir şeyi iyi yapan küçük, hızlı hesaplayıcılardır — hesap yok, takip formu yok, anında yanıt. Tüm fiyatlar, ayrıca çalışan aynı beş kaynaklı fiyat motoru üzerinden canlı gelir:",
+      idxWhyP2:"Bu araçların hiçbiri finansal tavsiye değildir. Bitcoin oynaktır; sonuçları karar değil, örnek olarak kullanın.",
+      euroKicker:"Çevirici", euroH1:"Sats'tan", euroStandfirst:"Sats veya seçtiğiniz para biriminde bir tutar girin — diğer taraf canlı Bitcoin fiyatıyla otomatik olarak güncellenir.",
+      euroSats:"Satoshi (sats)", euroAmount:"Tutar", euroFillIn:"Bir tutar girin…", euroWaiting:"Canlı fiyat bekleniyor…",
+      euroKnowTitle:"Bilmekte fayda var:", euroKnowBody:"1 Bitcoin = 100.000.000 sats. Bir \"sat\" (satoshi), Satoshi Nakamoto'nun adını taşıyan Bitcoin'in en küçük birimidir.",
+      euroCurious:"Bunun market alışverişinde ne olduğunu merak ediyor musunuz?", euroCuriousBody:"Satmeter, Bitcoin'i sadece bir fiyat olarak değil, günlük harcamalarınızın yanında gösterir.",
+      fiatKicker:"Çevirici", fiatH1:"Bitcoin'den", fiatStandfirst:"Bir BTC tutarı girin ve değerini beş yedekli kaynaktan gelen canlı bir fiyatla anında birden fazla para biriminde görün.",
+      fiatBitcoin:"Bitcoin (BTC)", fiatCurious:"Bunun market alışverişinde ne olduğunu bilmek ister misiniz?", fiatCuriousBody:"Satmeter, Bitcoin'i günlük harcamalarınızın yanında gösterir.",
+      hypoKicker:"Hesaplayıcı", hypoH1a:"Bitcoin vs.", hypoH1b:"Mortgage",
+      hypoStandfirst:"Mortgage'ınıza ekstra ödeme yapmak, mortgage faiz oranınıza eşit garantili, risksiz bir getiridir. Bitcoin daha fazla — veya daha az — getirebilir. Kendi varsayımlarınızı girin ve iki senaryoyu karşılaştırın.",
+      hypoWarnTitle:"Bu finansal tavsiye değildir.", hypoWarnBody:"Girdiğiniz varsayımlara dayanan bir hesaplama modelidir. Ekstra ödeme risksizdir; aşağıdaki Bitcoin getirisi kendi seçtiğiniz bir tahmindir, bir öngörü değildir. Geçmiş getiriler geleceğin garantisi değildir.",
+      hypoPmt:"Aylık ekstra tutar", hypoYears:"Vade", hypoYearsUnit:"yıl", hypoMortRate:"Mortgage faiz oranı", hypoBtcRate:"Beklenen BTC getirisi",
+      hypoResMort:"Ekstra ödeme size şunu kazandırır", hypoResBtc:"Bitcoin'e yatırmak size şunu kazandırır",
+      hypoHowTitle:"Bu nasıl hesaplanır?", hypoHowBody:"Her iki taraf da aylık tutarınız üzerinde aynı bileşik faiz formülünü kullanır: ekstra ödeme yaparak, ödenen tutar üzerinden mortgage faiz oranınızı garantili olarak tasarruf edersiniz; Bitcoin tarafı ise kendi belirlediğiniz getiri yüzdesini kullanır. Daha temkinli bir senaryo görmek için bu yüzdeyi düşürün.",
+      hypoCurious:"Bitcoin'inizin şu anda market alışverişinde ne kadar değerinde olduğunu merak ediyor musunuz?", hypoCuriousBody:"Satmeter, Bitcoin'i günlük harcamalarınızın yanında gösterir.",
+      hypoWinsOver:"Bitcoin senaryosu ekstra ödemeden daha yüksek", hypoLosesOver:"Ekstra ödeme Bitcoin senaryosundan daha yüksek",
+      hypoAssumption:"aylık, şu süre boyunca:", hypoAssumption2:"yıl (BTC varsayımı:", hypoAssumption3:"%/yıl, mortgage faiz oranı:",
+      dcaKicker:"Hesaplayıcı", dcaH1a:"Bileşik faiz /", dcaH1b:"DCA",
+      dcaStandfirst:"Sabit bir aylık tutar, beklenen yıllık getiri ve bir vade girin. Bileşik büyümenin katkılarınızı nasıl çoğalttığını — ve bugün sats cinsinden son değerin ne olacağını görün.",
+      dcaPmt:"Aylık katkı", dcaYears:"Vade", dcaYearsUnit:"yıl", dcaRate:"Beklenen getiri",
+      dcaResIn:"Toplam katkı", dcaResFv:"Son değer", dcaResGrowth:"Bileşik faizden gelen büyüme",
+      dcaSatsSub:"Bu, son değerin bugünkü fiyattan sats'a çevrilmiş halidir",
+      dcaWhySats:"Neden sats?", dcaWhySatsBody:"Bu dönüşüm, tahmini bir gelecek fiyatı değil, bugünkü BTC fiyatını kullanır — sadece bu son değerin bugün ne kadar Bitcoin satın alma gücünü temsil edeceğini, salt örnek olarak gösterir.",
+      dcaCurious:"Bu tutarı market alışverişinde görmek ister misiniz?", dcaCuriousBody:"Satmeter, Bitcoin'i günlük harcamalarınızın yanında gösterir.",
+      dcaThatIs:"Bu da", dcaBtcAtToday:"bugünkü fiyattan BTC (1 BTC =",
+      lmTitle:"Para biriminizi ve dilinizi seçin", lmSub:"Tutarlar, seçtiğiniz bölgenin para birimine göre değişir. Para birimini istediğiniz zaman ayrı olarak değiştirebilirsiniz.",
+      lmSearchPh:"Dil, ülke veya para birimi ara…",
+      lmFoot:"Seçiminiz bu cihazda hatırlanır. Bitcoin'in tek bir küresel fiyatı vardır — yalnızca görüntülenen para birimi değişir."
     }
   };
 
