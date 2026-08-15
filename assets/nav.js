@@ -95,6 +95,7 @@
               ["Groceries in Bitcoin: Argentina", "groceries-in-bitcoin-argentina.html"],
               ["Groceries in Bitcoin: Turkey", "groceries-in-bitcoin-turkey.html"],
               ["Groceries in Bitcoin: India", "groceries-in-bitcoin-india.html"],
+              ["Groceries in Bitcoin: Brazil", "groceries-in-bitcoin-brazil.html"],
             ],
           },
           {
