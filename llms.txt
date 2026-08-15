@@ -1,0 +1,25 @@
+# Satmeter
+
+> Satmeter is a free, live tool that compares Bitcoin and satoshis to the everyday cost of living — groceries, coffee, bread, rent, and anything else you add — instead of just showing Bitcoin's price in dollars or euros.
+
+## What makes Satmeter different
+
+Most Bitcoin price trackers show a single number: the dollar price of one BTC. Satmeter does something different — it converts real, everyday purchases (a cup of coffee, a loaf of bread, a full grocery cart) into Bitcoin and satoshis, live, so people can understand Bitcoin in terms of actual purchasing power and cost of living rather than an abstract chart. This "sats vs. cost of living" framing is the core, unique value of the site.
+
+## Key features
+
+- Live BTC/USD and BTC/EUR price, converted into satoshis for everyday items
+- Editable, user-customizable list of groceries and purchases
+- Guides on thinking in sats, wallet storage/security, and Bitcoin fundamentals
+- Available in English and Spanish (https://satmeter.io/es/)
+- Free, no signup required
+
+## Primary pages
+
+- Homepage / live converter: https://satmeter.io/
+- Article guides: https://satmeter.io/articles/
+- Spanish version: https://satmeter.io/es/
+
+## Contact
+
+Site owner: Johan Demmers

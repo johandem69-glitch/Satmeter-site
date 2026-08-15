@@ -173,6 +173,37 @@ Deze twee bugs bewijzen de waarde van het teruglezen van de live site na een
 deploy in plaats van alleen op "het commit-venster zag er goed uit" te
 vertrouwen — dat wordt vanaf nu vaker gedaan bij visuele wijzigingen.
 
+## 15 augustus: Uniek verhaal (sats vs. kosten van levensonderhoud) sterker naar voren gehaald voor Google/AI
+
+Johan zag dat Google's AI Overview voor "satmeter.io" alleen de wallet-storage
+gids noemde — niet het eigenlijke onderscheidende verhaal: dat Satmeter
+Bitcoin vergelijkt met je dagelijkse kosten (boodschappen, koffie, huur) in
+plaats van alleen een dollarprijs te tonen. Op zijn expliciete verzoek dit
+overal sterker benadrukt, zonder de bestaande structuur te veranderen:
+
+- `<meta name="description">`, `og:description` en `twitter:description` in
+  `index.html` herschreven om expliciet te zeggen dat Satmeter vergelijkt met
+  kosten van levensonderhoud, niet alleen een prijs toont.
+- De `WebSite`- en `WebApplication` JSON-LD-blokken (regels ~63 en ~72)
+  kregen dezelfde herformulering, zodat structured-data-lezers (incl. AI-crawlers)
+  het onderscheid ook zien.
+- De zichtbare tagline en intro-tekst op de homepage (rond regel 1205-1206) én
+  de identieke Engelse tekst in het i18n-woordenboek (rond regel 1451-1452)
+  allebei aangepast — deze moeten altijd gelijk blijven, anders loopt de
+  statische tekst uit de pas met wat de pagina na het laden toont.
+- Nieuw bestand `llms.txt` toegevoegd in de site-root: een korte, expliciete
+  samenvatting voor AI-assistenten/crawlers van wat Satmeter uniek maakt.
+- Geen `?v=`-ophoging nodig: alleen tekst/meta in `index.html` en een nieuw
+  bestand aangeraakt, geen wijziging aan `assets/site.css`, `nav.js` of
+  `wallet-picks.js`.
+- De andere 15 taal-varianten in het i18n-woordenboek (zh, hi, es, ar, fr, bn,
+  pt, ru, ja, ...) hebben nog hun oude tagline/intro. Niet in deze ronde
+  meegenomen — zie "Wat nog open staat".
+
+Dit is een tekstuele wijziging; het duurt normaal een paar dagen tot weken
+voordat Google's AI Overview een nieuwe samenvatting laat zien, dus niet
+meteen verwachten dat het zoekresultaat al verandert.
+
 ## Wat nog open staat
 
 Op volgorde van wat het snelst geld oplevert.
@@ -182,18 +213,35 @@ Op volgorde van wat het snelst geld oplevert.
 Afspraak was twee per week. De Spaanstalige markt is waar in sats denken het
 meest relevant is, dus daar zit de groei.
 
+### 2. Overige taalversies van tagline/intro bijwerken
+Alleen de Engelse tekst is aangepast om het "sats vs. kosten van
+levensonderhoud"-verhaal te benadrukken. De 15 andere talen in het
+i18n-woordenboek in `index.html` hebben nog de oude tekst. Niet urgent
+(Engels is de hoofdmarkt), maar wel een inconsistentie om ooit recht te
+trekken.
+
 ---
 
 ## Valkuilen die we tegenkwamen
 
 Bewaard zodat je er niet nog een keer een avond aan kwijt bent.
 
-**Bestanden met "affiliate" in de naam kunnen stil verdwijnen.** Windows
-Defender of de browser behandelt `.js`-bestanden met woorden als "affiliate"
-soms als verdacht en laat ze onopgemerkt weg bij het uitpakken van een zip.
-Daarom heet het script nu `wallet-picks.js` in plaats van `affiliate.js`.
-Check na het uitpakken van een toekomstige zip altijd even of het aantal
-bestanden in `assets/` klopt met wat er in de zip zat.
+**Windows blokkeert .js-bestanden als je ze opent, niet als je ze sleept.**
+`affiliate.js` verdween stil bij het uitpakken; hernoemen naar
+`wallet-picks.js` loste het niet op, dus het was geen naam-kwestie
+(dat bleek achteraf een apart, los probleem: het bestand stond gewoon
+niet op GitHub). Los daarvan kreeg Johan later voor `wallet-picks.js`
+een rode Windows-beveiligingswaarschuwing. Onderzocht via de Eigenschappen
+van zowel de zip als het losse bestand: geen van beide toonde een
+"Deblokkeren"-vinkje, dus de eerdere "unblock de zip"-aanpak hieronder
+was niet de juiste verklaring. Werkende conclusie: die waarschuwing komt
+van **dubbelklikken/openen** van een `.js`-bestand — Windows behandelt dat
+als een script dat uitgevoerd moet worden (via Windows Script Host) en
+blokkeert dat standaard. Gewoon **selecteren en slepen** (kopiëren, niet
+openen) naar de GitHub-map triggert dit niet. Instructie aan Johan:
+nooit op een `.js`-bestand dubbelklikken, alleen slepen. Dit werkte
+in de praktijk ("klopt"), maar is niet los geverifieerd met tooling —
+als het probleem terugkomt, dit als eerste checken.
 
 **Hostinger mapveld leeg laten.** Dat veld is relatief ten opzichte van
 `public_html`. Vul je daar `public_html` in, dan krijg je
