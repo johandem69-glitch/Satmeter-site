@@ -54,6 +54,68 @@
     TRY:"turkish lira", NGN:"nigerian naira", ZAR:"south african rand",
     CAD:"canadian dollar", AUD:"australian dollar", CHF:"swiss franc"
   };
+  /* Localized currency names, one set per fully-translated base language.
+     Used to label converter results (e.g. "Euro (EUR)") in the visitor's own
+     language instead of just the ISO code. Languages without a full UI
+     translation (see TOOLS_I18N below) fall back to the English names. */
+  var CUR_NAMES_I18N = {
+    en: {
+      USD:"US Dollar", EUR:"Euro", GBP:"British Pound", CNY:"Chinese Yuan", JPY:"Japanese Yen",
+      KRW:"South Korean Won", INR:"Indian Rupee", BDT:"Bangladeshi Taka", IDR:"Indonesian Rupiah",
+      VND:"Vietnamese Dong", BRL:"Brazilian Real", MXN:"Mexican Peso", RUB:"Russian Ruble",
+      SAR:"Saudi Riyal", AED:"UAE Dirham", TRY:"Turkish Lira", NGN:"Nigerian Naira",
+      ZAR:"South African Rand", CAD:"Canadian Dollar", AUD:"Australian Dollar", CHF:"Swiss Franc"
+    },
+    nl: {
+      USD:"Amerikaanse dollar", EUR:"Euro", GBP:"Britse pond", CNY:"Chinese yuan", JPY:"Japanse yen",
+      KRW:"Zuid-Koreaanse won", INR:"Indiase roepie", BDT:"Bengaalse taka", IDR:"Indonesische roepia",
+      VND:"Vietnamese dong", BRL:"Braziliaanse real", MXN:"Mexicaanse peso", RUB:"Russische roebel",
+      SAR:"Saoedische riyal", AED:"VAE-dirham", TRY:"Turkse lira", NGN:"Nigeriaanse naira",
+      ZAR:"Zuid-Afrikaanse rand", CAD:"Canadese dollar", AUD:"Australische dollar", CHF:"Zwitserse frank"
+    },
+    es: {
+      USD:"Dólar estadounidense", EUR:"Euro", GBP:"Libra esterlina", CNY:"Yuan chino", JPY:"Yen japonés",
+      KRW:"Won surcoreano", INR:"Rupia india", BDT:"Taka bangladesí", IDR:"Rupia indonesia",
+      VND:"Dong vietnamita", BRL:"Real brasileño", MXN:"Peso mexicano", RUB:"Rublo ruso",
+      SAR:"Riyal saudí", AED:"Dirham de EAU", TRY:"Lira turca", NGN:"Naira nigeriano",
+      ZAR:"Rand sudafricano", CAD:"Dólar canadiense", AUD:"Dólar australiano", CHF:"Franco suizo"
+    },
+    pt: {
+      USD:"Dólar americano", EUR:"Euro", GBP:"Libra esterlina", CNY:"Yuan chinês", JPY:"Iene japonês",
+      KRW:"Won sul-coreano", INR:"Rupia indiana", BDT:"Taka bangladeshi", IDR:"Rupia indonésia",
+      VND:"Dong vietnamita", BRL:"Real brasileiro", MXN:"Peso mexicano", RUB:"Rublo russo",
+      SAR:"Rial saudita", AED:"Dirham dos EAU", TRY:"Lira turca", NGN:"Naira nigeriana",
+      ZAR:"Rand sul-africano", CAD:"Dólar canadense", AUD:"Dólar australiano", CHF:"Franco suíço"
+    },
+    fr: {
+      USD:"Dollar américain", EUR:"Euro", GBP:"Livre sterling", CNY:"Yuan chinois", JPY:"Yen japonais",
+      KRW:"Won sud-coréen", INR:"Roupie indienne", BDT:"Taka bangladais", IDR:"Roupie indonésienne",
+      VND:"Dong vietnamien", BRL:"Real brésilien", MXN:"Peso mexicain", RUB:"Rouble russe",
+      SAR:"Riyal saoudien", AED:"Dirham des ÉAU", TRY:"Livre turque", NGN:"Naira nigérian",
+      ZAR:"Rand sud-africain", CAD:"Dollar canadien", AUD:"Dollar australien", CHF:"Franc suisse"
+    },
+    de: {
+      USD:"US-Dollar", EUR:"Euro", GBP:"Britisches Pfund", CNY:"Chinesischer Yuan", JPY:"Japanischer Yen",
+      KRW:"Südkoreanischer Won", INR:"Indische Rupie", BDT:"Bangladeschische Taka", IDR:"Indonesische Rupiah",
+      VND:"Vietnamesischer Dong", BRL:"Brasilianischer Real", MXN:"Mexikanischer Peso", RUB:"Russischer Rubel",
+      SAR:"Saudi-Riyal", AED:"VAE-Dirham", TRY:"Türkische Lira", NGN:"Nigerianischer Naira",
+      ZAR:"Südafrikanischer Rand", CAD:"Kanadischer Dollar", AUD:"Australischer Dollar", CHF:"Schweizer Franken"
+    },
+    tr: {
+      USD:"Amerikan doları", EUR:"Euro", GBP:"İngiliz sterlini", CNY:"Çin yuanı", JPY:"Japon yeni",
+      KRW:"Güney Kore wonu", INR:"Hindistan rupisi", BDT:"Bangladeş takası", IDR:"Endonezya rupiahı",
+      VND:"Vietnam dongu", BRL:"Brezilya reali", MXN:"Meksika pesosu", RUB:"Rus rublesi",
+      SAR:"Suudi riyali", AED:"BAE dirhemi", TRY:"Türk lirası", NGN:"Nijerya nairası",
+      ZAR:"Güney Afrika randı", CAD:"Kanada doları", AUD:"Avustralya doları", CHF:"İsviçre frangı"
+    }
+  };
+
+  function currencyName(code) {
+    var base = ((global.SatmeterLocale && global.SatmeterLocale.lang) || "en").toLowerCase().split("-")[0];
+    var table = CUR_NAMES_I18N[base] || CUR_NAMES_I18N.en;
+    return table[code] || CUR_NAMES_I18N.en[code] || code;
+  }
+
   var REGION_ALIASES = {
     zh:"china prc", hi:"india bharat", ar:"saudi arabia arabic middle east",
     ru:"russia", ja:"japan nippon", ko:"korea south korea", bn:"bangladesh",
@@ -551,7 +613,8 @@
     lang: "en",
     t: T,
     setCurrency: function (code) { setCurrency(code, true); updatePill(); },
-    onChange: function (fn) { document.addEventListener("satmeter:locale-change", fn); }
+    onChange: function (fn) { document.addEventListener("satmeter:locale-change", fn); },
+    currencyName: currencyName
   };
 
   function boot() {

@@ -7,8 +7,17 @@
  * Every link carries rel="nofollow sponsored noopener" and every placement
  * carries a visible affiliate disclosure, per FTC and AdSense guidance.
  *
+ * Text is translated into every language the site supports and updates
+ * live when the visitor switches language with the site's own language
+ * picker — it does not require a page reload. Language is read from
+ * <html lang="...">, which both satmeter.io's picker (assets set in
+ * index.html's own applyLanguage) and tools.satmeter.io's picker
+ * (assets/locale.js) already keep up to date; a MutationObserver watches
+ * that attribute so this file needs no direct coupling to either picker.
+ *
  * ---------------------------------------------------------------------------
- * EDIT ONLY THE CONFIG BLOCK BELOW.
+ * EDIT ONLY THE CONFIG BLOCK BELOW (for links/images). Translations live in
+ * WP_I18N further down.
  * ---------------------------------------------------------------------------
  */
 (function () {
@@ -50,60 +59,198 @@
 
   var path = location.pathname;
   var inArticles = /\/articles\//.test(path);
-  var isSpanish = /^\/es\//.test(path);
+  var isSpanishPath = /^\/es\//.test(path);
   var isWalletPage = /where-to-store-your-sats/.test(path);
 
   var toRoot = inArticles ? "../" : "";
-  if (isSpanish) toRoot = inArticles ? "../../" : "../";
+  if (isSpanishPath) toRoot = inArticles ? "../../" : "../";
 
   function assetUrl(file) {
     return file ? toRoot + "assets/" + file : "";
   }
 
   function walletGuideUrl() {
-    return toRoot + (isSpanish ? "es/articles/" : "articles/") +
+    return toRoot + (isSpanishPath ? "es/articles/" : "articles/") +
            "where-to-store-your-sats.html";
   }
 
-  var L = isSpanish ? {
-    heading: "No dejes tus sats en un exchange",
-    intro: "Ya sabes cuánto valen tus compras en sats. La siguiente pregunta es dónde guardarlos. Un monedero de hardware mantiene tus claves fuera de internet.",
-    bbName: "BitBox02",
-    bbTag: "Solo-Bitcoin · Suizo",
-    bbDesc: "Código abierto y la configuración más simple de las dos. Buena primera opción.",
-    bbPrice: "desde ~120 €",
-    tzName: "Trezor Safe 5",
-    tzTag: "Solo-Bitcoin · Pantalla táctil",
-    tzDesc: "Del fabricante original, desde 2014. Historial más largo del sector.",
-    tzPrice: "desde ~80 €",
-    shop: "Ver precio",
-    metal: "Respalda tu frase semilla en metal, no en papel",
-    guide: "Leer la guía completa de custodia propia",
-    disclosure: "Enlaces de afiliado. Si compras a través de ellos ganamos una comisión, sin coste extra para ti. Solo enlazamos monederos que recomendaríamos igualmente.",
-    railHeading: "¿Dónde guardas tus sats?",
-    railText: "Los dos monederos de hardware que de verdad recomendamos, comparados con honestidad.",
-    railCta: "Ver la guía",
-    railNote: "Enlaces de afiliado. Sin coste extra para ti."
-  } : {
-    heading: "Don't leave your sats on an exchange",
-    intro: "You know what your spending is worth in sats. The next question is where to keep it. A hardware wallet keeps your keys off the internet and out of reach.",
-    bbName: "BitBox02",
-    bbTag: "Bitcoin-only · Swiss-made",
-    bbDesc: "Open source, and the simpler setup of the two. A solid first wallet.",
-    bbPrice: "from ~€120",
-    tzName: "Trezor Safe 5",
-    tzTag: "Bitcoin-only · Touchscreen",
-    tzDesc: "From the original manufacturer, since 2014. Longest track record in the field.",
-    tzPrice: "from ~€80",
-    shop: "Check price",
-    metal: "Back up your seed phrase on metal, not paper",
-    guide: "Read the full self-custody guide",
-    disclosure: "Affiliate links. If you buy through them we earn a commission, at no extra cost to you. We only link wallets we would recommend anyway.",
-    railHeading: "Where do your sats live?",
-    railText: "The two hardware wallets we'd actually recommend, compared honestly.",
-    railCta: "Read the guide",
-    railNote: "Affiliate links. No extra cost to you."
+  /* ---------- translations ----------
+     Product names ("BitBox02", "Trezor Safe 5") stay untranslated —
+     they're brand names. Every other visible string is translated for
+     every language satmeter.io and tools.satmeter.io support. English is
+     the fallback for any language code not listed here (there currently
+     isn't one — both sites' full language lists are covered). */
+  var WP_I18N = {
+    en: {
+      heading: "Don't leave your sats on an exchange",
+      intro: "You know what your spending is worth in sats. The next question is where to keep it. A hardware wallet keeps your keys off the internet and out of reach.",
+      bbTag: "Bitcoin-only · Swiss-made", bbDesc: "Open source, and the simpler setup of the two. A solid first wallet.", bbPrice: "from ~€120",
+      tzTag: "Bitcoin-only · Touchscreen", tzDesc: "From the original manufacturer, since 2014. Longest track record in the field.", tzPrice: "from ~€80",
+      shop: "Check price", metal: "Back up your seed phrase on metal, not paper", guide: "Read the full self-custody guide",
+      disclosure: "Affiliate links. If you buy through them we earn a commission, at no extra cost to you. We only link wallets we would recommend anyway.",
+      railHeading: "Where do your sats live?", railText: "The two hardware wallets we'd actually recommend, compared honestly.",
+      railCta: "Read the guide", railNote: "Affiliate links. No extra cost to you."
+    },
+    es: {
+      heading: "No dejes tus sats en un exchange",
+      intro: "Ya sabes cuánto valen tus compras en sats. La siguiente pregunta es dónde guardarlos. Un monedero de hardware mantiene tus claves fuera de internet.",
+      bbTag: "Solo-Bitcoin · Suizo", bbDesc: "Código abierto y la configuración más simple de las dos. Buena primera opción.", bbPrice: "desde ~120 €",
+      tzTag: "Solo-Bitcoin · Pantalla táctil", tzDesc: "Del fabricante original, desde 2014. Historial más largo del sector.", tzPrice: "desde ~80 €",
+      shop: "Ver precio", metal: "Respalda tu frase semilla en metal, no en papel", guide: "Leer la guía completa de custodia propia",
+      disclosure: "Enlaces de afiliado. Si compras a través de ellos ganamos una comisión, sin coste extra para ti. Solo enlazamos monederos que recomendaríamos igualmente.",
+      railHeading: "¿Dónde guardas tus sats?", railText: "Los dos monederos de hardware que de verdad recomendamos, comparados con honestidad.",
+      railCta: "Ver la guía", railNote: "Enlaces de afiliado. Sin coste extra para ti."
+    },
+    nl: {
+      heading: "Laat je sats niet op een exchange staan",
+      intro: "Je weet al wat je uitgaven waard zijn in sats. De volgende vraag is waar je ze bewaart. Een hardware wallet houdt je keys offline en buiten bereik.",
+      bbTag: "Alleen Bitcoin · Zwitsers", bbDesc: "Open source, en de simpelste van de twee om in te stellen. Een solide eerste wallet.", bbPrice: "vanaf ~€120",
+      tzTag: "Alleen Bitcoin · Touchscreen", tzDesc: "Van de originele fabrikant, sinds 2014. Langste trackrecord in de sector.", tzPrice: "vanaf ~€80",
+      shop: "Bekijk prijs", metal: "Back-up je seed phrase op metaal, niet op papier", guide: "Lees de volledige self-custody gids",
+      disclosure: "Affiliate-links. Als je hierdoor koopt, verdienen wij een commissie, zonder extra kosten voor jou. We linken alleen wallets die we sowieso zouden aanraden.",
+      railHeading: "Waar staan jouw sats?", railText: "De twee hardware wallets die we echt aanraden, eerlijk vergeleken.",
+      railCta: "Lees de gids", railNote: "Affiliate-links. Geen extra kosten voor jou."
+    },
+    pt: {
+      heading: "Não deixe seus sats numa exchange",
+      intro: "Você já sabe quanto valem seus gastos em sats. A próxima pergunta é onde guardá-los. Uma carteira de hardware mantém suas chaves fora da internet e fora de alcance.",
+      bbTag: "Somente Bitcoin · Suíça", bbDesc: "Código aberto, e a configuração mais simples das duas. Uma boa primeira carteira.", bbPrice: "a partir de ~€120",
+      tzTag: "Somente Bitcoin · Touchscreen", tzDesc: "Do fabricante original, desde 2014. Maior histórico do setor.", tzPrice: "a partir de ~€80",
+      shop: "Ver preço", metal: "Faça backup da sua seed phrase em metal, não em papel", guide: "Leia o guia completo de autocustódia",
+      disclosure: "Links de afiliado. Se você comprar através deles, ganhamos uma comissão, sem custo extra para você. Só indicamos carteiras que recomendaríamos de qualquer forma.",
+      railHeading: "Onde estão seus sats?", railText: "As duas carteiras de hardware que realmente recomendamos, comparadas com honestidade.",
+      railCta: "Ler o guia", railNote: "Links de afiliado. Sem custo extra para você."
+    },
+    fr: {
+      heading: "Ne laissez pas vos sats sur un exchange",
+      intro: "Vous savez déjà ce que valent vos dépenses en sats. La question suivante est où les garder. Un wallet matériel garde vos clés hors ligne et hors de portée.",
+      bbTag: "Bitcoin uniquement · Suisse", bbDesc: "Open source, et la configuration la plus simple des deux. Un solide premier wallet.", bbPrice: "à partir de ~120 €",
+      tzTag: "Bitcoin uniquement · Écran tactile", tzDesc: "Du fabricant d'origine, depuis 2014. Le plus long historique du secteur.", tzPrice: "à partir de ~80 €",
+      shop: "Voir le prix", metal: "Sauvegardez votre phrase de récupération sur du métal, pas sur papier", guide: "Lire le guide complet de l'auto-conservation",
+      disclosure: "Liens d'affiliation. Si vous achetez via ces liens, nous touchons une commission, sans frais supplémentaires pour vous. Nous ne recommandons que des wallets que nous conseillerions de toute façon.",
+      railHeading: "Où vivent vos sats ?", railText: "Les deux wallets matériels que nous recommandons vraiment, comparés honnêtement.",
+      railCta: "Lire le guide", railNote: "Liens d'affiliation. Aucun frais supplémentaire pour vous."
+    },
+    de: {
+      heading: "Lass deine Sats nicht auf einer Exchange liegen",
+      intro: "Du weißt schon, was deine Ausgaben in Sats wert sind. Die nächste Frage ist, wo du sie aufbewahrst. Eine Hardware-Wallet hält deine Keys offline und außer Reichweite.",
+      bbTag: "Nur Bitcoin · Schweizer Fertigung", bbDesc: "Open Source, und die einfachere Einrichtung der beiden. Eine solide erste Wallet.", bbPrice: "ab ~120 €",
+      tzTag: "Nur Bitcoin · Touchscreen", tzDesc: "Vom Originalhersteller, seit 2014. Längste Erfolgsbilanz der Branche.", tzPrice: "ab ~80 €",
+      shop: "Preis ansehen", metal: "Sichere deine Seed-Phrase auf Metall, nicht auf Papier", guide: "Den vollständigen Self-Custody-Guide lesen",
+      disclosure: "Affiliate-Links. Wenn du darüber kaufst, verdienen wir eine Provision, ohne Mehrkosten für dich. Wir verlinken nur Wallets, die wir sowieso empfehlen würden.",
+      railHeading: "Wo leben deine Sats?", railText: "Die zwei Hardware-Wallets, die wir wirklich empfehlen, ehrlich verglichen.",
+      railCta: "Guide lesen", railNote: "Affiliate-Links. Keine Mehrkosten für dich."
+    },
+    tr: {
+      heading: "Sats'larınızı bir borsada bırakmayın",
+      intro: "Harcamalarınızın sats cinsinden ne kadar ettiğini zaten biliyorsunuz. Sıradaki soru, onları nerede saklayacağınız. Bir donanım cüzdanı, anahtarlarınızı internetten ve erişimden uzak tutar.",
+      bbTag: "Yalnızca Bitcoin · İsviçre yapımı", bbDesc: "Açık kaynak, ve ikisinden kurulumu daha basit olanı. Sağlam bir ilk cüzdan.", bbPrice: "~120 €'dan başlayan fiyatlarla",
+      tzTag: "Yalnızca Bitcoin · Dokunmatik ekran", tzDesc: "Orijinal üreticiden, 2014'ten beri. Sektördeki en uzun geçmiş.", tzPrice: "~80 €'dan başlayan fiyatlarla",
+      shop: "Fiyata bak", metal: "Kurtarma ifadenizi kağıda değil, metale yedekleyin", guide: "Tam kendi kendine saklama rehberini okuyun",
+      disclosure: "İştirak bağlantıları. Bunlar üzerinden satın alırsanız, size ekstra maliyet olmadan komisyon kazanırız. Sadece zaten önereceğimiz cüzdanlara bağlantı veriyoruz.",
+      railHeading: "Sats'larınız nerede yaşıyor?", railText: "Gerçekten önerdiğimiz iki donanım cüzdanı, dürüstçe karşılaştırıldı.",
+      railCta: "Rehberi oku", railNote: "İştirak bağlantıları. Size ekstra maliyet yok."
+    },
+    zh: {
+      heading: "别把你的 sats 留在交易所",
+      intro: "你已经知道你的花费值多少 sats。下一个问题是把它们存在哪里。硬件钱包能让你的密钥离线，远离触及。",
+      bbTag: "仅支持比特币 · 瑞士制造", bbDesc: "开源，两者中设置更简单的一个。可靠的入门钱包。", bbPrice: "约 €120 起",
+      tzTag: "仅支持比特币 · 触摸屏", tzDesc: "来自原厂，自 2014 年起。业内最长的记录。", tzPrice: "约 €80 起",
+      shop: "查看价格", metal: "把你的助记词备份在金属上，而不是纸上", guide: "阅读完整的自托管指南",
+      disclosure: "联盟链接。如果你通过这些链接购买，我们会赚取佣金，你无需支付额外费用。我们只推荐我们本来就会推荐的钱包。",
+      railHeading: "你的 sats 存放在哪里？", railText: "我们真正推荐的两款硬件钱包，诚实比较。",
+      railCta: "阅读指南", railNote: "联盟链接。你无需支付额外费用。"
+    },
+    hi: {
+      heading: "अपने sats को एक्सचेंज पर मत छोड़िए",
+      intro: "आप पहले से जानते हैं कि आपका खर्च sats में कितना है। अगला सवाल यह है कि उन्हें कहां रखा जाए। एक हार्डवेयर वॉलेट आपकी keys को इंटरनेट से दूर और पहुंच से बाहर रखता है।",
+      bbTag: "केवल बिटकॉइन · स्विस निर्मित", bbDesc: "ओपन सोर्स, और दोनों में से सेटअप करने में आसान। एक ठोस पहला वॉलेट।", bbPrice: "~€120 से शुरू",
+      tzTag: "केवल बिटकॉइन · टचस्क्रीन", tzDesc: "मूल निर्माता से, 2014 से। क्षेत्र में सबसे लंबा ट्रैक रिकॉर्ड।", tzPrice: "~€80 से शुरू",
+      shop: "कीमत देखें", metal: "अपना सीड फ्रेज़ धातु पर बैकअप करें, कागज़ पर नहीं", guide: "पूरी सेल्फ-कस्टडी गाइड पग़ें",
+      disclosure: "एफिलिएट लिंक। यदि आप इनके ज़रिए खरीदते हैं, तो हमें कमीशन मिलता है, आपके लिए बिना किसी अतिरिक्त लागत के। हम केवल उन्हीं वॉलेट्स को लिंक करते हैं जिन्हें हम वैसे भी सुझाते।",
+      railHeading: "आपके sats कहां रहते हैं?", railText: "दो हार्डवेयर वॉलेट जिन्हें हम वाकई सुझाते हैं, ईमानदारी से तुलना की गई।",
+      railCta: "गाइड पग़ें", railNote: "एफिलिएट लिंक। आपके लिए कोई अतिरिक्त खर्च नहीं।"
+    },
+    ar: {
+      heading: "لा تترك سाتاتك في منصة تداول",
+      intro: "أنت تعرف بالفعل قيمة إنفاقك بالساتات. السؤال التالي هو أين تحتفظ بها. محفظة الأجهزة تبقي مفاتيحك بعيدة عن الإنترنت وخارج المتناول.",
+      bbTag: "بيتكوين فقط · صناعة سويسرية", bbDesc: "مفتوحة المصدر، وأبسط الاثنتين في الإعداد. محفظة أولى موثوقة.", bbPrice: "من ~120 يورو",
+      tzTag: "بيتكوين فقط · شاشة لمس", tzDesc: "من الشركة المصنعة الأصلية، منذ 2014. أطول سجل حافل في المجال.", tzPrice: "من ~80 يورو",
+      shop: "تحقق من السعر", metal: "احتفظ بنسخة احتياطية من عبارة الاسترداد على معدن، وليس على ورق", guide: "اقرأ الدليل الكامل للحفظ الذاتي",
+      disclosure: "روابط تابعة. إذا اشتريت عبرها، نكسب عمولة دون أي تكلفة إضافية عليك. نربط فقط بالمحافظ التي كنا سنوصي بها على أي حال.",
+      railHeading: "أين تعيش ساتاتك؟", railText: "محفظتا الأجهزة اللتان نوصي بهما فعلاً، مقارنة بصدق.",
+      railCta: "اقرأ الدليل", railNote: "روابط تابعة. لا تكلفة إضافية عليك."
+    },
+    bn: {
+      heading: "আপনার sats একটি এক্সচেঞ্জে রেখে দেবেন না",
+      intro: "আপনি ইতিমধ্যে জানেন আপনার খরচ sats-এ কত। পরের প্রশ্ন হলো সেগুলো কোথায় রাখবেন। একটি হার্ডওয়্যার ওয়ালেট আপনার key ইন্টারনেট থেকে দূরে ও নাগালের বাইরে রাখে।",
+      bbTag: "শুধু বিটকয়িন · সুইজ তৈরি", bbDesc: "ওপেন সোর্স, এবং দुটির মধ্যে সেটআপ করা সহজ। একটি নির্ভরযোগ্য প্রথম ওয়ালেট।", bbPrice: "~€120 থেকে শুরু",
+      tzTag: "শুধু বিটকয়িন · টাচস্ক্রিন", tzDesc: "মূল নির্মাতার কাছ থেকে, 2014 সাল থেকে। এই খাতে সবচেয়ে দীর্ঘ ট্র্যাক রেকর্ড।", tzPrice: "~€80 থেকে শুরু",
+      shop: "দাম দেখুন", metal: "আপনার সিড ফ্রেজ কাগবজে নয়, ধাতুতে ব্যাকআপ করুন", guide: "সম্পূর্ণ সেলফ-কাস্টডি গাইড পড়ুন",
+      disclosure: "অ্যাফিলিয়েট লিঙ্ক। আপনি এগুলোর মাধ্যমে কিনলে আমরা কমিশন পাই, আপনার জন্য কোনো অতিরিক্ত খরচ ছাড়াই। আমরা শুধু সেই ওয়ালেটগুলো লিঙ্ক করি যা আমরা এমনিতেও সুপারিশ করতাম।",
+      railHeading: "আপনার sats কোথায় থাকে?", railText: "দুটি হার্ডওয়্যার ওয়ালেট যা আমরা সত্যই সুপারিশ করি, সৎভাবে তুলনা করা।",
+      railCta: "গাইড পড়ুন", railNote: "অ্যাফিলিয়েট লিঙ্ক। আপনার জন্য কোনো অতিরিক্ত খরচ নেই।"
+    },
+    ru: {
+      heading: "Не оставляйте свои sats на бирже",
+      intro: "Вы уже знаете, сколько стоят ваши траты в sats. Следующий вопрос — где их хранить. Аппаратный кошелёк держит ваши ключи офлайн и вне досягаемости.",
+      bbTag: "Только биткоин · Швейцарское производство", bbDesc: "Открытый исходный код, и более простая настройка из двух. Надёжный первый кошелёк.", bbPrice: "от ~120 €",
+      tzTag: "Только биткоин · Сенсорный экран", tzDesc: "От оригинального производителя, с 2014 года. Самая долгая репутация в отрасли.", tzPrice: "от ~80 €",
+      shop: "Узнать цену", metal: "Резервируйте seed-фразу на металле, а не на бумаге", guide: "Прочитать полное руководство по самостоятельному хранению",
+      disclosure: "Партнёрские ссылки. Если вы покупаете по ним, мы получаем комиссию без дополнительных затрат для вас. Мы ссылаемся только на кошельки, которые рекомендовали бы в любом случае.",
+      railHeading: "Где живут ваши sats?", railText: "Два аппаратных кошелька, которые мы действительно рекомендуем, честно сравнены.",
+      railCta: "Читать руководство", railNote: "Партнёрские ссылки. Без дополнительных затрат для вас."
+    },
+    ja: {
+      heading: "sats を取引所に置いたままにしないで",
+      intro: "自分の支出が sats でどれくらいか、もうご存じですね。次の問題はどこに保管するかです。ハードウェアウォレットなら鍵をオフラインで、手の届かない場所に保てます。",
+      bbTag: "ビットコイン専用 · スイス製", bbDesc: "オープンソースで、2つのうちセットアップが簡単な方。最初の1台として頼りになります。", bbPrice: "約€120から",
+      tzTag: "ビットコイン専用 · タッチスクリーン", tzDesc: "2014年以来のオリジナルメーカー製。業界最長の実績。", tzPrice: "約€80から",
+      shop: "価格を見る", metal: "シードフレーズは紙ではなく金属にバックアップを", guide: "セルフカストディの完全ガイドを読む",
+      disclosure: "アフィリエイトリンクです。これらを通じて購入いただくと、追加費用なしで私たちに手数料が入ります。もともとおすすめしたいウォレットだけをリンクしています。",
+      railHeading: "あなたの sats はどこに？", railText: "本当におすすめできる2つのハードウェアウォレットを、正直に比較。",
+      railCta: "ガイドを読む", railNote: "アフィリエイトリンクです。追加費用はありません。"
+    },
+    ko: {
+      heading: "satsを 거래소에 두지 마세요",
+      intro: "지출이 sats로 얼마인지는 이미 알고 계시죠. 다음 질문은 그것을 어디에 보관할지입니다. 하드웨어 지갑은 키를 인터넷에서 분리해 손이 닿지 않는 곳에 보관합니다.",
+      bbTag: "비트코인 전용 · 스위스 제작", bbDesc: "오픈 소스이며, 둘 중 설정이 더 간단합니다. 드든한 첫 지갑입니다.", bbPrice: "약 €120부터",
+      tzTag: "비트코인 전용 · 터치스크린", tzDesc: "2014년부터 원제조사가 만든 제품. 업계 최장 실적.", tzPrice: "약 €80부터",
+      shop: "가격 확인", metal: "시드 문구는 종이가 아닌 금속에 백업하세요", guide: "전체 셀프 커스터디 가이드 읽기",
+      disclosure: "제휴 링크입니다. 이를 통해 구매하시면 추가 비용 없이 저희가 수수료를 받습니다. 저희가 어차피 추천할 지갑만 링크합니다.",
+      railHeading: "당신의 sats는 어디에 있나요?", railText: "저희가 정말로 추천하는 두 하드웨어 지갑을 정직하게 비교했습니다.",
+      railCta: "가이드 읽기", railNote: "제휴 링크입니다. 추가 비용은 없습니다."
+    },
+    id: {
+      heading: "Jangan simpan sats Anda di exchange",
+      intro: "Anda sudah tahu berapa nilai pengeluaran Anda dalam sats. Pertanyaan berikutnya adalah di mana menyimpannya. Dompet hardware menjaga kunci Anda tetap offline dan di luar jangkauan.",
+      bbTag: "Khusus Bitcoin · Buatan Swiss", bbDesc: "Open source, dan yang lebih mudah diatur dari keduanya. Dompet pertama yang solid.", bbPrice: "mulai ~€120",
+      tzTag: "Khusus Bitcoin · Layar sentuh", tzDesc: "Dari produsen asli, sejak 2014. Rekam jejak terpanjang di bidang ini.", tzPrice: "mulai ~€80",
+      shop: "Cek harga", metal: "Cadangkan frasa seed Anda di logam, bukan kertas", guide: "Baca panduan lengkap self-custody",
+      disclosure: "Tautan afiliasi. Jika Anda membeli melaluinya, kami mendapat komisi, tanpa biaya tambahan untuk Anda. Kami hanya menautkan dompet yang memang akan kami rekomendasikan.",
+      railHeading: "Di mana sats Anda disimpan?", railText: "Dua dompet hardware yang benar-benar kami rekomendasikan, dibandingkan secara jujur.",
+      railCta: "Baca panduan", railNote: "Tautan afiliasi. Tidak ada biaya tambahan untuk Anda."
+    },
+    vi: {
+      heading: "Đừng để sats của bạn trên sàn giao dịch",
+      intro: "Bạn đã biết chi tiêu của mình đáng giá bao nhiêu sats. Câu hỏi tiếp theo là giữ chúng ở đâu. Ví cứng giữ khóa của bạn ngoại tuyến và ngoài tầm với.",
+      bbTag: "Chỉ Bitcoin · Sản xuất tại Thụy Sỹ", bbDesc: "Mã nguồn mở, và là lựa chọn dễ thiết lập hơn trong hai loại. Một ví đầu tay đáng tin cậy.", bbPrice: "từ ~€120",
+      tzTag: "Chỉ Bitcoin · Màn hình cảm ứng", tzDesc: "Từ nhà sản xuất gốc, từ năm 2014. Bề dày kinh nghiệm lâu nhất trong ngành.", tzPrice: "từ ~€80",
+      shop: "Xem giá", metal: "Sao lưu cụm từ khôi phục trên kim loại, không phải giấy", guide: "Đọc hướng dẫn đầy đủ về tự lưu trữ",
+      disclosure: "Liên kết đối tác. Nếu bạn mua qua đó, chúng tôi nhận hoa hồng, không tốn thêm chi phí cho bạn. Chúng tôi chỉ liên kết đến những ví mà dù sao chúng tôi cũng sẽ giới thiệu.",
+      railHeading: "Sats của bạn đang ở đâu?", railText: "Hai ví cứng mà chúng tôi thực sự khuyên dùng, so sánh trung thực.",
+      railCta: "Đọc hướng dẫn", railNote: "Liên kết đối tác. Không tốn thêm chi phí cho bạn."
+    }
   };
+
+  function baseLang() {
+    var l = (document.documentElement.getAttribute("lang") || "en").toLowerCase();
+    return l.split("-")[0];
+  }
+
+  function dict() {
+    return WP_I18N[baseLang()] || WP_I18N.en;
+  }
 
   function injectStyles() {
     var css =
@@ -168,7 +315,7 @@
     document.head.appendChild(s);
   }
 
-  function productCard(name, tag, desc, price, url, img) {
+  function productCard(L, name, tag, desc, price, url, img) {
     var picture = "";
     if (img) {
       picture = '<a href="' + url + '" ' + REL + ' tabindex="-1" aria-hidden="true">' +
@@ -187,16 +334,13 @@
            '</div>';
   }
 
-  function buildInContent() {
-    var el = document.createElement("aside");
-    el.className = "sm-aff";
-    el.setAttribute("aria-label", "Hardware wallet recommendations");
-    el.innerHTML =
-      '<p class="sm-aff-h">&#128274; ' + L.heading + '</p>' +
+  function inContentHtml() {
+    var L = dict();
+    return '<p class="sm-aff-h">&#128274; ' + L.heading + '</p>' +
       '<p class="sm-aff-p">' + L.intro + '</p>' +
       '<div class="sm-aff-grid">' +
-        productCard(L.bbName, L.bbTag, L.bbDesc, L.bbPrice, BITBOX, IMG_BITBOX) +
-        productCard(L.tzName, L.tzTag, L.tzDesc, L.tzPrice, TREZOR, IMG_TREZOR) +
+        productCard(L, "BitBox02", L.bbTag, L.bbDesc, L.bbPrice, BITBOX, IMG_BITBOX) +
+        productCard(L, "Trezor Safe 5", L.tzTag, L.tzDesc, L.tzPrice, TREZOR, IMG_TREZOR) +
       '</div>' +
       '<p class="sm-aff-metal">&#128737;&#65039; <a href="' + TREZOR_METAL + '" ' + REL + '>' +
         L.metal + '</a></p>' +
@@ -204,22 +348,33 @@
         '<a class="sm-aff-guide" href="' + walletGuideUrl() + '">' +
         L.guide + ' &rarr;</a>') +
       '<p class="sm-aff-foot">' + L.disclosure + '</p>';
+  }
+
+  function railHtml() {
+    var L = dict();
+    return '<div class="sm-aff-rail-h">' + L.railHeading + '</div>' +
+      '<div class="sm-aff-rail-p">' + L.railText + '</div>' +
+      '<a class="sm-aff-btn" href="' + walletGuideUrl() + '">' +
+        L.railCta + ' &rarr;</a>' +
+      '<p class="sm-aff-rail-links">' +
+        '<a href="' + BITBOX + '" ' + REL + '>BitBox02</a><br>' +
+        '<a href="' + TREZOR_STORE + '" ' + REL + '>Trezor</a>' +
+      '</p>' +
+      '<p class="sm-aff-rail-note">' + L.railNote + '</p>';
+  }
+
+  function buildInContent() {
+    var el = document.createElement("aside");
+    el.className = "sm-aff";
+    el.setAttribute("aria-label", "Hardware wallet recommendations");
+    el.innerHTML = inContentHtml();
     return el;
   }
 
   function buildRail() {
     var el = document.createElement("div");
     el.className = "sm-aff-rail";
-    el.innerHTML =
-      '<div class="sm-aff-rail-h">' + L.railHeading + '</div>' +
-      '<div class="sm-aff-rail-p">' + L.railText + '</div>' +
-      '<a class="sm-aff-btn" href="' + walletGuideUrl() + '">' +
-        L.railCta + ' &rarr;</a>' +
-      '<p class="sm-aff-rail-links">' +
-        '<a href="' + BITBOX + '" ' + REL + '>' + L.bbName + '</a><br>' +
-        '<a href="' + TREZOR_STORE + '" ' + REL + '>Trezor</a>' +
-      '</p>' +
-      '<p class="sm-aff-rail-note">' + L.railNote + '</p>';
+    el.innerHTML = railHtml();
     return el;
   }
 
@@ -239,10 +394,32 @@
     rail.insertBefore(buildRail(), rail.firstChild);
   }
 
+  var lastLang = null;
+
+  function refresh() {
+    var cur = baseLang();
+    if (cur === lastLang) return;
+    lastLang = cur;
+    var inContentEl = document.querySelector(".sm-aff");
+    if (inContentEl) inContentEl.innerHTML = inContentHtml();
+    var railEl = document.querySelector(".sm-aff-rail");
+    if (railEl) railEl.innerHTML = railHtml();
+  }
+
+  function watchLanguage() {
+    lastLang = baseLang();
+    if (!("MutationObserver" in window)) return;
+    var mo = new MutationObserver(refresh);
+    mo.observe(document.documentElement, { attributes: true, attributeFilter: ["lang"] });
+    // Tools site also fires this event on change — harmless extra check.
+    document.addEventListener("satmeter:locale-change", refresh);
+  }
+
   function boot() {
     injectStyles();
     placeInContent();
     placeRail();
+    watchLanguage();
   }
 
   if (document.readyState === "loading") {

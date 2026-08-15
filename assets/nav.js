@@ -31,6 +31,12 @@
         wallet: "Dónde guardar tus sats",
         groups: [
           {
+            title: "Herramientas gratis",
+            items: [
+              ["Calculadoras de Bitcoin gratis", "https://tools.satmeter.io/"],
+            ],
+          },
+          {
             title: "Custodia propia",
             items: [
               ["Dónde Guardar Tus Sats", "where-to-store-your-sats.html"],
@@ -57,6 +63,12 @@
         guides: "All guides",
         wallet: "Where to store your sats",
         groups: [
+          {
+            title: "Free tools",
+            items: [
+              ["Free Bitcoin Calculators", "https://tools.satmeter.io/"],
+            ],
+          },
           {
             title: "Live indexes",
             items: [
@@ -117,9 +129,11 @@
       };
 
   function articleUrl(file) {
+    if (/^https?:\/\//.test(file)) return file;
     return toRoot + (inEs ? "es/articles/" : "articles/") + file;
   }
   function rootUrl(file) {
+    if (/^https?:\/\//.test(file)) return file;
     return toRoot + file;
   }
   function homeUrl() {

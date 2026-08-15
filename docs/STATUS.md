@@ -284,6 +284,73 @@ Geen `?v=`-ophoging nodig voor `nav.js`/`wallet-picks.js` (niet aangeraakt),
 maar dit raakt wel `index.html` zelf, dus geen cache-probleem te verwachten
 bij Johan na deployen.
 
+## 15 augustus: Affiliate-widget wordt meertalig, link naar tools.satmeter.io toegevoegd
+
+Johan meldde met screenshots dat de "Where do your sats live?" affiliate-blokken
+(BitBox02/Trezor) in het Engels bleven staan op een pagina die verder in het
+Turks stond, en dat er nergens vanaf satmeter.io een link naar tools.satmeter.io
+te vinden was.
+
+**Affiliate-widget (`assets/wallet-picks.js`, gedeeld door satmeter.io èn
+tools.satmeter.io/tools/):** volledig herschreven. Werkte voorheen alleen in
+en/es en las de taal maar één keer bij het laden van de pagina. Nu:
+- 16 taalversies (en, es, nl, pt, fr, de, tr, zh, hi, ar, bn, ru, ja, ko, id, vi).
+- Reageert live op een taalwissel via een `MutationObserver` op het `lang`-attribuut
+  van `<html>`, plus een `satmeter:locale-change`-event als extra vangnet. Beide
+  sites zetten dat attribuut al bij een taalwissel, dus de widget hoefde niet in
+  de taal-switcher-logica van elke site zelf te haken.
+- Precies hetzelfde bestand staat nu op twee plekken: `assets/wallet-picks.js`
+  (satmeter.io) en `tools/assets/wallet-picks.js` (tools.satmeter.io) — geverifieerd
+  met `diff`, identiek.
+
+**Link satmeter.io → tools.satmeter.io toegevoegd op twee plekken:**
+- Footer van de homepage (NL en ES): nieuwe link "Free calculators" /
+  vertaald via een nieuwe i18n-sleutel `footerToolsLink` in alle 14 taalwoordenboeken
+  in `index.html`.
+- Hamburgermenu (`assets/nav.js`): nieuwe groep bovenaan ("Free tools" / "Herramientas
+  gratis") met een link naar tools.satmeter.io. `articleUrl()`/`rootUrl()` in
+  `nav.js` konden voorheen alleen relatieve paden aan; die functies accepteren nu
+  ook een absolute `https://` URL rechtstreeks.
+
+**Cache-busting bijgewerkt** (verplicht bij elke wijziging aan `nav.js` of
+`wallet-picks.js`), gecontroleerd met grep, geen oude versienummers meer over:
+- `nav.js`: v6 → v7, op alle 32 pagina's van satmeter.io.
+- `wallet-picks.js` (satmeter.io): v5 → v6, op alle 28 pagina's die hem gebruiken.
+- `wallet-picks.js` (tools.satmeter.io): v1 → v2, op alle 5 tools-pagina's.
+
+**Gecontroleerd:** syntax-check (`node -e "new Function(...)"`) op `nav.js` en
+beide kopieën van `wallet-picks.js` — geen foutmeldingen. Grep bevestigt dat
+zowel de oude versienummers als de oude Engels-only tekst nergens meer voorkomen.
+Rechtstreeks gewijzigd op de laptop van Johan via de device-koppeling (geen
+zip deze keer — de wijzigingen staan al in de lokale map, klaar om te committen
+in GitHub Desktop).
+
+## 15 augustus: Valutanamen in "Bitcoin naar Fiat" vertaald naar de sitetaal
+
+Johan vroeg: laat in de bitcoin-naar-fiat tool de uitkomst zien in de valuta,
+in de taal die op de site gekozen is — niet alleen de kale ISO-code (EUR, USD).
+
+**`tools/assets/locale.js`:** nieuwe `CUR_NAMES_I18N`-tabel met de volledige
+valutanaam (21 valuta) voor elk van de 7 volledig vertaalde talen op
+tools.satmeter.io (en, nl, es, pt, fr, de, tr). Talen zonder volledige
+vertaling vallen terug op Engels, zelfde patroon als de rest van `TOOLS_I18N`.
+Nieuwe functie `currencyName(code)`, ook toegevoegd aan de publieke
+`window.SatmeterLocale`-API zodat andere tools dit later ook kunnen gebruiken.
+
+**`tools/bitcoin-naar-fiat.html`:** het resultaatlabel toont nu bijvoorbeeld
+"Euro (EUR)" in plaats van alleen "EUR", in de taal die de bezoeker gekozen
+heeft. Werkt automatisch mee met een taalwissel, want de tool luisterde al
+naar het `satmeter:locale-change`-event.
+
+Cache-busting: `locale.js` v2 → v3, op alle 5 pagina's van tools.satmeter.io
+die hem gebruiken (`index.html`, `bitcoin-naar-fiat.html`, `sats-naar-euro.html`,
+`bitcoin-vs-hypotheek.html`, `rente-op-rente-dca.html`). Gecontroleerd met
+grep — geen `v=2`-referenties meer over. Syntax-check op `locale.js` geslaagd.
+
+Alleen bitcoin-naar-fiat.html is aangepast zoals gevraagd; de andere drie tools
+tonen nu ook via dezelfde `SatmeterLocale.currencyName()`-functie een pad om
+dit later uit te breiden, mocht Johan dat ook daar willen.
+
 ## Wat nog open staat
 
 Op volgorde van wat het snelst geld oplevert.
