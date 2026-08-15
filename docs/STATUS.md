@@ -1,6 +1,6 @@
 # Satmeter.io — waar we staan
 
-Laatst bijgewerkt: 14 augustus 2026
+Laatst bijgewerkt: 15 augustus 2026
 
 ---
 
@@ -15,6 +15,7 @@ Laatst bijgewerkt: 14 augustus 2026
 | AdSense publisher | `ca-pub-8258777689852315` |
 | BitBox referral | `rldjkhmt` → `https://shop.bitbox.swiss/?ref=rldjkhmt` |
 | Trezor aff_id | `846530` |
+| Ledger referral | `c58f6c59f4b1` → `https://shop.ledger.com/?r=c58f6c59f4b1` |
 
 ### Trezor offer_id's
 
@@ -383,6 +384,59 @@ Gecontroleerd: syntax-check op beide bestanden geslaagd, en met een klein
 Node-scriptje bevestigd dat de nieuwe `de`- en `tr`-blokken exact dezelfde 78
 sleutels hebben als het Engelse blok (dus geen vergeten tekst die op een lege
 Engelse fallback zou blijven hangen).
+
+## 15 augustus: Ledger toegevoegd als derde affiliate-partner
+
+Johan wilde zijn Ledger-affiliate (referral `c58f6c59f4b1`, link
+`https://shop.ledger.com/?r=c58f6c59f4b1`) naast BitBox en Trezor op zowel
+satmeter.io als tools.satmeter.io.
+
+**`assets/wallet-picks.js` (beide kopieën, satmeter.io èn tools.satmeter.io/tools/):**
+- Nieuwe `LEDGER`-config in het CONFIG-blok bovenaan, zelfde patroon als
+  `BITBOX`/`TZ`.
+- Derde productkaart toegevoegd: "Ledger Nano S Plus" (Multi-coin · USB-C,
+  vanaf ~€79 — prijs gecontroleerd via een live blik op shop.ledger.com en
+  een paar erkende resellers, exacte prijs varieert per moment). Geen
+  productfoto beschikbaar (Johan stuurde alleen twee reclamebanners, geen
+  losse productfoto zoals bij BitBox/Trezor), dus `IMG_LEDGER = ""` — kaart
+  is voorlopig tekst-only, precies zoals het CONFIG-commentaar al
+  documenteerde als optie. Zodra Johan een creative aanlevert: resize naar
+  ~600px, opslaan in `assets/` (én de tools-kopie), `IMG_LEDGER` invullen.
+- Grid aangepast van 2 naar 3 kolommen op desktop (`repeat(3,1fr)`), met een
+  tussenstap op 900px (2 kolommen) voordat het op 600px naar 1 kolom
+  mobiel-stapelt. BitBox/Trezor-kaarten ongewijzigd qua opmaak.
+- Ledger-link ook toegevoegd aan de compacte zijbalk-kaart
+  (`sm-aff-rail-links`), naast BitBox en Trezor.
+- Alle 16 taalversies in `WP_I18N` kregen `ledgerTag`/`ledgerDesc`/
+  `ledgerPrice`, en `railText` ("de twee/drie wallets…") is overal bijgewerkt
+  naar drie. Gecontroleerd met een Node-scriptje dat alle 16 taalblokken nu
+  precies dezelfde sleutelset hebben als Engels (geen ontbrekende vertaling
+  die op een lege fallback zou blijven hangen).
+- Merk "Ledger" blijft onvertaald, zoals ook bij "BitBox02"/"Trezor Safe 5" —
+  productnamen worden nooit vertaald in dit bestand.
+
+**Cache-busting** (verplicht, `wallet-picks.js` is aangeraakt):
+- satmeter.io: `?v=6` → `?v=7` op alle 28 pagina's die het bestand laden.
+- tools.satmeter.io: `?v=2` → `?v=3` op alle 5 tools-pagina's.
+- Gecontroleerd met grep: geen `v=6`/`v=2`-referenties naar dit bestand meer
+  over op de respectievelijke sites.
+
+**Gecontroleerd (drie passes):**
+1. Syntax-check (`new Function(...)`) op het volledige bestand: geen fouten.
+2. Sleutelconsistentie: alle 16 taalblokken hebben identiek dezelfde set
+   sleutels (script-vergelijking tegen het Engelse blok).
+3. Echte render-test met jsdom op vier representatieve pagina's (homepage,
+   een Engels artikel, de Spaanse homepage, de tools-hub): op elke pagina
+   verschijnen alle drie kaarten (BitBox02, Trezor Safe 5, Ledger Nano S
+   Plus) met de juiste `rel="nofollow sponsored noopener"` en de juiste
+   affiliate-URL. Taalwissel naar Spaans getest op een artikelpagina: de
+   Ledger-kaart wisselt live mee ("Multi-moneda · USB-C"), zonder page
+   reload — de bestaande `MutationObserver`-aanpak werkte meteen voor de
+   nieuwe derde kaart.
+
+Rechtstreeks gewijzigd op de laptop van Johan via de device-koppeling (geen
+zip deze keer — de wijzigingen staan al in de lokale map, klaar om te
+committen in GitHub Desktop).
 
 ## Wat nog open staat
 
