@@ -32,7 +32,8 @@
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" onload="this.onload=null;this.rel='stylesheet'">
+<noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"></noscript>
 
 <!-- ============================================================
      GOOGLE ADSENSE — live auto-ads script
@@ -1219,7 +1220,7 @@
 
   <div class="hero-photos">
     <div class="photo-card">
-      <img src="https://images.unsplash.com/photo-1758613171945-1cba8ddcbfe7?w=900&q=72&auto=format&fit=crop" alt="Two friends joyfully riding in a shopping cart" loading="lazy">
+      <img src="https://images.unsplash.com/photo-1758613171945-1cba8ddcbfe7?w=900&q=72&auto=format&fit=crop" alt="Two friends joyfully riding in a shopping cart" loading="eager" fetchpriority="high">
       <div class="caption"><span data-i18n="cap1">A full cart of groceries</span><span class="sats" data-live-caption="90">≈ … sats</span></div>
     </div>
     <div class="photo-card">

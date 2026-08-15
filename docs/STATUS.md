@@ -237,6 +237,53 @@ Toegevoegd op de gebruikelijke plekken:
 Geen `?v=`-ophoging nodig: geen wijziging aan `assets/site.css`, `nav.js`
 of `wallet-picks.js`, alleen nieuwe/bestaande HTML-pagina's.
 
+**Correctie, zelfde dag:** Johan zag Brazilië niet in het navigatiemenu.
+Er bleek een tweede, losstaande gidsenlijst te bestaan die ik had gemist:
+een hardgecodeerde `items`-array in `assets/nav.js` (rond regel 90-98) voor
+het "Country guides"-blok in het dropdown-menu, volledig los van
+`articles/index.html`. Brazilië daaraan toegevoegd en, omdat dit nu wel
+`nav.js` raakt, `?v=5` naar `?v=6` verhoogd over alle 66 HTML-bestanden
+(34 root, 32 satmeter-github). **Les:** bij een nieuwe gids voortaan altijd
+op minstens twee plekken checken, niet alleen `articles/index.html`: grep
+naar `groceries-in-bitcoin` (of het vergelijkbare patroon) door de hele
+`assets/`-map heen, zodat een tweede, verborgen lijst niet nogmaals gemist
+wordt.
+
+## 15 augustus: Paginasnelheid — twee echte fixes na Google's snelheidstest (score 64, mobiel)
+
+Johan deelde een screenshot van Google's PageSpeed-achtige tool: score 64 op
+mobiel, First Contentful Paint 3.5s, Largest Contentful Paint 4.1s, en
+Cumulative Layout Shift 0.281 (0.1 of lager is "goed"). Site doorgezocht op
+concrete, bekende oorzaken in plaats van algemene tips:
+
+**1. Google Fonts blokkeerde de eerste render.** De `<link rel="stylesheet">`
+naar Google Fonts (5 gewichten van Inter) moet volledig geladen zijn voordat
+de browser mag beginnen met tekenen. Omgezet naar het standaard
+preload-en-swap-patroon: `<link rel="preload" as="style" ... onload="...rel='stylesheet'">`
+plus een `<noscript>`-fallback voor bezoekers zonder JavaScript. De pagina
+kan nu meteen renderen met een systeemlettertype en wisselt naar Inter zodra
+die geladen is, in plaats van te wachten.
+
+**2. De eerste hero-foto had `loading="lazy"` terwijl die waarschijnlijk het
+LCP-element is.** "Lazy" betekent: laad pas als de browser denkt dat het
+nodig is, wat een afbeelding die meteen zichtbaar is juist vertraagt in
+plaats van versnelt. Veranderd naar `loading="eager" fetchpriority="high"`
+zodat de browser deze foto als eerste en met voorrang ophaalt.
+
+**Niet in code op te lossen — actie voor Johan in het AdSense-dashboard:**
+de hoge CLS (0.281) komt vermoedelijk grotendeels van Google's "Auto ads".
+Die plaatst zelf advertenties ergens op de pagina zonder dat daar altijd
+ruimte voor gereserveerd is, wat de pagina omlaag laat springen zodra een
+advertentie laadt. De vaste advertentievakken in de code (`.ad-banner`,
+`.ad-box`) hebben zelf al een gereserveerde minimumhoogte, dus die zijn niet
+het probleem. In AdSense zelf: Sites → satmeter.io → Auto ads → advertentiedichtheid
+omlaag zetten (bijv. naar "Laag" of "Gemiddeld" in plaats van "Hoog"). Dat is
+een dashboard-instelling, geen bestand dat ik kan aanpassen.
+
+Geen `?v=`-ophoging nodig voor `nav.js`/`wallet-picks.js` (niet aangeraakt),
+maar dit raakt wel `index.html` zelf, dus geen cache-probleem te verwachten
+bij Johan na deployen.
+
 ## Wat nog open staat
 
 Op volgorde van wat het snelst geld oplevert.
