@@ -16,7 +16,7 @@
 <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" onload="this.onload=null;this.rel='stylesheet'">
 <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"></noscript>
 <link rel="stylesheet" href="assets/site.css?v=1">
-<link rel="stylesheet" href="assets/tools-extra.css?v=2">
+<link rel="stylesheet" href="assets/tools-extra.css?v=3">
 
 <script type="application/ld+json">
 {"@context":"https://schema.org","@type":"WebSite","name":"Satmeter Tools","url":"https://tools.satmeter.io/","description":"Gratis Bitcoin-rekentools van satmeter.io: sats-converter, BTC naar euro, hypotheek vs. Bitcoin en rente-op-rente calculator.","publisher":{"@type":"Organization","name":"Satmeter","url":"https://satmeter.io/"}}
@@ -43,68 +43,80 @@
 </head>
 <body class="page-home">
 <div class="shell">
-<div class="ad-rail"><div class="ad-sticky"><div class="ad-box"></div></div></div>
+<div class="ad-rail"><div class="ad-sticky"><div class="ad-box"><!--
+<ins class="adsbygoogle" style="display:block;width:160px;height:600px" data-ad-client="ca-pub-8258777689852315" data-ad-slot="0000000001"></ins><script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+--></div></div></div>
 <main>
   <div class="topbar">
     <a class="brand" href="index.html"><img src="assets/logo.svg" alt="Satmeter"><span class="bm-sat">sat</span><span class="bm-meter">meter</span><span class="bm-tld">TOOLS</span></a>
+    <button class="locale-pill" id="localePill" type="button" aria-haspopup="dialog" aria-expanded="false">
+      <span class="lp-flag" id="lpFlag">&#127482;&#127480;</span>
+      <span class="lp-code" id="lpCode">EN</span>
+      <span class="lp-cur" id="lpCur">USD</span>
+      <span class="lp-chev">&#9662;</span>
+    </button>
     <div style="display:flex;gap:8px;flex-wrap:wrap">
-      <a class="back-link" href="https://satmeter.io/" target="_blank" rel="noopener">🛒 Naar satmeter.io</a>
-      <button class="theme-toggle" id="themeToggle" type="button"><span id="themeIcon">🌙</span><span id="themeText">Dark mode</span></button>
+      <a class="back-link" href="https://satmeter.io/" target="_blank" rel="noopener" data-i18n="backToSatmeter">🛒 Naar satmeter.io</a>
+      <button class="theme-toggle" id="themeToggle" type="button"><span id="themeIcon">🌙</span><span id="themeText" data-i18n="darkMode">Dark mode</span></button>
     </div>
   </div>
 
-  <span class="kicker">Gratis · live prijzen · geen account</span>
-  <h1>Bitcoin-rekentools van <span class="gradient-text">Satmeter</span></h1>
-  <p class="standfirst">Vier simpele tools die met een live Bitcoin-koers rekenen — geen registratie, geen download. Zoek je de volledige vergelijker die Bitcoin naast je dagelijkse boodschappen zet? Die staat op <a href="https://satmeter.io/" target="_blank" rel="noopener">satmeter.io</a>.</p>
-  <p class="byline"><span class="live-dot"></span>Live BTC-koers via <span data-source>…</span> · bijgewerkt <span data-updated>…</span></p>
+  <span class="kicker" data-i18n="idxKicker">Gratis · live prijzen · geen account</span>
+  <h1><span data-i18n="idxH1a">Bitcoin-rekentools van</span> <span class="gradient-text">Satmeter</span></h1>
+  <p class="standfirst"><span data-i18n="idxStandfirst">Vier simpele tools die met een live Bitcoin-koers rekenen — geen registratie, geen download. Zoek je de volledige vergelijker die Bitcoin naast je dagelijkse boodschappen zet? Die staat op</span> <a href="https://satmeter.io/" target="_blank" rel="noopener">satmeter.io</a>.</p>
+  <p class="byline"><span class="live-dot"></span><span data-i18n="idxLiveVia">Live BTC-koers via</span> <span data-source>…</span> · <span data-i18n="idxUpdated">bijgewerkt</span> <span data-updated>…</span></p>
 
   <div class="hubgrid">
     <a class="hubcard" href="sats-naar-euro.html">
       <div class="he">🔄</div>
-      <div class="ht">Sats naar euro converter</div>
-      <div class="hb">Reken satoshi's om naar euro's en terug, op basis van de live BTC-koers.</div>
-      <div class="hg">Open tool →</div>
+      <div class="ht" data-i18n="idxCard1t">Sats naar euro converter</div>
+      <div class="hb" data-i18n="idxCard1b">Reken satoshi's om naar euro's en terug, op basis van de live BTC-koers.</div>
+      <div class="hg" data-i18n="idxOpen">Open tool →</div>
     </a>
     <a class="hubcard" href="bitcoin-naar-fiat.html">
       <div class="he">💱</div>
-      <div class="ht">Bitcoin naar fiat converter</div>
-      <div class="hb">BTC omrekenen naar EUR, USD, GBP en meer, live bijgewerkt.</div>
-      <div class="hg">Open tool →</div>
+      <div class="ht" data-i18n="idxCard2t">Bitcoin naar fiat converter</div>
+      <div class="hb" data-i18n="idxCard2b">BTC omrekenen naar EUR, USD, GBP en meer, live bijgewerkt.</div>
+      <div class="hg" data-i18n="idxOpen">Open tool →</div>
     </a>
     <a class="hubcard" href="bitcoin-vs-hypotheek.html">
       <div class="he">🏠</div>
-      <div class="ht">Bitcoin vs. hypotheek calculator</div>
-      <div class="hb">Wat levert extra aflossen op, vergeleken met datzelfde bedrag in Bitcoin zetten?</div>
-      <div class="hg">Open tool →</div>
+      <div class="ht" data-i18n="idxCard3t">Bitcoin vs. hypotheek calculator</div>
+      <div class="hb" data-i18n="idxCard3b">Wat levert extra aflossen op, vergeleken met datzelfde bedrag in Bitcoin zetten?</div>
+      <div class="hg" data-i18n="idxOpen">Open tool →</div>
     </a>
     <a class="hubcard" href="rente-op-rente-dca.html">
       <div class="he">📈</div>
-      <div class="ht">Rente-op-rente / DCA calculator</div>
-      <div class="hb">Zie hoeveel een vast maandbedrag wordt bij samengestelde groei — en wat dat in sats is.</div>
-      <div class="hg">Open tool →</div>
+      <div class="ht" data-i18n="idxCard4t">Rente-op-rente / DCA calculator</div>
+      <div class="hb" data-i18n="idxCard4b">Zie hoeveel een vast maandbedrag wordt bij samengestelde groei — en wat dat in sats is.</div>
+      <div class="hg" data-i18n="idxOpen">Open tool →</div>
     </a>
   </div>
 
   <div class="tool-strip">
-    <p><strong>Wist je dat?</strong> Satmeter laat live zien wat je boodschappen, koffie of huur in sats kosten — niet alleen een koersje.</p>
-    <a class="cta" style="margin:0;padding:10px 18px" href="https://satmeter.io/" target="_blank" rel="noopener">Bekijk satmeter.io →</a>
+    <p><strong data-i18n="idxDidYouKnow">Wist je dat?</strong> <span data-i18n="idxDidYouKnowBody">Satmeter laat live zien wat je boodschappen, koffie of huur in sats kosten — niet alleen een koersje.</span></p>
+    <a class="cta" style="margin:0;padding:10px 18px" href="https://satmeter.io/" target="_blank" rel="noopener" data-i18n="ctaSatmeter">Bekijk satmeter.io →</a>
   </div>
 
   <div class="card">
-    <h2>Waarom deze tools?</h2>
-    <p>Dit zijn kleine, snelle rekentools die één ding goed doen — geen account, geen tracking-formulieren, direct een antwoord. Alle koersen komen live binnen via dezelfde vijf-bronnen-prijsmotor die ook op <a href="https://satmeter.io/" target="_blank" rel="noopener">satmeter.io</a> draait, dus de cijfers kloppen met wat je daar ziet.</p>
-    <p>Geen van deze tools is financieel advies. Bitcoin is volatiel; gebruik de uitkomsten als illustratie, niet als beslissing.</p>
+    <h2 data-i18n="idxWhyH2">Waarom deze tools?</h2>
+    <p><span data-i18n="idxWhyP1">Dit zijn kleine, snelle rekentools die één ding goed doen — geen account, geen tracking-formulieren, direct een antwoord. Alle koersen komen live binnen via dezelfde vijf-bronnen-prijsmotor die ook op</span> <a href="https://satmeter.io/" target="_blank" rel="noopener">satmeter.io</a> draait, dus de cijfers kloppen met wat je daar ziet.</p>
+    <p data-i18n="idxWhyP2">Geen van deze tools is financieel advies. Bitcoin is volatiel; gebruik de uitkomsten als illustratie, niet als beslissing.</p>
   </div>
 
   <footer>
     <span class="copyline">Satmeter Tools</span>
-    Gratis Bitcoin-rekentools, gemaakt door <a href="https://satmeter.io/" target="_blank" rel="noopener">satmeter.io</a> — de live Bitcoin-naar-boodschappen vergelijker.<br>
-    <a href="privacy.html">Privacy</a> · <a href="terms.html">Voorwaarden</a> · <a href="https://satmeter.io/" target="_blank" rel="noopener">satmeter.io</a><br>
+    <span data-i18n="footerMade">Gratis Bitcoin-rekentools, gemaakt door</span> <a href="https://satmeter.io/" target="_blank" rel="noopener">satmeter.io</a> — de live Bitcoin-naar-boodschappen vergelijker.<br>
+    <a href="privacy.html" data-i18n="footerPrivacy">Privacy</a> · <a href="terms.html" data-i18n="footerTerms">Voorwaarden</a> · <a href="https://satmeter.io/" target="_blank" rel="noopener">satmeter.io</a><br>
     © <span id="year"></span> Satmeter. Geen financieel advies.
   </footer>
 </main>
-<div class="ad-rail"><div class="ad-sticky"><div class="ad-box"></div></div></div>
+<div class="ad-rail"><div class="ad-sticky"><div class="ad-box"><!--
+<ins class="adsbygoogle" style="display:block;width:160px;height:600px" data-ad-client="ca-pub-8258777689852315" data-ad-slot="0000000002"></ins><script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+--></div></div></div>
 </div>
-<script src="assets/sats.js?v=1"></script>
+<script src="assets/sats.js?v=2"></script>
+<script src="assets/locale.js?v=1"></script>
+<script src="assets/wallet-picks.js?v=1" defer></script>
 </body>
 </html>

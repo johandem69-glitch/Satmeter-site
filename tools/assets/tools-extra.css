@@ -106,3 +106,85 @@ body.page-euro .kicker,body.page-euro .byline .live-dot{background:var(--fb-blue
 body.page-fiat .kicker,body.page-fiat .byline .live-dot{background:var(--ig-purple) !important;box-shadow:0 0 0 3px rgba(129,52,240,.18)}
 body.page-hypo .kicker,body.page-hypo .byline .live-dot{background:var(--ig-pink) !important;box-shadow:0 0 0 3px rgba(253,58,132,.18)}
 body.page-dca .kicker,body.page-dca .byline .live-dot{background:var(--ig-orange) !important;box-shadow:0 0 0 3px rgba(255,138,61,.18)}
+
+/* =========================================================================
+   TAAL- EN VALUTAKEUZE — zelfde mechanisme als satmeter.io (pill + modal)
+   Overgenomen 1-op-1 van satmeter.io's site.css zodat de picker er identiek
+   uitziet en werkt. Wordt aangestuurd door assets/locale.js.
+   ========================================================================= */
+.locale-pill{
+  display:inline-flex;align-items:center;gap:8px;
+  background:var(--surface);border:1px solid var(--border);color:var(--text-2);
+  border-radius:999px;padding:7px 14px;font-size:12.5px;font-weight:600;
+  font-family:inherit;cursor:pointer;box-shadow:var(--shadow-sm);
+  transition:all .18s ease;
+}
+.locale-pill:hover{border-color:var(--blue);color:var(--blue);}
+.locale-pill .lp-flag{font-size:15px;line-height:1;}
+.locale-pill .lp-code{letter-spacing:.04em;}
+.locale-pill .lp-cur{
+  font-size:10.5px;font-weight:700;color:var(--muted);
+  background:var(--surface-2);border-radius:5px;padding:2px 6px;
+}
+.locale-pill .lp-chev{font-size:9px;opacity:.6;}
+
+.lm-backdrop{
+  position:fixed;inset:0;background:rgba(0,0,0,.55);
+  display:none;align-items:flex-start;justify-content:center;
+  z-index:9999;padding:6vh 16px 16px;
+  -webkit-backdrop-filter:blur(3px);backdrop-filter:blur(3px);
+}
+.lm-backdrop.open{display:flex;}
+.lm-panel{
+  position:relative;background:var(--surface);border:1px solid var(--border);
+  border-radius:20px;box-shadow:0 24px 70px rgba(0,0,0,.35);
+  width:100%;max-width:660px;max-height:82vh;
+  display:flex;flex-direction:column;overflow:hidden;
+  animation:lmIn .2s cubic-bezier(.3,1.2,.6,1);
+}
+@keyframes lmIn{from{opacity:0;transform:translateY(-12px) scale(.98)}to{opacity:1;transform:none}}
+.lm-head{padding:22px 24px 16px;border-bottom:1px solid var(--border);}
+.lm-head h3{margin:0 0 4px;font-size:19px;font-weight:800;letter-spacing:-.02em;color:var(--text);}
+.lm-head p{margin:0;font-size:13px;color:var(--muted);line-height:1.5;}
+.lm-close{
+  position:absolute;top:16px;right:18px;
+  background:var(--surface-2);border:1px solid var(--border);color:var(--muted);
+  width:32px;height:32px;border-radius:50%;font-size:17px;line-height:1;
+  cursor:pointer;font-family:inherit;display:flex;align-items:center;justify-content:center;
+}
+.lm-close:hover{border-color:var(--red);color:var(--red);}
+.lm-searchwrap{padding:14px 24px;border-bottom:1px solid var(--border);}
+.lm-search{
+  width:100%;background:var(--surface-2);border:1.5px solid var(--border);
+  color:var(--text);border-radius:11px;padding:11px 14px;font-size:14px;
+  font-family:inherit;outline:none;
+}
+.lm-search:focus{border-color:var(--blue);box-shadow:0 0 0 3px var(--blue-soft);}
+.lm-list{overflow-y:auto;padding:12px;display:grid;grid-template-columns:1fr 1fr;gap:6px;}
+@media (max-width:560px){.lm-list{grid-template-columns:1fr;}}
+.lm-opt{
+  display:flex;align-items:center;gap:11px;
+  background:transparent;border:1px solid transparent;border-radius:11px;
+  padding:11px 13px;cursor:pointer;text-align:left;width:100%;
+  font-family:inherit;color:var(--text);transition:all .14s ease;
+}
+.lm-opt:hover{background:var(--surface-2);border-color:var(--border);}
+.lm-opt.active{background:var(--blue-soft);border-color:var(--blue);}
+.lm-opt .of{font-size:21px;line-height:1;flex:0 0 auto;}
+.lm-opt .ob{flex:1 1 auto;min-width:0;}
+.lm-opt .on{font-size:14px;font-weight:600;line-height:1.25;}
+.lm-opt .os{font-size:11.5px;color:var(--muted);margin-top:1px;}
+.lm-opt .oc{
+  font-size:11px;font-weight:700;color:var(--orange-deep);
+  background:var(--orange-soft);border-radius:6px;padding:3px 7px;flex:0 0 auto;
+}
+.lm-opt.active .oc{background:var(--surface);}
+.lm-empty{grid-column:1/-1;text-align:center;padding:28px 16px;color:var(--muted);font-size:13.5px;}
+.lm-foot{
+  padding:13px 24px;border-top:1px solid var(--border);
+  font-size:11.5px;color:var(--muted);line-height:1.55;background:var(--surface-2);
+}
+@media (max-width:520px){
+  .topbar{gap:8px;}
+  .locale-pill{padding:6px 11px;font-size:11.5px;}
+}

@@ -38,10 +38,11 @@ nieuwe, aparte map. Zie `docs/STATUS.md` voor de exacte stappen.
 3. Automatische implementatie staat al aan voor satmeter.io, dus dit deployt
    vanzelf. Zie je 'm nog niet live? hPanel → GIT → **Herimplementeren**.
 
-Wijzig je iets in `assets/site.css`, `assets/sats.js` of
-`assets/tools-extra.css`? Verhoog dan `?v=1` naar `?v=2` in alle
-`.html`-bestanden die dat bestand laden (zoek-en-vervang), anders zien
-terugkerende bezoekers de wijziging een maand lang niet.
+Wijzig je iets in `assets/site.css`, `assets/sats.js`, `assets/locale.js`,
+`assets/wallet-picks.js` of `assets/tools-extra.css`? Verhoog dan het
+`?v=`-nummer in alle `.html`-bestanden die dat bestand laden
+(zoek-en-vervang), anders zien terugkerende bezoekers de wijziging een
+maand lang niet.
 
 ## Structuur
 
@@ -56,9 +57,12 @@ bitcoin-vs-hypotheek.html  Calculator
 rente-op-rente-dca.html    Calculator
 privacy.html, terms.html   Verplicht voor AdSense-goedkeuring
 assets/site.css            Herbruikt 1-op-1 van satmeter.io (zelfde look)
-assets/sats.js             Herbruikt 1-op-1 van satmeter.io (live-prijsmotor)
+assets/sats.js             Herbruikt 1-op-1 van satmeter.io (live-prijsmotor, nu 21 valuta)
 assets/consent.js          Herbruikt 1-op-1 van satmeter.io (cookiebanner)
-assets/tools-extra.css     Extra stijlen specifiek voor de rekentools
+assets/locale.js           Nieuw: taal- en valutakeuze, zelfde mechanisme als satmeter.io
+assets/wallet-picks.js     Herbruikt 1-op-1 van satmeter.io (BitBox/Trezor affiliate-kaarten)
+assets/trezor-safe5.jpg, assets/bitbox02.jpg   Productfoto's voor de affiliate-kaarten
+assets/tools-extra.css     Extra stijlen specifiek voor de rekentools + de locale-picker
 robots.txt, sitemap.xml, ads.txt, .htaccess   Zelfde patroon als satmeter.io
 docs/STATUS.md             Waar dit sub-project staat en wat nog moet gebeuren
 ```

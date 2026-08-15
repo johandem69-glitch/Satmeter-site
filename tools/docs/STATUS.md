@@ -118,6 +118,46 @@ Niet gecontroleerd (kan pas na live gaan): of de live koers echt laadt, of
 AdSense het subdomein accepteert, of de fonts/preload-truc werkt op de
 echte server. Zie "Wat nog open staat".
 
+## 15 augustus, later op de dag: taalkeuze + valuta + advertenties/affiliate
+
+Naar aanleiding van Johans feedback ("tools werken, maar ik wil verbeteringen
+voor alle tools") drie dingen toegevoegd, over alle 5 pagina's (hub + 4 tools):
+
+**1. Zelfde taal- en valutakeuze als satmeter.io.** Nieuw bestand
+`assets/locale.js`: dezelfde pill-knop (vlag + taalcode + valuta) en
+doorzoekbare modal met 16 talen / 21 valuta, 1-op-1 overgenomen van
+satmeter.io's eigen mechanisme. Volledige vertaling voor Engels, Nederlands,
+Spaans, Portugees en Frans; de overige 11 talen tonen Engelse tekst maar
+vlag/valuta werken wel — exact zoals satmeter.io het nu zelf ook doet. Elke
+rekenpagina luistert naar het `satmeter:locale-change`-event en herrekent
+direct in de gekozen valuta (via `window.Sats.rate()`/`fmtFiat()`, die al
+alle 21 valuta ondersteunden). `assets/sats.js` uitgebreid van 12 naar 21
+valuta zodat dit exact matcht met satmeter.io.
+
+**2. AdSense.** De live auto-ads-script (`adsbygoogle.js` met het
+publisher-ID) stond al in elke pagina sinds v1 — dat is het mechanisme dat
+daadwerkelijk advertenties toont. Wat ontbrak: de handmatige, uitgecommen-
+tarieerde `<ins>`-placeholders in de ad-rail-vakken, voor als Johan ooit
+vaste ad-posities wil in plaats van auto-ads. Die zijn nu toegevoegd, exact
+in dezelfde vorm (en nog steeds uitgecommentarieerd) als op satmeter.io.
+
+**3. BitBox/Trezor affiliate-kaarten.** `assets/wallet-picks.js` +
+productfoto's (`trezor-safe5.jpg`, `bitbox02.jpg`) gekopieerd van
+satmeter.io. Dit script is zelf-installerend: het detecteert automatisch
+waar het draait en plaatst zelf een kaart in de hoofdtekst en een compacte
+versie in de ad-rail, inclusief eigen CSS — er hoefde niets anders aangepast
+te worden dan een `<script>`-tag toevoegen.
+
+**Gecontroleerd:** alle 5 pagina's opnieuw door jsdom gehaald (0
+JavaScript-fouten, `SatmeterLocale` laadt, pill aanwezig), en visueel
+gecontroleerd met Playwright-screenshots (pill, modal met alle 16 talen,
+BitBox/Trezor-kaarten met foto's en prijzen — zie de homepage- en
+sats-naar-euro-pagina). `?v=`-nummers verhoogd voor alle gewijzigde/nieuwe
+bestanden: `sats.js` (v1→v2), `tools-extra.css` (v2→v3, ook op privacy.html/
+terms.html), en `locale.js`/`wallet-picks.js` nieuw op `?v=1`.
+
+---
+
 ## Wat nog open staat
 
 Op volgorde van wat het eerst moet gebeuren.
@@ -170,7 +210,8 @@ de belangrijkste die hier ook spelen:
   blokkeert het anders stil.
 - **Hostinger-mapveld bij GIT leeg laten**, relatief t.o.v. `public_html`.
 - **`?v=`-nummer verhogen** bij elke wijziging aan `assets/site.css`,
-  `assets/sats.js`, `assets/consent.js` of `assets/tools-extra.css` —
-  anders zien terugkerende bezoekers de wijziging een maand lang niet.
+  `assets/sats.js`, `assets/consent.js`, `assets/locale.js`,
+  `assets/wallet-picks.js` of `assets/tools-extra.css` — anders zien
+  terugkerende bezoekers de wijziging een maand lang niet.
 - **Live controleren na een deploy**, niet alleen lokaal testen — een
   bestand kan in elke zip zitten en toch nooit op GitHub belanden.

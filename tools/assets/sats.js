@@ -7,11 +7,16 @@
 (function (global) {
   "use strict";
 
+  /* Same 21-currency set as satmeter.io itself (see index.html CURRENCIES),
+     so the currency picker here offers exactly the same choices. */
   var CUR = {
-    USD:{sym:"$",dec:2}, EUR:{sym:"€",dec:2}, GBP:{sym:"£",dec:2},
-    JPY:{sym:"¥",dec:0}, INR:{sym:"₹",dec:2}, BRL:{sym:"R$",dec:2},
-    NGN:{sym:"₦",dec:2}, TRY:{sym:"₺",dec:2}, IDR:{sym:"Rp",dec:0},
-    CAD:{sym:"$",dec:2}, AUD:{sym:"$",dec:2}, ZAR:{sym:"R",dec:2}
+    USD:{sym:"$",dec:2},   EUR:{sym:"€",dec:2},   GBP:{sym:"£",dec:2},
+    CNY:{sym:"¥",dec:2},   JPY:{sym:"¥",dec:0},   KRW:{sym:"₩",dec:0},
+    INR:{sym:"₹",dec:2},   BDT:{sym:"৳",dec:2},   IDR:{sym:"Rp",dec:0},
+    VND:{sym:"₫",dec:0},   BRL:{sym:"R$",dec:2},  MXN:{sym:"$",dec:2},
+    RUB:{sym:"₽",dec:2},   SAR:{sym:"﷼",dec:2},   AED:{sym:"د.إ",dec:2},
+    TRY:{sym:"₺",dec:2},   NGN:{sym:"₦",dec:2},   ZAR:{sym:"R",dec:2},
+    CAD:{sym:"$",dec:2},   AUD:{sym:"$",dec:2},   CHF:{sym:"CHF",dec:2}
   };
   var CODES = Object.keys(CUR);
   var rates = {};

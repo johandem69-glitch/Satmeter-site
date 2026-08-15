@@ -16,7 +16,7 @@
 <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" onload="this.onload=null;this.rel='stylesheet'">
 <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"></noscript>
 <link rel="stylesheet" href="assets/site.css?v=1">
-<link rel="stylesheet" href="assets/tools-extra.css?v=2">
+<link rel="stylesheet" href="assets/tools-extra.css?v=3">
 
 <script type="application/ld+json">
 {"@context":"https://schema.org","@type":"WebApplication","name":"Sats naar Euro Converter","applicationCategory":"FinanceApplication","operatingSystem":"Any","url":"https://tools.satmeter.io/sats-naar-euro.html","description":"Reken satoshi's om naar euro's en terug op basis van de live Bitcoin-koers.","offers":{"@type":"Offer","price":"0","priceCurrency":"EUR"},"publisher":{"@type":"Organization","name":"Satmeter","url":"https://satmeter.io/"}}
@@ -36,50 +36,58 @@
 </head>
 <body class="page-euro">
 <div class="shell">
-<div class="ad-rail"><div class="ad-sticky"><div class="ad-box"></div></div></div>
+<div class="ad-rail"><div class="ad-sticky"><div class="ad-box"><!--
+<ins class="adsbygoogle" style="display:block;width:160px;height:600px" data-ad-client="ca-pub-8258777689852315" data-ad-slot="0000000001"></ins><script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+--></div></div></div>
 <main>
   <div class="topbar">
     <a class="brand" href="index.html"><img src="assets/logo.svg" alt="Satmeter"><span class="bm-sat">sat</span><span class="bm-meter">meter</span><span class="bm-tld">TOOLS</span></a>
+    <button class="locale-pill" id="localePill" type="button" aria-haspopup="dialog" aria-expanded="false">
+      <span class="lp-flag" id="lpFlag">&#127482;&#127480;</span>
+      <span class="lp-code" id="lpCode">EN</span>
+      <span class="lp-cur" id="lpCur">USD</span>
+      <span class="lp-chev">&#9662;</span>
+    </button>
     <div style="display:flex;gap:8px;flex-wrap:wrap">
-      <a class="back-link" href="https://satmeter.io/" target="_blank" rel="noopener">🛒 Naar satmeter.io</a>
-      <button class="theme-toggle" id="themeToggle" type="button"><span id="themeIcon">🌙</span><span id="themeText">Dark mode</span></button>
+      <a class="back-link" href="https://satmeter.io/" target="_blank" rel="noopener" data-i18n="backToSatmeter">🛒 Naar satmeter.io</a>
+      <button class="theme-toggle" id="themeToggle" type="button"><span id="themeIcon">🌙</span><span id="themeText" data-i18n="darkMode">Dark mode</span></button>
     </div>
   </div>
 
-  <span class="kicker">Converter</span>
-  <h1>Sats naar <span class="gradient-text">Euro</span></h1>
-  <p class="standfirst">Vul een bedrag in sats of euro's in — de andere kant rekent automatisch mee, met de live Bitcoin-koers.</p>
+  <span class="kicker" data-i18n="euroKicker">Converter</span>
+  <h1><span data-i18n="euroH1">Sats naar</span> <span class="gradient-text" id="curName">Euro</span></h1>
+  <p class="standfirst" data-i18n="euroStandfirst">Vul een bedrag in sats of euro's in — de andere kant rekent automatisch mee, met de live Bitcoin-koers.</p>
   <p class="byline"><span class="live-dot"></span>1 BTC = <span data-btc-price="EUR">…</span> · bron: <span data-source>…</span> · <span data-updated>…</span></p>
 
   <div class="card">
     <div class="field-grid">
       <div class="field">
-        <label for="satsIn">Satoshi's (sats)</label>
+        <label for="satsIn" data-i18n="euroSats">Satoshi's (sats)</label>
         <div class="winput"><span>⚡</span><input type="number" id="satsIn" inputmode="decimal" placeholder="1.000.000" min="0" step="1"></div>
       </div>
       <div class="field">
-        <label for="eurIn">Euro (€)</label>
-        <div class="winput"><span>€</span><input type="number" id="eurIn" inputmode="decimal" placeholder="500" min="0" step="0.01"></div>
+        <label for="eurIn" id="curLabel" data-i18n="euroAmount">Bedrag</label>
+        <div class="winput"><span id="curSymbol">€</span><input type="number" id="eurIn" inputmode="decimal" placeholder="500" min="0" step="0.01"></div>
       </div>
     </div>
 
     <div class="bigresult">
-      <div class="br-num" id="resultLine">Vul een bedrag in…</div>
-      <div class="br-sub" id="resultSub">Wachten op live koers…</div>
+      <div class="br-num" id="resultLine" data-i18n="euroFillIn">Vul een bedrag in…</div>
+      <div class="br-sub" id="resultSub" data-i18n="euroWaiting">Wachten op live koers…</div>
     </div>
 
     <div class="callout">
-      <p><strong>Handig om te weten:</strong> 1 Bitcoin = 100.000.000 sats. Een "sat" (satoshi) is de kleinste eenheid van Bitcoin, vernoemd naar Satoshi Nakamoto. Bij een koers van €90.000 per BTC is 1 sat ongeveer €0,0009.</p>
+      <p><strong data-i18n="euroKnowTitle">Handig om te weten:</strong> <span data-i18n="euroKnowBody">1 Bitcoin = 100.000.000 sats. Een "sat" (satoshi) is de kleinste eenheid van Bitcoin, vernoemd naar Satoshi Nakamoto.</span></p>
     </div>
   </div>
 
   <div class="tool-strip">
-    <p><strong>Nieuwsgierig wat dit is in boodschappen?</strong> Satmeter zet Bitcoin naast je dagelijkse uitgaven, niet alleen een koers.</p>
-    <a class="cta" style="margin:0;padding:10px 18px" href="https://satmeter.io/" target="_blank" rel="noopener">Bekijk satmeter.io →</a>
+    <p><strong data-i18n="euroCurious">Nieuwsgierig wat dit is in boodschappen?</strong> <span data-i18n="euroCuriousBody">Satmeter zet Bitcoin naast je dagelijkse uitgaven, niet alleen een koers.</span></p>
+    <a class="cta" style="margin:0;padding:10px 18px" href="https://satmeter.io/" target="_blank" rel="noopener" data-i18n="ctaSatmeter">Bekijk satmeter.io →</a>
   </div>
 
   <div class="related">
-    <h3>Ook handig</h3>
+    <h3 data-i18n="relatedHeading">Ook handig</h3>
     <ul>
       <li><a href="bitcoin-naar-fiat.html">Bitcoin naar fiat converter</a> — ook USD, GBP en meer</li>
       <li><a href="bitcoin-vs-hypotheek.html">Bitcoin vs. hypotheek calculator</a></li>
@@ -90,42 +98,62 @@
 
   <footer>
     <span class="copyline">Satmeter Tools</span>
-    Gratis Bitcoin-rekentools, gemaakt door <a href="https://satmeter.io/" target="_blank" rel="noopener">satmeter.io</a>.<br>
-    <a href="privacy.html">Privacy</a> · <a href="terms.html">Voorwaarden</a> · <a href="index.html">Alle tools</a><br>
+    <span data-i18n="footerMade">Gratis Bitcoin-rekentools, gemaakt door</span> <a href="https://satmeter.io/" target="_blank" rel="noopener">satmeter.io</a>.<br>
+    <a href="privacy.html" data-i18n="footerPrivacy">Privacy</a> · <a href="terms.html" data-i18n="footerTerms">Voorwaarden</a> · <a href="index.html" data-i18n="footerAllTools">Alle tools</a><br>
     © <span id="year"></span> Satmeter. Geen financieel advies.
   </footer>
 </main>
-<div class="ad-rail"><div class="ad-sticky"><div class="ad-box"></div></div></div>
+<div class="ad-rail"><div class="ad-sticky"><div class="ad-box"><!--
+<ins class="adsbygoogle" style="display:block;width:160px;height:600px" data-ad-client="ca-pub-8258777689852315" data-ad-slot="0000000002"></ins><script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+--></div></div></div>
 </div>
-<script src="assets/sats.js?v=1"></script>
+<script src="assets/sats.js?v=2"></script>
+<script src="assets/locale.js?v=1"></script>
+<script src="assets/wallet-picks.js?v=1" defer></script>
 <script>
 (function(){
   var satsIn = document.getElementById('satsIn'),
       eurIn = document.getElementById('eurIn'),
       resLine = document.getElementById('resultLine'),
-      resSub = document.getElementById('resultSub');
+      resSub = document.getElementById('resultSub'),
+      curLabel = document.getElementById('curLabel'),
+      curSymbol = document.getElementById('curSymbol'),
+      curName = document.getElementById('curName');
   var lock = false;
+
+  function cur(){
+    return (window.SatmeterLocale && window.SatmeterLocale.currency) || 'EUR';
+  }
+
+  function updateCurUI(){
+    var code = cur();
+    if (curLabel) curLabel.textContent = (window.SatmeterLocale ? window.SatmeterLocale.t('euroAmount') : 'Amount') + ' (' + code + ')';
+    if (curSymbol) curSymbol.textContent = code;
+    if (curName) curName.textContent = code;
+  }
 
   function fromSats(){
     if (lock) return; lock = true;
-    var r = window.Sats && window.Sats.rate('EUR');
+    var code = cur();
+    var r = window.Sats && window.Sats.rate(code);
     var s = parseFloat(satsIn.value);
     if (r && isFinite(s)) {
-      var eur = (s / 1e8) * r;
-      eurIn.value = eur.toFixed(2);
+      var amt = (s / 1e8) * r;
+      eurIn.value = amt.toFixed(2);
       resLine.textContent = window.Sats.fmtSats(s) + ' sats';
-      resSub.textContent = '= ' + window.Sats.fmtFiat(eur, 'EUR') + ' · = ' + window.Sats.fmtBTC(s/1e8) + ' BTC';
+      resSub.textContent = '= ' + window.Sats.fmtFiat(amt, code) + ' · = ' + window.Sats.fmtBTC(s/1e8) + ' BTC';
     }
     lock = false;
   }
   function fromEur(){
     if (lock) return; lock = true;
-    var r = window.Sats && window.Sats.rate('EUR');
+    var code = cur();
+    var r = window.Sats && window.Sats.rate(code);
     var e = parseFloat(eurIn.value);
     if (r && isFinite(e)) {
       var sats = (e / r) * 1e8;
       satsIn.value = Math.round(sats);
-      resLine.textContent = window.Sats.fmtFiat(e, 'EUR');
+      resLine.textContent = window.Sats.fmtFiat(e, code);
       resSub.textContent = '= ' + window.Sats.fmtSats(sats) + ' sats · = ' + window.Sats.fmtBTC(sats/1e8) + ' BTC';
     }
     lock = false;
@@ -140,6 +168,12 @@
   // sensible default once price is ready
   window.Sats && window.Sats.onUpdate(function(){
     if (!satsIn.value && !eurIn.value) { satsIn.value = 1000000; fromSats(); }
+  });
+  updateCurUI();
+  document.addEventListener('satmeter:locale-change', function(){
+    updateCurUI();
+    if (satsIn.value) fromSats();
+    else if (eurIn.value) fromEur();
   });
 })();
 </script>
