@@ -545,3 +545,74 @@ grid weigerden onder hun eigen inhoudsbreedte te krimpen.
 **Je eigen wijziging niet zien is meestal de cache.** `.htaccess` bewaart CSS
 en JS een maand. Daarom staan er `?v=`-parameters achter alle assets. Verhoog
 het nummer, of je debugt een probleem dat op de server al opgelost is.
+
+## 16 augustus: Nieuwe subdomein-site aiagent.satmeter.io gebouwd (v1)
+
+Johan wilde een tweede site: `aiagent.satmeter.io`, over AI-agents versus
+Bitcoin/TradFi/DeFi met een 10-jaar-visie, faceless (geen naam/gezicht),
+onderdeel van hetzelfde project als de faceless-video-strategie.
+
+**Hostinger:** subdomein aangemaakt door Johan zelf, met aangepaste map
+`public_html/aiagent` (zelfde patroon als `tools.satmeter.io` →
+`public_html/tools`). AdSense had het automatisch al onder het bestaande
+`satmeter.io`-account, geen los "Site toevoegen" nodig.
+
+**Wat is gebouwd:** één pagina (en) + de Spaanse vertaling (`es/index.html`),
+in dezelfde talen als satmeter.io zelf. Hergebruikt bewust dezelfde
+bouwstenen als de rest van de site in plaats van iets nieuws te verzinnen:
+- `assets/site.css` (ongewijzigd overgenomen), `.card`/`.hubgrid`/`.hubcard`/
+  `.callout`/`.warn`/`.cta`/`.related`/`.ad-rail`/`.ad-banner` klassen
+  hergebruikt, structuur gebaseerd op `articles/how-to-think-in-sats.html`
+  als template (het dichtstbijzijnde bestaande pagina-type: concept-artikel,
+  geen land-gids, geen converter).
+- `assets/wallet-picks.js` en `assets/consent.js` 1-op-1 gekopieerd (zelfde
+  publisher-ID `ca-pub-8258777689852315`, zelfde BitBox/Trezor/Ledger-
+  affiliate-links). `wallet-picks.js` detecteert zelf paddiepte via
+  `/articles/` en `/es/` in de URL; op deze site (root + `es/`, geen
+  `articles/`-niveau) resolvet dat vanzelf goed, gecontroleerd door de
+  `toRoot`-logica te lezen, niet aangenomen.
+- `ads.txt` met dezelfde publisher-regel gekopieerd naar de site-root van
+  aiagent.satmeter.io (subdomeinen hebben hun eigen `ads.txt` nodig, erven
+  'm niet automatisch van het hoofddomein).
+- Consent-banner in `assets/consent.js` linkte naar een lokale `privacy.html`
+  die op dit subdomein niet bestaat — aangepast naar een absolute link naar
+  `https://satmeter.io/privacy.html` (dezelfde eigenaar/policy, geen tweede
+  kopie om te onderhouden). Zelfde voor de footer-links op de Spaanse pagina:
+  `es/privacy.html`/`es/terms.html` bestaan niet op satmeter.io zelf, dus
+  die pagina linkt naar de Engelse privacy/terms met een "(EN)"-label.
+- Eigen `?v=1` cache-buster gebruikt voor deze kopieën van site.css/
+  consent.js/wallet-picks.js — onafhankelijk van de `?v=8`-teller op
+  satmeter.io zelf, want dit zijn losse bestanden in een losse map.
+- `google-site-verification`-meta staat nog op een placeholder
+  (`PASTE_YOUR_VERIFICATION_CODE_HERE`) in beide taalversies — Johan moet
+  zelf `aiagent.satmeter.io` toevoegen in Search Console (HTML-tag methode)
+  en de echte code doorgeven, dan wordt hij verwerkt.
+- Geen eigen `about.html`/`contact.html` gebouwd, alleen de landingspagina
+  zelf plus `robots.txt`/`sitemap.xml`.
+- Content bevat twee expliciet gemarkeerde gedachte-experimenten (de
+  "100.000-sats-test" en de bakker-analogie uit het brand-brief) — bewust
+  NIET als echt gebeurde feiten geschreven, om te voorkomen dat de site iets
+  beweert dat niet klopt.
+
+**Gecontroleerd (drie passes):** alle asset-referenties in beide
+HTML-bestanden bestaan op schijf (grep + `test -f`), geen restjes uit het
+`how-to-think-in-sats.html`-template achtergebleven (`../index.html`,
+`../privacy.html` e.d.), publisher-ID consistent in `ads.txt` én beide
+`<script>`-tags, `<html lang>` en canonical/hreflang kloppen per taal.
+Nog NIET getest: een echte jsdom/browser-render van de nieuwe pagina's
+(geen lokale testharness voor deze nieuwe map opgezet), en de site is nog
+niet live bekeken na deploy.
+
+**Nog open:**
+1. `google-site-verification`-placeholder vervangen zodra Johan de code uit
+   Search Console heeft.
+2. Live checken na deploy: ads.txt bereikbaar op
+   `aiagent.satmeter.io/ads.txt`, wallet-picks-kaarten verschijnen echt,
+   consent-banner werkt, dark-mode-knop werkt (eigen kleine inline script,
+   geen hergebruik van `nav.js`).
+3. `assets/site.css`/`wallet-picks.js`/`consent.js` op dit subdomein zijn nu
+   losse kopieën van de satmeter.io-versie. Als satmeter.io die bestanden
+   later bijwerkt (nieuwe affiliate, prijswijziging, bugfix), moet dat
+   handmatig ook hierheen gekopieerd worden — er is geen automatische sync.
+4. Nog geen `about.html`/`contact.html`/eigen `privacy.html` op dit
+   subdomein; leunt nu op de satmeter.io-versies.

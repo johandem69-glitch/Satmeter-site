@@ -1,0 +1,9 @@
+# aiagent.satmeter.io
+User-agent: *
+Allow: /
+
+# Google's ad crawler needs access for AdSense to serve relevant ads.
+User-agent: Mediapartners-Google
+Allow: /
+
+Sitemap: https://aiagent.satmeter.io/sitemap.xml
