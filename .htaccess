@@ -2,6 +2,15 @@
 # Satmeter.io — server configuratie
 # ---------------------------------------------------------------------------
 
+# ---------------------------------------------------------------------------
+# www -> non-www redirect (voorkomt dubbele content op satmeter.io)
+# ---------------------------------------------------------------------------
+<IfModule mod_rewrite.c>
+  RewriteEngine On
+  RewriteCond %{HTTP_HOST} ^www\.satmeter\.io$ [NC]
+  RewriteRule ^(.*)$ https://satmeter.io/$1 [L,R=301]
+</IfModule>
+
 # De notities in /docs/ horen bij de repository, niet bij de website.
 # Blokkeer ze zodat bezoekers ze niet kunnen opvragen.
 <FilesMatch "\.(md|markdown)$">

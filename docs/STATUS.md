@@ -616,3 +616,44 @@ niet live bekeken na deploy.
    handmatig ook hierheen gekopieerd worden — er is geen automatische sync.
 4. Nog geen `about.html`/`contact.html`/eigen `privacy.html` op dit
    subdomein; leunt nu op de satmeter.io-versies.
+
+## 17 augustus: Google Search Console indexeringsprobleem onderzocht en gefixt
+
+Johan kreeg een mail van Search Console: 11 van de 31 sitemap-pagina's niet
+geïndexeerd (20 wel), met als redenen "Alternatieve pagina met correcte
+canonieke tag" (2), "Gevonden - momenteel niet geïndexeerd" (8) en "Gecrawld
+- momenteel niet geïndexeerd" (1).
+
+**Gecontroleerd:** canonical-tags op alle 31 sitemap-URL's, hreflang-opzet
+(en/es), robots.txt, sitemap.xml, interne linking vanuit `articles/index.html`
+en `assets/nav.js`. Alles klopte, behalve twee concrete dingen:
+
+1. **www.satmeter.io serveerde dezelfde content als satmeter.io zonder
+   redirect** (beide gaven 200, canonical wees wel correct naar de
+   non-www-versie, maar Google crawlt en rapporteert de www-versie dan nog
+   als losse URL met "alternatieve pagina" — precies de melding uit de mail).
+   Gefixt met een 301-redirect in `.htaccess` (www → non-www, alleen voor
+   satmeter.io, niet voor tools.satmeter.io).
+2. **`about.html`, `contact.html`, `privacy.html`, `terms.html` misten een
+   self-referencing canonical tag** (wel in sitemap, wel `meta robots
+   index,follow`, maar geen `<link rel="canonical">`). Toegevoegd aan alle
+   vier, wijzend naar hun eigen URL.
+
+**Wat dit niet is:** een sitemap- of crawlbudget-bug. De site heeft de
+sitemap pas op 12 augustus ingediend; 20/31 al geïndexeerd binnen 5 dagen is
+normaal tempo voor een jonge site. "Gevonden/Gecrawld - momenteel niet
+geïndexeerd" (9 van de 11) lost zichzelf meestal op binnen 1-2 weken zodra
+Google meer vertrouwen/traffic-signalen ziet — daar is niets in de code
+kapot.
+
+**Niet in code op te lossen, actie voor Johan zelf in Search Console:**
+Ga naar Pagina's → klik op elke rij met een "niet geïndexeerd"-reden → open
+de losse URL's → gebruik de URL-inspectietool → klik "Indexering aanvragen"
+per URL. Dat versnelt het proces, maar garandeert niks — Google beslist zelf.
+
+**Nog niet gedaan:** `bitcoin-boodschappen.html` is een oude, ongelinkte
+pagina (niet in sitemap, canonical wijst bewust naar de homepage — dat is
+op zich correct, maar de pagina bestaat verder nergens in de site-navigatie).
+Laten staan zoals die is, want de canonical voorkomt al duplicate-content-
+problemen; alleen relevant als Johan 'm ooit echt wil gebruiken of
+verwijderen.
