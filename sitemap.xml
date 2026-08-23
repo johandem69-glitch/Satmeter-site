@@ -33,4 +33,11 @@
   <url><loc>https://satmeter.io/contact.html</loc><changefreq>monthly</changefreq><priority>0.5</priority></url>
   <url><loc>https://satmeter.io/privacy.html</loc><changefreq>yearly</changefreq><priority>0.3</priority></url>
   <url><loc>https://satmeter.io/terms.html</loc><changefreq>yearly</changefreq><priority>0.3</priority></url>
+  <url><loc>https://satmeter.io/articles/groceries-in-bitcoin-el-salvador.html</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://satmeter.io/articles/groceries-in-bitcoin-venezuela.html</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://satmeter.io/articles/groceries-in-bitcoin-lebanon.html</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://satmeter.io/articles/groceries-in-bitcoin-south-africa.html</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://satmeter.io/articles/groceries-in-bitcoin-pakistan.html</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://satmeter.io/articles/groceries-in-bitcoin-vietnam.html</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://satmeter.io/articles/groceries-in-bitcoin-iran.html</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
 </urlset>

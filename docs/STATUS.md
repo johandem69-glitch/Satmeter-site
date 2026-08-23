@@ -723,3 +723,78 @@ canonical naar `/`. Die pagina is nergens gelinkt en staat niet in de
 sitemap, dus Google vindt 'm waarschijnlijk niet. Als die URL ooit tóch in
 Search Console opduikt met dezelfde melding, is de keuze: een eigen canonical
 geven en indexeren, of verwijderen.
+
+## 23 augustus: zeven nieuwe landengidsen toegevoegd
+
+Johan wilde acht landen toevoegen: El Salvador, Venezuela, Libanon, Zuid-Afrika,
+Pakistan, Vietnam, Iran en Soedan. Er staan er nu zeven live. Soedan is bewust
+niet gebouwd, zie onderaan.
+
+**Nieuwe pagina's** (allemaal in `articles/`, gemodelleerd op
+`groceries-in-bitcoin-united-states.html`, ongeveer 1.400 woorden elk):
+
+- `groceries-in-bitcoin-el-salvador.html` (USD, echte valuta: land is
+  gedollariseerd sinds 2001)
+- `groceries-in-bitcoin-venezuela.html` (USD, want er is geen enkele
+  bolivarkoers die voor iedereen klopt)
+- `groceries-in-bitcoin-lebanon.html` (USD, want supermarkten prijzen daar
+  sinds maart 2023 in dollars)
+- `groceries-in-bitcoin-south-africa.html` (ZAR, echte live koers uit
+  `sats.js`, net als Brazilie)
+- `groceries-in-bitcoin-pakistan.html` (PKR-prijs + USD-equivalent)
+- `groceries-in-bitcoin-vietnam.html` (VND-prijs + USD-equivalent)
+- `groceries-in-bitcoin-iran.html` (USD, met zware waarschuwing)
+
+**Valuta-afweging, belangrijk voor volgende keer.** `assets/sats.js` haalt live
+koersen op voor twaalf valuta: USD, EUR, GBP, JPY, INR, BRL, NGN, TRY, IDR, CAD,
+AUD, ZAR. Alleen Zuid-Afrika viel daar binnen. Voor de rest is bewust gekozen:
+
+- El Salvador, Venezuela en Libanon rekenen in dollars omdat dat feitelijk de
+  winkelprijs is, niet omdat het makkelijker was. Dat staat ook in de tekst.
+- Pakistan en Vietnam krijgen een extra tabelkolom: lokale prijs, dollarkoers
+  met datum erbij, dan pas sats. De koers wordt genoemd in plaats van verstopt.
+- Iran heeft meerdere wisselkoersen tegelijk. Numbeo publiceert daar al
+  omgerekende dollarprijzen zonder te zeggen welke koers is gebruikt. Dat is in
+  de tekst als zwakte benoemd in plaats van weggepoetst. Herhaal die aanpak niet
+  stilzwijgend voor een nieuw land, benoem het.
+
+**Feitelijke correctie die de El Salvador-pagina stuurt.** Bitcoin is daar sinds
+29 januari 2025 geen wettelijk betaalmiddel meer. De Bitcoin Law is aangepast als
+voorwaarde voor een IMF-lening van 1,4 miljard: accepteren is vrijwillig,
+belasting betalen in bitcoin kan niet meer, Chivo wordt afgebouwd. Uit de
+UCA-enquete van december 2024 blijkt dat 8,1% van de Salvadoranen bitcoin nog
+gebruikt, gedaald van 25,7% in 2021. Bronnen die nog "eerste land met bitcoin als
+wettelijk betaalmiddel" schrijven zijn verouderd.
+
+**Waar de gidsen overal zijn gelinkt** (de les van 15 augustus, elke lijst apart):
+
+1. `articles/index.html`: zeven nieuwe hubcards onder "Country guides", teller
+   aangepast van 21 naar 28 gidsen.
+2. `assets/nav.js`: zeven items toegevoegd aan de `items:` array onder
+   "Country guides" (de tweede, verborgen lijst die het hamburgermenu vult).
+3. `sitemap.xml`: zeven URLs toegevoegd, staat nu op 38.
+4. Wederzijdse links: de VS-gids linkt naar El Salvador, Argentinie naar
+   Venezuela, Turkije naar Iran en Libanon, Nigeria naar Zuid-Afrika, Brazilie
+   naar Venezuela, India naar Pakistan en Vietnam, en `where-to-store-your-sats`
+   naar Libanon. Elke nieuwe gids linkt zelf terug naar twee of drie bestaande.
+
+**Cache-busting:** `nav.js` is gewijzigd, dus `?v=8` is overal `?v=9` geworden.
+39 HTML-bestanden staan nu op v9, nul op v8.
+
+**Gecontroleerd (niet alleen gebouwd):** alle 845 interne links en asset-paden
+doorgerekend, nul kapot. Alle zeven pagina's geparseerd op sluitende tags: geen
+enkele fout. Alle JSON-LD-blokken door een JSON-parser gehaald. Elke
+`data-sats-cur` gecontroleerd tegen de twaalf valuta die `sats.js` echt ophaalt.
+`sitemap.xml` als XML geparseerd. `node --check` op `nav.js`.
+
+**Soedan bewust niet gebouwd.** Het onderzoek liep vast op twee dingen die geen
+pagina toelaten. Ten eerste zijn er geen bruikbare actuele voedselprijzen: de
+WFP- en FEWS NET-marktrapporten voor 2026 waren niet op te halen, en Numbeo heeft
+voor Khartoem vrijwel niets. Een prijstabel zou dus verzonnen zijn. Ten tweede is
+er geen enkel hard cijfer over bitcoingebruik in Soedan, alleen anekdotes, terwijl
+er voor Iran bijvoorbeeld wel harde Chainalysis-cijfers zijn. Daar komt bij dat
+het land in oorlog is met bevestigde hongersnood in El Fasher en Kadugli. Een
+pagina in de stijl "wat kost je boodschappenmandje in sats" past daar niet, los
+van de datakwestie. Als Johan er alsnog iets over wil, moet dat een ander type
+artikel worden: over wat er met geld gebeurt als een staat uit elkaar valt,
+zonder prijstabel en zonder sats-omrekening.

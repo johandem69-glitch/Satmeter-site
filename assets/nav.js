@@ -108,6 +108,13 @@
               ["Groceries in Bitcoin: Turkey", "groceries-in-bitcoin-turkey.html"],
               ["Groceries in Bitcoin: India", "groceries-in-bitcoin-india.html"],
               ["Groceries in Bitcoin: Brazil", "groceries-in-bitcoin-brazil.html"],
+              ["Groceries in Bitcoin: El Salvador", "groceries-in-bitcoin-el-salvador.html"],
+              ["Groceries in Bitcoin: Venezuela", "groceries-in-bitcoin-venezuela.html"],
+              ["Groceries in Bitcoin: Lebanon", "groceries-in-bitcoin-lebanon.html"],
+              ["Groceries in Bitcoin: South Africa", "groceries-in-bitcoin-south-africa.html"],
+              ["Groceries in Bitcoin: Pakistan", "groceries-in-bitcoin-pakistan.html"],
+              ["Groceries in Bitcoin: Vietnam", "groceries-in-bitcoin-vietnam.html"],
+              ["Groceries in Bitcoin: Iran", "groceries-in-bitcoin-iran.html"],
             ],
           },
           {
