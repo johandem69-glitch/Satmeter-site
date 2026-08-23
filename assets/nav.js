@@ -137,10 +137,9 @@
     return toRoot + file;
   }
   function homeUrl() {
-    // The home page for the current language always sits exactly one
-    // directory above its own articles/ folder, so this never needs
-    // the site-root prefix.
-    return inArticles ? "../index.html" : "index.html";
+    // Absolute URL naar de map, nooit naar index.html: dat is de enige
+    // canonieke homepage-URL. Werkt op elke mapdiepte.
+    return inEs ? "/es/" : "/";
   }
 
   function injectStyles() {

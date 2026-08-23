@@ -657,3 +657,69 @@ op zich correct, maar de pagina bestaat verder nergens in de site-navigatie).
 Laten staan zoals die is, want de canonical voorkomt al duplicate-content-
 problemen; alleen relevant als Johan 'm ooit echt wil gebruiken of
 verwijderen.
+
+## 23 augustus: "Alternatieve pagina met correcte canonieke tag" definitief opgelost
+
+Op 17 augustus is in Search Console een validatie gestart voor dit probleem.
+Die is op 22 augustus mislukt, met steeds dezelfde twee URL's:
+`https://satmeter.io/index.html` en `https://satmeter.io/es/index.html`.
+
+**Waarom de vorige ronde niet hielp.** Toen zijn de www-redirect en de
+ontbrekende canonicals gefixt. Dat was terecht, maar het was niet de oorzaak
+van déze twee URL's. De canonical-tags op `/index.html` en `/es/index.html`
+waren namelijk altijd al correct (ze wijzen naar `/` en `/es/`). Het punt is
+dat een validatie voor dit probleemtype nooit slaagt zolang die URL's gewoon
+met status 200 blijven bestaan. Google zegt met deze melding niet "er is iets
+kapot", maar "ik ken deze URL als losse variant van je homepage". Zolang de
+site die variant blijft aanbieden en er zelf naartoe linkt, blijft de melding
+terugkomen. Vandaar dat het probleem zich bleef herhalen.
+
+**De echte oorzaak.** De hele site linkte intern naar de homepage via het
+bestand in plaats van via de map:
+
+- 52 keer `href="index.html"` (root-pagina's en de Spaanse homepage)
+- 129 keer `href="../index.html"` (alle artikelen)
+- 1 keer `href="../../index.html"` (Spaans artikel naar de Engelse site)
+- `assets/nav.js` genereerde de "home"-link in het hamburgermenu als
+  `"../index.html"` / `"index.html"` (regel 143)
+
+Ook de homepage zelf linkte via het logo naar `index.html`. Elke crawl
+bevestigde de dubbele URL dus opnieuw.
+
+**Wat er is gedaan:**
+
+1. `.htaccess`: 301-redirect van `/index.html` naar `/` en van
+   `/es/index.html` naar `/es/`. Bewust met `THE_REQUEST` gecontroleerd, zodat
+   Apache's eigen interne stap ("/" serveert index.html) geen redirect-lus
+   veroorzaakt. `articles/index.html` en `tools/index.html` blijven expliciet
+   ongemoeid: dat zijn echte, geïndexeerde pagina's die in de sitemap staan.
+2. Alle interne links omgezet naar absolute map-URL's: `/` voor de Engelse
+   homepage, `/es/` voor de Spaanse. Absoluut in plaats van relatief, zodat
+   er nooit meer een fout kan sluipen in het aantal `../`-niveaus.
+   Aangepast: 33 bestanden.
+3. `assets/nav.js`: `homeUrl()` geeft nu `inEs ? "/es/" : "/"` terug.
+   Daarom `nav.js?v=7` overal naar `?v=8` gezet (32 HTML-bestanden).
+4. `tools/` en `aiagent/` niet aangeraakt: die laden `nav.js` niet en hebben
+   eigen canonicals op hun eigen subdomein.
+
+**Gecontroleerd (niet alleen gefixt):** alle 689 interne links en asset-paden
+opnieuw doorgerekend, 0 kapot. Redirectregels en `homeUrl()` gesimuleerd voor
+`/`, `/index.html`, `/es/`, `/es/index.html`, `/articles/index.html`,
+`/tools/index.html` en `/about.html`: alleen de eerste twee doelen krijgen een
+redirect, geen lus. Canonicals en hreflang op `index.html` en `es/index.html`
+waren al correct en zijn ongewijzigd gelaten.
+
+**Wat Johan in Search Console moet verwachten.** Na de deploy verhuizen die
+twee URL's van "Alternatieve pagina met correcte canonieke tag" naar "Pagina
+met omleiding". Dat is óók een "niet geïndexeerd"-categorie, en dat hoort zo:
+een redirect-URL wordt nooit zelf geïndexeerd. Het aantal "niet geïndexeerde"
+pagina's gaat dus niet naar nul, en dat hoeft ook niet. Belangrijk: pas
+opnieuw op "Fix valideren" klikken nadat Google de nieuwe redirect heeft
+gezien (controleer dat eerst met de URL-inspectietool op
+`https://satmeter.io/index.html`), anders mislukt de validatie opnieuw.
+
+**Nog steeds open:** `bitcoin-boodschappen.html` heeft nog altijd een
+canonical naar `/`. Die pagina is nergens gelinkt en staat niet in de
+sitemap, dus Google vindt 'm waarschijnlijk niet. Als die URL ooit tóch in
+Search Console opduikt met dezelfde melding, is de keuze: een eigen canonical
+geven en indexeren, of verwijderen.
