@@ -573,6 +573,87 @@ laten staan op satmeter.io/tools/, en ze in `sitemap.xml` opnemen. Dan
 worden het vier extra sterke pagina's in plaats van een risico.
 
 
+## 24 augustus: CLS-bug gevonden en opgelost (het was niet AdSense)
+
+Op 15 augustus is hier genoteerd dat de hoge CLS (0,281) waarschijnlijk van
+Google's Auto ads kwam en niet in code op te lossen was. Dat klopte niet.
+Er draaien helemaal geen advertenties op de site, en Cloudflare Web Analytics
+mat over de laatste twee weken nog steeds 7% "slecht" en 13% "matig" op CLS,
+met in de Debug View het exacte element: `html>body>div.shell>article>div.card`
+met een CLS van 1,0.
+
+**De echte oorzaak.** `assets/wallet-picks.js` voegt het affiliate-blok
+(`.sm-aff`, drie productkaarten met foto's) pas na het laden in, via
+`placeInContent()`, vlak voor `.related` binnen `div.card`. Er was geen ruimte
+voor gereserveerd, dus alles eronder sprong omlaag zodra het blok verscheen.
+Live gemeten op `articles/how-many-sats-is-a-coffee.html`: **678px verschuiving**
+op desktop. Dat is precies een CLS rond 1,0.
+
+**De fix.** Ruimte vooraf reserveren als marge boven `.related`, die vanzelf
+vervalt zodra het blok er staat:
+
+    .related{margin-top:660px}
+    .sm-aff + .related{margin-top:26px}
+    @media (max-width:900px){.related{margin-top:940px}}
+    @media (max-width:600px){.related{margin-top:1390px}}
+
+De tweede regel heeft specificiteit 0-2-0 tegen 0-1-0, dus die wint ook binnen
+de media queries zodra `.sm-aff` is ingevoegd. Geen JavaScript-wijziging nodig,
+en `refresh()` bij een taalwissel vervangt alleen `innerHTML` en verwijdert het
+element niet, dus de reservering komt daarbij niet terug.
+
+Gemeten hoogtes inclusief marges: 678px bij 3 kolommen, ~970px bij 2 kolommen,
+~1440px bij 1 kolom. Bewust iets krapper gereserveerd, zodat een restverschuiving
+klein en naar beneden is in plaats van een zichtbaar gat.
+
+**Gecontroleerd:** de regels live op de echte pagina geinjecteerd en gemeten.
+Met `.sm-aff` aanwezig blijft `margin-top` 26px, zonder het blok wordt het
+660px, en de verschuiving zakt van **678px naar 44px**. Verder: accolades
+gebalanceerd in alle drie de kopieen van `site.css`, 48 HTML-bestanden geparseerd
+zonder fouten, 847 interne links doorgerekend, nul kapot.
+
+**Waarom drie kopieen.** `assets/site.css`, `tools/assets/site.css` en
+`aiagent/assets/site.css` zijn losse kopieen. Alle drie kregen dezelfde regels,
+want alle 37 pagina's met `.related` laden ook `wallet-picks.js` (gecontroleerd
+met `comm`, geen enkele uitzondering in beide richtingen).
+
+**Cache-busting:** hoofdsite `site.css?v=4` naar `?v=5` (32 bestanden),
+tools en aiagent `site.css?v=1` naar `?v=2` (9 bestanden). Grep bevestigt:
+geen oude versienummers meer.
+
+**Nog open op CLS:** de Debug View noemt ook `div.price-bar` (0,113) en
+`header` (0,102) op de homepage. Kleiner, maar niet nul. Nog niet onderzocht.
+
+## 24 augustus: echte verkeerscijfers vastgelegd
+
+Voor het eerst de cijfers naast elkaar gezet, omdat Johan wilde weten wat de
+AdSense-goedkeuring hem eigenlijk oplevert.
+
+**Cloudflare Web Analytics, laatste 14 dagen, bots uitgesloten:**
+240 bezoeken, 360 pageviews. Verwijzers: hpanel.hostinger.com 110,
+direct 80, google.com 30, tools.satmeter.io 20, satmeter.io 0. De eerste
+190 zijn dus vrijwel zeker Johan zelf. **Echt extern verkeer: 30 bezoeken
+uit Google in twee weken.**
+
+Losse observatie: de lijn van `tools.satmeter.io` als verwijzer stopt rond
+16 augustus en staat daarna op nul. Dat dateert het moment waarop het
+subdomein is omgevallen.
+
+**Google Search Console (property `https://satmeter.io/`, niet de
+domain-property, die bestaat niet):** over de hele levensduur van de site
+3 klikken, 21 vertoningen, CTR 14,3%, gemiddelde positie 5,8. Het tabblad
+Zoekopdrachten geeft "Geen gegevens": te weinig vertoningen om queries te
+tonen. Indexering: 23 pagina's geindexeerd, 10 niet (2 x alternatieve
+pagina met canonieke tag, 8 x gevonden maar niet geindexeerd). Dat is de
+stand van voor de zeven nieuwe landengidsen.
+
+**Conclusie die hieruit volgt.** Er valt op dit moment niets te optimaliseren
+op basis van zoekdata, want die data bestaat niet. Bij 150 echte externe
+pageviews per maand en een RPM van rond de 10 dollar praat je over
+ongeveer anderhalve dollar per maand. Het knelpunt is niet AdSense maar
+distributie. Zie het distributieplan dat op 24 augustus is opgeleverd.
+
+
 ## Wat nog open staat
 
 Op volgorde van wat het snelst geld oplevert.

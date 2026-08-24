@@ -162,3 +162,21 @@ footer a:hover{text-decoration:underline}
   background:var(--surface-2);border-radius:5px;padding:2px 5px;margin-left:1px;
   letter-spacing:.03em;
 }
+
+
+/* --- CLS-fix, 24 augustus 2026 ---------------------------------------
+   assets/wallet-picks.js voegt het .sm-aff blok pas na het laden in,
+   vlak voor .related. Zonder gereserveerde ruimte schoof alles daar-
+   onder ~678px omlaag; Cloudflare mat daardoor CLS 1,0 op het element
+   article > div.card. Hieronder wordt die ruimte vooraf gereserveerd
+   als marge boven .related. Zodra .sm-aff er staat wint de adjacent-
+   sibling-regel (specificiteit 0-2-0 tegen 0-1-0) en valt de reser-
+   vering vanzelf weg, ook binnen de media queries.
+   Gemeten hoogtes inclusief marges: 678px bij 3 kolommen, ~970px bij
+   2 kolommen (<=900px), ~1440px bij 1 kolom (<=600px). Bewust iets
+   krapper gereserveerd dan gemeten, zodat een restverschuiving klein
+   en naar beneden is in plaats van een zichtbaar gat. */
+.related{margin-top:660px}
+.sm-aff + .related{margin-top:26px}
+@media (max-width:900px){.related{margin-top:940px}}
+@media (max-width:600px){.related{margin-top:1390px}}
