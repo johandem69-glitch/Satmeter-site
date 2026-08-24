@@ -33,7 +33,7 @@
           {
             title: "Herramientas gratis",
             items: [
-              ["Calculadoras de Bitcoin gratis", "https://tools.satmeter.io/"],
+              ["Calculadoras de Bitcoin gratis", "/tools/"],
             ],
           },
           {
@@ -66,7 +66,7 @@
           {
             title: "Free tools",
             items: [
-              ["Free Bitcoin Calculators", "https://tools.satmeter.io/"],
+              ["Free Bitcoin Calculators", "/tools/"],
             ],
           },
           {
@@ -136,11 +136,11 @@
       };
 
   function articleUrl(file) {
-    if (/^https?:\/\//.test(file)) return file;
+    if (/^(https?:\/\/|\/)/.test(file)) return file;
     return toRoot + (inEs ? "es/articles/" : "articles/") + file;
   }
   function rootUrl(file) {
-    if (/^https?:\/\//.test(file)) return file;
+    if (/^(https?:\/\/|\/)/.test(file)) return file;
     return toRoot + file;
   }
   function homeUrl() {

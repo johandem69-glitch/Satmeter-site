@@ -1,37 +1,37 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>https://tools.satmeter.io/</loc>
+    <loc>https://satmeter.io/tools/</loc>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
   </url>
   <url>
-    <loc>https://tools.satmeter.io/sats-naar-euro.html</loc>
+    <loc>https://satmeter.io/tools/sats-naar-euro.html</loc>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://tools.satmeter.io/bitcoin-naar-fiat.html</loc>
+    <loc>https://satmeter.io/tools/bitcoin-naar-fiat.html</loc>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://tools.satmeter.io/bitcoin-vs-hypotheek.html</loc>
+    <loc>https://satmeter.io/tools/bitcoin-vs-hypotheek.html</loc>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://tools.satmeter.io/rente-op-rente-dca.html</loc>
+    <loc>https://satmeter.io/tools/rente-op-rente-dca.html</loc>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://tools.satmeter.io/privacy.html</loc>
+    <loc>https://satmeter.io/tools/privacy.html</loc>
     <changefreq>yearly</changefreq>
     <priority>0.2</priority>
   </url>
   <url>
-    <loc>https://tools.satmeter.io/terms.html</loc>
+    <loc>https://satmeter.io/tools/terms.html</loc>
     <changefreq>yearly</changefreq>
     <priority>0.2</priority>
   </url>

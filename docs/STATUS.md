@@ -475,6 +475,104 @@ tools-hub (`assets/...`) — alle drie kloppen. Alle zes bestanden (drie foto's
 
 Rechtstreeks gewijzigd op de laptop van Johan via de device-koppeling.
 
+## 24 augustus: AdSense-afwijzing "Content van weinig waarde" opgelost
+
+AdSense wees satmeter.io af op 23 augustus 18:31 met precies een schending:
+"Content van weinig waarde". Site-eigendom was wel geverifieerd en ads.txt
+stond op "Geautoriseerd". De hele site is live nagelopen om te vinden wat
+die melding veroorzaakt in plaats van algemene tips toe te passen.
+
+**Wat gecontroleerd is en goed bleek** (niet aangepast): 29 artikelen van
+1.000 tot 1.400 woorden, uniek geschreven, met auteursnaam en datum;
+about/contact/privacy/terms bestaan, zijn gelinkt en tellen 800 tot 1.100
+woorden; privacy noemt AdSense, cookies, personalisatie en GDPR; robots.txt
+staat `Allow: /` voor Mediapartners-Google; ads.txt bevat de juiste
+publisher-regel; geen lege advertentievakken meer; sitemap live op 38 URL's
+inclusief de zeven nieuwe landengidsen.
+
+**De echte oorzaak: negen dunne pagina's op het hoofddomein.**
+`public_html/tools` en `public_html/aiagent` zijn bereikbaar als
+`satmeter.io/tools/` en `satmeter.io/aiagent/`. Google telt die dus gewoon
+mee bij satmeter.io. De vijf rekentools zijn 278 tot 561 woorden, in het
+Nederlands op een verder Engelse site, en droegen alle negen de
+AdSense-code. Dat is exact het profiel van "weinig waarde".
+
+**Verzwarende omstandigheid: beide subdomeinen bestaan niet meer.**
+`tools.satmeter.io` en `aiagent.satmeter.io` hebben geen DNS-record
+(gecontroleerd met een resolver: geen A/AAAA). Toch stond op alle negen
+pagina's een canonical naar die dode domeinen, en linkten de footer en het
+hamburgermenu op elke pagina naar `https://tools.satmeter.io/`. Een
+beoordelaar die daarop klikt komt op een foutmelding. Op de aiagent-pagina's
+stonden bovendien zes links naar `https://tool.satmeter.io` (zonder s, een
+typefout) en nog steeds de letterlijke placeholder
+`PASTE_YOUR_VERIFICATION_CODE_HERE`.
+
+**Nog een vondst:** de vier tool-pagina's hadden actieve
+`<ins class="adsbygoogle">`-blokken met verzonnen slot-ID's
+(`data-ad-slot="0000000001"`). Op de hoofdsite staan die blokken bewust
+uitgecommentarieerd; hier stonden ze aan.
+
+**Wat er is gedaan (keuze van Johan: nu afschermen, later uitbouwen):**
+
+1. `tools/*.html` (7) en `aiagent/index.html` + `aiagent/es/index.html`:
+   `<meta name="robots" content="noindex, follow">` toegevoegd, alle
+   AdSense-code verwijderd (loader plus de nep-`<ins>`-blokken), canonical
+   en og:url omgezet naar `https://satmeter.io/tools/...` en
+   `https://satmeter.io/aiagent/...`, de placeholder-verificatiemeta
+   verwijderd, en de zes `tool.satmeter.io`-links naar `https://satmeter.io`.
+2. Alle links naar het dode subdomein omgezet naar het pad dat wel bestaat:
+   `https://tools.satmeter.io/` wordt `/tools/` in `index.html`,
+   `es/index.html` en `assets/nav.js`.
+3. `bitcoin-boodschappen.html` (de ongelinkte Nederlandse kopie van de
+   homepage, 202 kB) op `noindex, nofollow` gezet en de AdSense-code
+   eruit gehaald.
+4. `tools/sitemap.xml`, `tools/robots.txt`, `aiagent/sitemap.xml`,
+   `aiagent/robots.txt` en de zichtbare tekst in `tools/privacy.html` en
+   `tools/terms.html` verwijzen niet langer naar de dode subdomeinen.
+
+**Bug die onderweg gevonden en gerepareerd is.** `articleUrl()` en
+`rootUrl()` in `assets/nav.js` lieten alleen `https://`-URL's ongemoeid en
+plakten voor al het andere `toRoot` ervoor. Na stap 2 zou `/tools/` op een
+artikelpagina dus `../articles//tools/` worden. De test in beide functies is
+verruimd naar `/^(https?:\/\/|\/)/`, zodat een pad dat met een slash begint
+ook ongewijzigd doorgaat. Gesimuleerd voor `/`, een Engels artikel, `/es/`,
+een Spaans artikel en `/about.html`: overal `/tools/`, en de bestaande
+gids- en footerlinks onveranderd.
+
+**Cache-busting:** `nav.js` is gewijzigd, dus `?v=9` naar `?v=10` op alle 39
+HTML-bestanden. Grep bevestigt: nul verwijzingen naar v9 over.
+
+**Gecontroleerd (drie passes):** alle 48 HTML-bestanden geparseerd, nul
+fouten. Alle 847 interne links en asset-paden doorgerekend, nul kapot.
+`node --check` op `nav.js` geslaagd, plus de simulatie hierboven. Grep op
+restanten: nul `tools.satmeter.io`/`aiagent.satmeter.io`/`tool.satmeter.io`
+in HTML/XML/TXT (op een commentaarregel in `aiagent/robots.txt` na), nul
+`PASTE_YOUR`, nul `adsbygoogle` in tools/aiagent/boodschappen. De vier
+`data-ad-slot="00000..."`-treffers die overblijven staan in `index.html` en
+`es/index.html` binnen een HTML-commentaar, dat is de bedoeling.
+
+**Waarom de link naar `/tools/` in menu en footer blijft staan.** Die
+pagina's serveren nu geen advertenties meer en staan op noindex, dus ze
+horen niet meer bij de advertentie-inventaris. Een werkende link naar een
+gratis rekentool is een positief signaal; het probleem was de dode link en
+de dunne pagina's mét advertenties. Blijft de volgende beoordeling alsnog
+hangen, dan is de link tijdelijk weghalen de volgende stap.
+
+**Actie voor Johan zelf, niet in code op te lossen:**
+1. Committen, pushen, deployen. Daarna in AdSense: Sites, satmeter.io,
+   vinkje "Ik bevestig dat ik de problemen heb opgelost", Beoordeling
+   aanvragen. Reken op enkele dagen tot twee weken.
+2. Beslissen of `tools.satmeter.io` en `aiagent.satmeter.io` terug moeten
+   komen. Zolang ze geen DNS hebben, is `satmeter.io/tools/` en
+   `satmeter.io/aiagent/` het enige werkende adres. Records staan in
+   Cloudflare, niet in Hostinger.
+
+**Wat hierna het meest oplevert:** de vier rekentools uitschrijven naar 800
+tot 1.000 woorden echte uitleg in het Engels, dan noindex eraf, canonical
+laten staan op satmeter.io/tools/, en ze in `sitemap.xml` opnemen. Dan
+worden het vier extra sterke pagina's in plaats van een risico.
+
+
 ## Wat nog open staat
 
 Op volgorde van wat het snelst geld oplevert.

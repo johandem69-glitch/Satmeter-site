@@ -6,4 +6,4 @@ Allow: /
 User-agent: Mediapartners-Google
 Allow: /
 
-Sitemap: https://aiagent.satmeter.io/sitemap.xml
+Sitemap: https://satmeter.io/aiagent/sitemap.xml
