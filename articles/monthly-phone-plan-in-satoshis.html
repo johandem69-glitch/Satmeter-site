@@ -20,14 +20,14 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="../assets/site.css?v=5">
+<link rel="stylesheet" href="../assets/site.css?v=6">
 <script type="application/ld+json">
 {"@context":"https://schema.org","@type":"Article",
 "headline":"A Monthly Phone Plan in Satoshis","description":"Mobile plans priced in satoshis across seven countries, calculated live — why Indian plans cost a fraction of American ones, and how sats per gigabyte turns an invisible bill into a unit price.",
 "author":{"@type":"Person","name":"Johan Demmers"},
 "publisher":{"@type":"Organization","name":"Satmeter"},
 "copyrightHolder":{"@type":"Organization","name":"Satmeter"},
-"datePublished":"2026-08-12","dateModified":"2026-08-12",
+"datePublished":"2026-08-12","dateModified": "2026-09-03",
 "mainEntityOfPage":{"@type":"WebPage","@id":"https://satmeter.io/articles/monthly-phone-plan-in-satoshis.html"}}
 </script>
 <script type="application/ld+json">
@@ -73,11 +73,11 @@
     <span class="kicker">Subscriptions</span>
     <h1><span class="gradient-text">A Monthly Phone Plan in Satoshis</span></h1>
     <p class="standfirst">The most invisible bill you carry — and the one where converting to sats is most likely to save you money.</p>
-    <p class="byline"><span class="live-dot"></span>Live figures &middot; recalculated <span data-updated>&hellip;</span> from <span data-source>&hellip;</span> &middot; by Johan Demmers</p>
+    <p class="byline"><span class="live-dot"></span>Live figures &middot; recalculated <span data-updated>3 September 2026</span> from <span data-source>Blockchain.info</span> &middot; by <a href="../about.html">Johan Demmers</a> &middot; Published <time datetime="2026-08-12">12 August 2026</time> &middot; updated <time datetime="2026-09-03">3 September 2026</time></p>
 
     <div class="card">
       <p>A mobile plan is the most invisible recurring cost most people carry. It renews silently, it rarely gets renegotiated, and almost nobody knows what they pay per gigabyte.</p>
-      <p>A typical US plan runs about $30 a month. That is <strong data-sats-usd="30">&hellip;</strong> monthly, or <strong data-sats-usd="360">&hellip;</strong> a year.</p>
+      <p>A typical US plan runs about $30 a month. That is <strong data-sats-usd="30">38,574 sats</strong> monthly, or <strong data-sats-usd="360">462,889 sats</strong> a year.</p>
       <div class="widget">
         <div class="wlabel">How many sats is your phone plan?</div>
         <div class="wrow">
@@ -92,7 +92,7 @@
       <p>Mobile pricing varies more wildly than almost anything else in this collection, and not in the direction people expect.</p>
       <table>
         <thead><tr><th>Country</th><th>Typical monthly plan</th><th>In satoshis, live</th></tr></thead>
-        <tbody><tr><td>United States</td><td>$30</td><td class="num"><span data-sats-cur="USD" data-sats-amt="30">&hellip;</span></td></tr><tr><td>United Kingdom</td><td>&pound;12</td><td class="num"><span data-sats-cur="GBP" data-sats-amt="12">&hellip;</span></td></tr><tr><td>Netherlands</td><td>&euro;15</td><td class="num"><span data-sats-cur="EUR" data-sats-amt="15">&hellip;</span></td></tr><tr><td>Brazil</td><td>R$45</td><td class="num"><span data-sats-cur="BRL" data-sats-amt="45">&hellip;</span></td></tr><tr><td>Turkey</td><td>&#8378;250</td><td class="num"><span data-sats-cur="TRY" data-sats-amt="250">&hellip;</span></td></tr><tr><td>Indonesia</td><td>Rp 90,000</td><td class="num"><span data-sats-cur="IDR" data-sats-amt="90000">&hellip;</span></td></tr><tr><td>India</td><td>&#8377;299</td><td class="num"><span data-sats-cur="INR" data-sats-amt="299">&hellip;</span></td></tr></tbody>
+        <tbody><tr><td>United States</td><td>$30</td><td class="num"><span data-sats-cur="USD" data-sats-amt="30">38,574 sats</span></td></tr><tr><td>United Kingdom</td><td>&pound;12</td><td class="num"><span data-sats-cur="GBP" data-sats-amt="12">20,831 sats</span></td></tr><tr><td>Netherlands</td><td>&euro;15</td><td class="num"><span data-sats-cur="EUR" data-sats-amt="15">22,391 sats</span></td></tr><tr><td>Brazil</td><td>R$45</td><td class="num"><span data-sats-cur="BRL" data-sats-amt="45">11,361 sats</span></td></tr><tr><td>Turkey</td><td>&#8378;250</td><td class="num"><span data-sats-cur="TRY" data-sats-amt="250">6,653 sats</span></td></tr><tr><td>Indonesia</td><td>Rp 90,000</td><td class="num"><span data-sats-cur="IDR" data-sats-amt="90000">6,554 sats</span></td></tr><tr><td>India</td><td>&#8377;299</td><td class="num"><span data-sats-cur="INR" data-sats-amt="299">4,071 sats</span></td></tr></tbody>
       </table>
       <p style="font-size:13px;color:var(--muted)">Plan structures differ enormously in data allowance, speed caps and contract length, so these are broad reference points rather than like-for-like comparisons.</p>
 
@@ -110,6 +110,14 @@
         <p><strong>The honest caveat.</strong> Every "cheaper in sats over time" claim depends entirely on the start date you pick. Bitcoin has fallen more than 70&#37; from its high on several occasions, and during those stretches everything got dramatically more expensive in satoshis. Nothing here is a forecast, and nothing here is financial advice.</p>
       </div>
       <a class="cta" href="/">Audit all your bills in sats &rarr;</a>
+
+      <section class="sources" id="sources">
+        <h2>Sources and method</h2>
+        <p><strong>How the satoshi figures are calculated.</strong> Nothing in the satoshi column is typed in by hand. Each one is the local price divided by Bitcoin&rsquo;s current price in US dollars and multiplied by 100,000,000, because one bitcoin is one hundred million satoshis &mdash; the smallest unit defined in <a href="https://bitcoin.org/en/bitcoin-paper" target="_blank" rel="nofollow noopener">the Bitcoin white paper</a>. The exchange rate is fetched from <a href="https://blockchain.info/ticker" target="_blank" rel="nofollow noopener">Blockchain.info</a> and refreshed every sixty seconds, with Coinbase, Kraken and Bitstamp as fallbacks. If your browser cannot reach any of them, the figures you see are the ones calculated on 3 September 2026, when one bitcoin was $77,772.39.</p>
+        <p><strong>Where the prices come from.</strong> The prices used here are indicative averages reviewed on 3 September 2026, cross-checked against <a href="https://www.numbeo.com/cost-of-living/" target="_blank" rel="nofollow noopener">Numbeo's cost-of-living database</a> and, for United States figures, against <a href="https://www.bls.gov/cpi/" target="_blank" rel="nofollow noopener">the US Bureau of Labor Statistics consumer price index</a>. They are not a single retailer&rsquo;s prices and they move. The converter on the home page lets you substitute the price you actually pay, which is the only number that means anything for your own budget.</p>
+        <p><strong>Who wrote this, and what it is not.</strong> <a href="../about.html">Johan Demmers</a>, an independent developer in the Netherlands. I am not a financial adviser and hold no licence to give investment advice. Nothing on this page is a forecast, a recommendation, or a claim about what Bitcoin will do next. If you think a figure here is wrong, <a href="../contact.html">tell me</a> and I will correct it.</p>
+        <p class="sources-stamp">Published 12 August 2026 &middot; figures and prices last reviewed 3 September 2026</p>
+      </section>
       <h2>Frequently asked questions</h2>
       <h3>How many satoshis is a monthly phone plan?</h3>
       <p>At a $100,000 Bitcoin price a $30 plan is about 30,000 satoshis a month, or roughly 360,000 satoshis a year.</p>
@@ -149,7 +157,7 @@
 
   <aside class="ad-rail"><div class="ad-sticky"></div></aside>
 </div>
-<script src="../assets/sats.js?v=4"></script>
+<script src="../assets/sats.js?v=5"></script>
 <script src="../assets/nav.js?v=10" defer></script>
 <script src="../assets/wallet-picks.js?v=8" defer></script>
 </body>

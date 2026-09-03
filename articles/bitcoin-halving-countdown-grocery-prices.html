@@ -20,14 +20,14 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="../assets/site.css?v=5">
+<link rel="stylesheet" href="../assets/site.css?v=6">
 <script type="application/ld+json">
 {"@context":"https://schema.org","@type":"Article",
 "headline":"Bitcoin Halving Countdown","description":"A live countdown to the 2028 Bitcoin halving, what actually changes at block 1,050,000, and an honest look at why the halving does not straightforwardly make your groceries cheaper in satoshis.",
 "author":{"@type":"Person","name":"Johan Demmers"},
 "publisher":{"@type":"Organization","name":"Satmeter"},
 "copyrightHolder":{"@type":"Organization","name":"Satmeter"},
-"datePublished":"2026-08-12","dateModified":"2026-08-12",
+"datePublished":"2026-08-12","dateModified": "2026-09-03",
 "mainEntityOfPage":{"@type":"WebPage","@id":"https://satmeter.io/articles/bitcoin-halving-countdown-grocery-prices.html"}}
 </script>
 <script type="application/ld+json">
@@ -73,7 +73,7 @@
     <span class="kicker">Live Countdown</span>
     <h1><span class="gradient-text">Bitcoin Halving Countdown</span></h1>
     <p class="standfirst">The only monetary policy you can read in advance, to the block — and what it does not tell you about prices.</p>
-    <p class="byline"><span class="live-dot"></span>Live figures &middot; recalculated <span data-updated>&hellip;</span> from <span data-source>&hellip;</span> &middot; by Johan Demmers</p>
+    <p class="byline"><span class="live-dot"></span>Live figures &middot; recalculated <span data-updated>3 September 2026</span> from <span data-source>Blockchain.info</span> &middot; by <a href="../about.html">Johan Demmers</a> &middot; Published <time datetime="2026-08-12">12 August 2026</time> &middot; updated <time datetime="2026-09-03">3 September 2026</time></p>
 
     <div class="card">
       <p>Roughly every four years, the rate at which new Bitcoin is created is cut in half. It is written into the protocol, it has happened four times, and the next one is coming.</p>
@@ -107,6 +107,14 @@
       <p>The group for whom the halving is unambiguously consequential is miners. Their revenue per block halves overnight while their electricity bill does not. Historically this forces less efficient operations offline, hash rate dips, and the network&rsquo;s difficulty adjustment brings block times back to target within a couple of weeks.</p>
       <p>This is the most predictable part of the whole event, and it barely gets covered because it is not a price story. It is also where transaction fees become structurally more important over time &mdash; as the subsidy shrinks toward nothing, fees have to carry security. That is the genuinely open long-term question about Bitcoin, and it is far more interesting than whether the price goes up in the next six months.</p>
       <a class="cta" href="/">See what your basket costs in sats today &rarr;</a>
+
+      <section class="sources" id="sources">
+        <h2>Sources and method</h2>
+        <p><strong>How the satoshi figures are calculated.</strong> Nothing in the satoshi column is typed in by hand. Each one is the local price divided by Bitcoin&rsquo;s current price in US dollars and multiplied by 100,000,000, because one bitcoin is one hundred million satoshis &mdash; the smallest unit defined in <a href="https://bitcoin.org/en/bitcoin-paper" target="_blank" rel="nofollow noopener">the Bitcoin white paper</a>. The exchange rate is fetched from <a href="https://blockchain.info/ticker" target="_blank" rel="nofollow noopener">Blockchain.info</a> and refreshed every sixty seconds, with Coinbase, Kraken and Bitstamp as fallbacks. If your browser cannot reach any of them, the figures you see are the ones calculated on 3 September 2026, when one bitcoin was $77,772.39.</p>
+        <p><strong>Where the halving countdown comes from.</strong> The block height and the estimated halving date are derived from Bitcoin&rsquo;s fixed 210,000-block schedule, described in <a href="https://bitcoin.org/en/bitcoin-paper" target="_blank" rel="nofollow noopener">the Bitcoin white paper</a>, applied to the current chain tip. An independent view of the same numbers is at <a href="https://mempool.space/" target="_blank" rel="nofollow noopener">mempool.space</a>. The date is an estimate because block times vary; it is not a fixed calendar date.</p>
+        <p><strong>Who wrote this, and what it is not.</strong> <a href="../about.html">Johan Demmers</a>, an independent developer in the Netherlands. I am not a financial adviser and hold no licence to give investment advice. Nothing on this page is a forecast, a recommendation, or a claim about what Bitcoin will do next. If you think a figure here is wrong, <a href="../contact.html">tell me</a> and I will correct it.</p>
+        <p class="sources-stamp">Published 12 August 2026 &middot; figures and prices last reviewed 3 September 2026</p>
+      </section>
       <h2>Frequently asked questions</h2>
       <h3>When is the next Bitcoin halving?</h3>
       <p>Block 1,050,000 is expected around 17 April 2028, with estimates spanning roughly 16 to 20 April. The exact date moves because blocks arrive slightly faster or slower than the ten-minute target.</p>
@@ -146,7 +154,7 @@
 
   <aside class="ad-rail"><div class="ad-sticky"></div></aside>
 </div>
-<script src="../assets/sats.js?v=4"></script>
+<script src="../assets/sats.js?v=5"></script>
 <script src="../assets/nav.js?v=10" defer></script>
 <script src="../assets/wallet-picks.js?v=8" defer></script>
 </body>

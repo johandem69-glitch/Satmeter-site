@@ -1,6 +1,6 @@
 # Satmeter.io — waar we staan
 
-Laatst bijgewerkt: 15 augustus 2026
+Laatst bijgewerkt: 3 september 2026
 
 ---
 
@@ -977,3 +977,160 @@ pagina in de stijl "wat kost je boodschappenmandje in sats" past daar niet, los
 van de datakwestie. Als Johan er alsnog iets over wil, moet dat een ander type
 artikel worden: over wat er met geld gebeurt als een staat uit elkaar valt,
 zonder prijstabel en zonder sats-omrekening.
+
+## 3 september: tweede AdSense-afwijzing, echte oorzaak gevonden en opgelost
+
+Op 2 september keurde Google satmeter.io opnieuw af met "Content van weinig
+waarde", ondanks de opschoning van 24 augustus.
+
+**Eerst gecontroleerd of de vorige fix wel live stond.** Ja. `/tools/`,
+`/aiagent/` en `bitcoin-boodschappen.html` staan live op noindex en zonder
+advertentiecode, `ads.txt`, `robots.txt` en `sitemap.xml` geven 200. De vorige
+fix was dus niet het probleem, en er is niets aan teruggedraaid.
+
+**De echte oorzaak: de pagina's waren leeg in de HTML.** Elk sats-bedrag stond
+als `&hellip;` in de broncode en werd pas door JavaScript ingevuld. In een
+browser zag je een volle tabel, maar wat een crawler binnenhaalt was een tabel
+waarin de belangrijkste kolom leeg is. 44 lege plekken op de homepage, ongeveer
+12 per gids, 169 in totaal. Ook de byline stond er als "recalculated … from …".
+Een site die "boodschappen in satoshi's" belooft en geen enkel bedrag in de HTML
+heeft, is precies wat "content van weinig waarde" beschrijft.
+
+**Wat er is veranderd:**
+
+1. **169 prijsvelden statisch gevuld.** Elke `data-sats-cur`/`data-sats-amt`,
+   `data-sats-usd`, `data-basket-sats`, `data-btc-price`, `data-live-caption`,
+   `data-updated` en `data-source` heeft nu een echt getal of een echte waarde
+   in de HTML. Berekend op BTC = $77.772,39 (blockchain.info, 3 september 2026),
+   met Coinbase voor IDR en ZAR die blockchain.info niet publiceert.
+2. **`assets/sats.js` overschrijft die waarden niet meer met `"…"` als de
+   koersfeed onbereikbaar is.** Vijf plekken aangepast van
+   `el.textContent = s == null ? "…" : ...` naar `if (s != null) ...`, plus de
+   foutafhandeling in `boot()` die de datum verving door "live price
+   unavailable". Bij een werkende feed gedraagt het zich exact als eerst.
+3. **Bronnen- en methodeblok op alle 29 artikelen** (`<section class="sources">`,
+   vóór de FAQ). Per pagina: hoe de satoshi-cijfers worden berekend en waar de
+   koers vandaan komt, waar de lokale prijzen vandaan komen en wanneer ze zijn
+   nagelopen, waar het inflatie- en valutacontext-verhaal op steunt, wie het
+   schrijft en hoe je een fout meldt. Voor de landengidsen met een link naar de
+   Numbeo-landenpagina en naar de Wereldbank/IMF-prijsreeks van dat land. Samen
+   ongeveer 8.300 woorden echte, controleerbare tekst die er niet was.
+   De vier gidsen met een afwijkende valuta-keuze (Argentinië, Venezuela,
+   Libanon, Iran, plus Pakistan en Vietnam) hebben een extra alinea die die
+   keuze uitlegt in plaats van hem te verbergen.
+4. **Zichtbare datums.** Elke byline heeft nu `Published <time>` en
+   `updated <time>` in de HTML, niet meer alleen via JavaScript. `dateModified`
+   in de JSON-LD staat overal op 2026-09-03.
+5. **Spaanse sectie: niet op noindex gezet.** Overwogen, maar de twee Spaanse
+   artikelen zijn echte vertalingen met correcte hreflang en eigen canonicals.
+   Drie goede pagina's uit de index halen voor een klein probleem is de
+   verkeerde ruil. In plaats daarvan: de vier Engelse links op `es/index.html`
+   zijn gelabeld "(en inglés)", en beide Spaanse artikelen hebben hetzelfde
+   bronnenblok in het Spaans gekregen.
+6. **Verkeerde gidsentellers gecorrigeerd.** `articles/index.html` zei 28,
+   `index.html` en `bitcoin-boodschappen.html` zeiden 20. Het zijn er 29.
+7. **`sitemap.xml`: `<lastmod>2026-09-03</lastmod>` op alle 38 URL's**, zodat
+   Google een reden heeft om opnieuw te crawlen voordat de beoordeling wordt
+   aangevraagd.
+8. **Cache-busting:** `site.css` van `?v=5` naar `?v=6` en `sats.js` van `?v=4`
+   naar `?v=5` in alle 32 bestanden die ze laden. `nav.js` (v10) en
+   `wallet-picks.js` (v8) zijn niet gewijzigd en dus niet gebumpt.
+
+**Gecontroleerd, niet alleen gebouwd:**
+
+- Alle 48 HTML-bestanden op sluitende tags: nul fouten.
+- Alle JSON-LD-blokken door een JSON-parser: nul fouten.
+- Alle interne links en asset-paden nagelopen: nul kapot.
+- Nul overgebleven lege `&hellip;`-placeholders in data-velden.
+- `sitemap.xml` als XML geparseerd na het toevoegen van lastmod.
+- `node --check` op `sats.js`, `nav.js` en `wallet-picks.js`.
+- `sats.js` in Node uitgevoerd met een DOM-stub, twee keer: met een werkende
+  koersfeed (₦1.200 bij BTC = ₦150.000.000 geeft 800 sats, correct) en met een
+  kapotte feed (statische waarden blijven staan, niets wordt gewist).
+- Interne links in de nieuwe blokken staan bewust **niet** op `nofollow`; alleen
+  de externe bronlinks hebben `rel="nofollow noopener"`.
+- Alle externe bronlinks live opgehaald voordat ze zijn geplaatst: de
+  Numbeo-landenpagina's, de Wereldbank-indicator, `bitcoin.org`,
+  `blockchain.info` en `mempool.space` geven allemaal echte inhoud terug.
+  De Economist Big Mac Index is bewust **niet** gelinkt omdat hij niet
+  te verifiëren was.
+
+**Monetisatie-checklist (stap 1b), live gecontroleerd op 3 september:**
+
+| Wat | Status |
+| --- | --- |
+| `/ads.txt` | 200, `pub-8258777689852315`, DIRECT, juiste f08-hash |
+| `/robots.txt` | 200, `User-agent: * Allow: /`, Mediapartners-Google toegestaan |
+| `/sitemap.xml` | 200, 38 URL's, in robots.txt genoemd |
+| `/privacy.html`, `/terms.html`, `/about.html`, `/contact.html` | alle 200 |
+| `google-site-verification` | aanwezig in `index.html` |
+| AdSense-client op de pagina | `ca-pub-8258777689852315`, gelijk aan `ads.txt` |
+| Cloudflare Insights-token | aanwezig |
+
+**Belangrijk, over robots.txt.** Cloudflare zet er zelf een blok bovenop met
+content-signals en een lijst AI-crawlers op `Disallow` (ClaudeBot, GPTBot,
+CCBot, Google-Extended en meer). Dat is Cloudflare's beheerde blok, niet het
+bestand in de repo. Googlebot en Mediapartners-Google worden **niet**
+geblokkeerd, dus AdSense en de gewone index hebben er geen last van.
+`Google-Extended` raakt alleen Gemini-training. Niet weghalen zonder reden,
+maar ook niet van schrikken.
+
+### Rekentfout in de Argentinie-gids, gevonden tijdens de controle
+
+Los van de AdSense-opdracht kwam er een echte fout boven water. De prijzen in de
+Argentijnse tabel stonden als dollarbedragen in `data-sats-amt` (brood 2.60,
+rundvlees 14.20, benzine 1.55), maar met `data-sats-cur="BRL"` erbij. Vrijwel
+zeker overgenomen van de Brazilie-gids. Het gevolg: de site deelde dollarbedragen
+door de bitcoinprijs in reais, waardoor **elk satoshi-bedrag op die pagina 5,09
+keer te laag was**. Brood stond op 656 sats en had 3.343 moeten zijn.
+
+Dit stond in `docs/STATUS.md` beschreven als een bewuste "proxy-valuta". Dat was
+het niet. Een dollarbedrag delen door een realkoers is geen benadering, het is
+een rekenfout.
+
+Opgelost, in de Engelse en de Spaanse versie:
+
+- `ARS` toegevoegd aan de `CUR`-map in `assets/sats.js`. Blockchain.info en
+  Coinbase publiceren allebei een BTC/ARS-koers, dus er is geen reden om Argentinie
+  ergens doorheen te rekenen. Kraken en Bitstamp leveren alleen USD en EUR; als de
+  race door een van die twee wordt gewonnen blijft ARS even leeg, en dan blijft nu
+  het statische getal staan in plaats van drie puntjes.
+- De acht tabelrijen omgezet naar `data-sats-cur="ARS"` met echte pesobedragen,
+  omgerekend tegen de koers die uit BTC/ARS en BTC/USD volgt (1.510,75 peso per
+  dollar op 3 september 2026). De pesokolom liep ook achter: brood stond op 2.200
+  peso en is nu 3.900.
+- `ARS` toegevoegd aan de valutakiezer op beide pagina's en als standaard gezet.
+  De widget zei "Price anything in ARS" terwijl ARS niet in de lijst stond.
+- De alinea en de FAQ die uitlegden dat de cijfers "via een proxy-valuta"
+  liepen en "illustratief, niet exact" waren, kloppen niet meer en zijn herschreven.
+  Het mandtotaal in de FAQ stond op "ongeveer 40.000 tot 42.000 peso" en is nu
+  73.100 peso. Aangepast in de zichtbare tekst en in de JSON-LD.
+- Het bronnenblok op die pagina benoemt de fout en de datum waarop hij is
+  hersteld, in plaats van hem stil weg te poetsen.
+
+**Les voor de volgende keer.** Bij een nieuwe landengids die van een bestaande
+wordt gekopieerd: controleer `data-sats-cur` regel voor regel tegen de valuta die
+in de kolomkop staat. Een gekopieerd valutalabel geeft geen foutmelding, geen
+kapotte link en geen rare opmaak. Het geeft alleen een verkeerd getal, en dat
+valt pas op als iemand het narekent. Een simpele controle: het bedrag in
+`data-sats-amt` hoort numeriek gelijk te zijn aan het bedrag in de prijskolom
+ernaast.
+
+**Wat nog open staat:**
+
+- Johan moet committen, pushen en deployen, en pas daarna de beoordeling
+  aanvragen. De pagina's moeten eerst live staan.
+- De statische fallback-getallen zijn berekend op de koers van 3 september.
+  Ze worden bij elk paginabezoek meteen overschreven door de live koers, dus
+  ze zijn alleen zichtbaar voor een crawler of bij een kapotte feed. Als BTC
+  heel ver wegloopt, is het netjes ze een keer opnieuw te laten berekenen.
+  Het script daarvoor staat niet in de repo; opnieuw laten genereren.
+- `tools.satmeter.io` en `aiagent.satmeter.io` hebben nog steeds geen
+  DNS-records in Cloudflare. Beslissing staat nog open.
+- Blijft de afwijzing na deze ronde staan, dan is de volgende stap niet meer
+  techniek maar bereik: AdSense keurt een site zonder publiek moeilijk goed.
+  Dan is spoor 1 uit het groeiplan (faceless video's via Blotato) de weg,
+  niet nog een ronde sleutelen aan de pagina's.
+- Op de homepage kan de bezoeker uit 21 valuta kiezen (eigen inline script),
+  maar `ARS` zit daar niet bij terwijl er wel een Argentinie-gids is. Kleine
+  toevoeging, apart van `assets/sats.js`, nog niet gedaan.

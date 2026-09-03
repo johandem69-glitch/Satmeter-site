@@ -11,7 +11,8 @@
     USD:{sym:"$",dec:2}, EUR:{sym:"€",dec:2}, GBP:{sym:"£",dec:2},
     JPY:{sym:"¥",dec:0}, INR:{sym:"₹",dec:2}, BRL:{sym:"R$",dec:2},
     NGN:{sym:"₦",dec:2}, TRY:{sym:"₺",dec:2}, IDR:{sym:"Rp",dec:0},
-    CAD:{sym:"$",dec:2}, AUD:{sym:"$",dec:2}, ZAR:{sym:"R",dec:2}
+    CAD:{sym:"$",dec:2}, AUD:{sym:"$",dec:2}, ZAR:{sym:"R",dec:2},
+    ARS:{sym:"$",dec:0}
   };
   var CODES = Object.keys(CUR);
   var rates = {};
@@ -211,27 +212,27 @@
       document.querySelectorAll("[data-sats-usd]").forEach(function (el) {
         var v = parseFloat(el.getAttribute("data-sats-usd"));
         var s = API.usdToSats(v);
-        el.textContent = s == null ? "…" : fmtSats(s) + " sats";
+        if (s != null) el.textContent = fmtSats(s) + " sats";
       });
       document.querySelectorAll("[data-sats-amt]").forEach(function (el) {
         var code = el.getAttribute("data-sats-cur") || "USD";
         var v = parseFloat(el.getAttribute("data-sats-amt"));
         var s = API.toSats(v, code);
-        el.textContent = s == null ? "…" : fmtSats(s) + " sats";
+        if (s != null) el.textContent = fmtSats(s) + " sats";
       });
       document.querySelectorAll("[data-btc-price]").forEach(function (el) {
         var code = el.getAttribute("data-btc-price") || "USD";
         var r = API.rate(code);
-        el.textContent = r == null ? "…" : fmtFiat(r, code);
+        if (r != null) el.textContent = fmtFiat(r, code);
       });
       document.querySelectorAll("[data-updated]").forEach(function (el) {
         var d = API.updatedAt();
         el.textContent = d ? d.toLocaleString(undefined, {
           year: "numeric", month: "long", day: "numeric", hour: "2-digit", minute: "2-digit"
-        }) : "…";
+        }) : el.textContent;
       });
       document.querySelectorAll("[data-source]").forEach(function (el) {
-        el.textContent = sourceName || "…";
+        if (sourceName) el.textContent = sourceName;
       });
       document.querySelectorAll("[data-change]").forEach(function (el) {
         var c = API.change();
@@ -256,16 +257,16 @@
         if (isFinite(v)) totalUSD += v;
         var s = API.usdToSats(v);
         var cell = el.querySelector("[data-basket-sats]");
-        if (cell) cell.textContent = s == null ? "…" : fmtSats(s) + " sats";
+        if (cell) if (s != null) cell.textContent = fmtSats(s) + " sats";
       });
       var ts = API.usdToSats(totalUSD);
-      box.textContent = ts == null ? "… sats" : fmtSats(ts) + " sats";
+      if (ts != null) box.textContent = fmtSats(ts) + " sats";
       var sub = document.getElementById("basketSub");
       if (sub) {
         var u = API.usd();
         sub.textContent = u
           ? "for a $" + fmtNum(totalUSD, 2) + " basket · 1 BTC = " + fmtFiat(u, "USD")
-          : "waiting for a live price…";
+          : sub.textContent;
       }
     }
     API.onUpdate(paint);
@@ -307,7 +308,7 @@
     initHalving();
     load().catch(function () {
       document.querySelectorAll("[data-updated]").forEach(function (el) {
-        el.textContent = "live price unavailable";
+        el.setAttribute("title", "live price unavailable, showing last known figures");
       });
     });
     setInterval(function () { load().catch(function () {}); }, 60000);

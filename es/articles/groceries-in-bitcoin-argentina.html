@@ -25,7 +25,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="../../assets/site.css?v=5">
+<link rel="stylesheet" href="../../assets/site.css?v=6">
 <script type="application/ld+json">
 {"@context":"https://schema.org","@type":"Article",
 "headline":"La Compra en Bitcoin: Argentina","description":"Cuánto cuesta la compra diaria en satoshis en Argentina, calculado en vivo a partir del precio de Bitcoin, con una cesta completa y el contexto de la moneda local.",
@@ -33,11 +33,11 @@
 "author":{"@type":"Person","name":"Johan Demmers"},
 "publisher":{"@type":"Organization","name":"Satmeter"},
 "copyrightHolder":{"@type":"Organization","name":"Satmeter"},
-"datePublished":"2026-08-12","dateModified":"2026-08-12",
+"datePublished":"2026-08-12","dateModified":"2026-09-03",
 "mainEntityOfPage":{"@type":"WebPage","@id":"https://satmeter.io/es/articles/groceries-in-bitcoin-argentina.html"}}
 </script>
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"FAQPage","inLanguage":"es","mainEntity":[{"@type": "Question", "name": "¿Cuántos satoshis es una cesta de compra argentina?", "acceptedAnswer": {"@type": "Answer", "text": "La cesta de arriba suma entre 40.000 y 42.000 pesos a precios recientes. La cifra en satoshis se calcula mediante una moneda proxy y debe tratarse como ilustrativa, no exacta."}}, {"@type": "Question", "name": "¿Por qué la cifra argentina es menos fiable que otras?", "acceptedAnswer": {"@type": "Answer", "text": "Porque Argentina ha tenido históricamente varios tipos de cambio simultáneos con brechas grandes entre ellos. El tipo que uses puede cambiar el resultado por un factor de dos."}}, {"@type": "Question", "name": "¿Los argentinos usan realmente Bitcoin para la compra?", "acceptedAnswer": {"@type": "Answer", "text": "Los argentinos usan ampliamente una segunda unidad de cuenta, pero suele ser el dólar físico o stablecoins ligadas al dólar antes que Bitcoin, porque evitan la volatilidad sin dejar de escapar del peso."}}, {"@type": "Question", "name": "¿Qué es el 'dólar blue'?", "acceptedAnswer": {"@type": "Answer", "text": "El tipo de cambio informal del mercado paralelo para el dólar estadounidense en Argentina, que a menudo ha divergido sustancialmente del tipo oficial."}}]}
+{"@context":"https://schema.org","@type":"FAQPage","inLanguage":"es","mainEntity":[{"@type": "Question", "name": "¿Cuántos satoshis es una cesta de compra argentina?", "acceptedAnswer": {"@type": "Answer", "text": "La cesta de ocho productos de arriba suma unos 73.100 pesos a los precios mostrados. La cifra en satoshis que aparece al lado se calcula con el precio en vivo de Bitcoin en pesos, as&iacute; que es exacta para esos precios; los precios en pesos son medias nacionales y se mueven r&aacute;pido."}}, {"@type": "Question", "name": "¿Por qué la cifra argentina es menos fiable que otras?", "acceptedAnswer": {"@type": "Answer", "text": "Porque Argentina ha tenido históricamente varios tipos de cambio simultáneos con brechas grandes entre ellos. El tipo que uses puede cambiar el resultado por un factor de dos."}}, {"@type": "Question", "name": "¿Los argentinos usan realmente Bitcoin para la compra?", "acceptedAnswer": {"@type": "Answer", "text": "Los argentinos usan ampliamente una segunda unidad de cuenta, pero suele ser el dólar físico o stablecoins ligadas al dólar antes que Bitcoin, porque evitan la volatilidad sin dejar de escapar del peso."}}, {"@type": "Question", "name": "¿Qué es el 'dólar blue'?", "acceptedAnswer": {"@type": "Answer", "text": "El tipo de cambio informal del mercado paralelo para el dólar estadounidense en Argentina, que a menudo ha divergido sustancialmente del tipo oficial."}}]}
 </script>
 
 <!-- ============================================================
@@ -79,7 +79,7 @@
     <span class="kicker">Guía de País</span>
     <h1><span class="gradient-text">La Compra en Bitcoin: Argentina</span></h1>
     <p class="standfirst">Un país que ya piensa en una segunda unidad — y por qué el tipo de cambio que elijas lo cambia todo.</p>
-    <p class="byline"><span class="live-dot"></span>Cifras en vivo &middot; recalculadas <span data-updated>&hellip;</span> desde <span data-source>&hellip;</span> &middot; por Johan Demmers</p>
+    <p class="byline"><span class="live-dot"></span>Cifras en vivo &middot; recalculadas <span data-updated>3 de septiembre de 2026</span> desde <span data-source>Blockchain.info</span> &middot; por <a href="../../about.html">Johan Demmers</a> &middot; publicado <time datetime="2026-08-12">12 de agosto de 2026</time> &middot; actualizado <time datetime="2026-09-03">3 de septiembre de 2026</time></p>
 
     <div class="card">
       <p>Argentina lleva a cabo uno de los experimentos de alta inflación más largos y continuos del mundo, y por eso los argentinos han desarrollado una economía popular sofisticada: varios tipos de cambio paralelos, precios en dólares para cualquier bien durable, y el hábito nacional de convertir casi todo a una unidad más dura, casi por instinto.</p>
@@ -88,7 +88,7 @@
         <div class="wlabel">Pon precio a lo que quieras en ARS y velo en satoshis</div>
         <div class="wrow">
           <div class="winput"><span id="wSym">$</span><input type="number" id="wAmount" value="2.60" step="0.01" min="0"></div>
-          <select id="wCur"><option value="USD">USD</option><option value="EUR">EUR</option><option value="GBP">GBP</option><option value="JPY">JPY</option><option value="INR">INR</option><option value="BRL" selected>BRL</option><option value="NGN">NGN</option><option value="TRY">TRY</option><option value="IDR">IDR</option><option value="CAD">CAD</option><option value="AUD">AUD</option><option value="ZAR">ZAR</option></select>
+          <select id="wCur"><option value="ARS" selected>ARS</option><option value="USD">USD</option><option value="EUR">EUR</option><option value="GBP">GBP</option><option value="JPY">JPY</option><option value="INR">INR</option><option value="BRL">BRL</option><option value="NGN">NGN</option><option value="TRY">TRY</option><option value="IDR">IDR</option><option value="CAD">CAD</option><option value="AUD">AUD</option><option value="ZAR">ZAR</option></select>
         </div>
         <div class="wout"><span class="wsats" id="wSats">&hellip; sats</span><span class="wbtc" id="wBtc"></span></div>
         <div class="wmeta" id="wMeta">Cargando precio de Bitcoin en vivo&hellip;</div>
@@ -96,7 +96,7 @@
       <h2>Una cesta semanal en Argentina, con precio en vivo en satoshis</h2>
       <table>
         <thead><tr><th>Artículo</th><th>Precio típico (ARS)</th><th>En satoshis, en vivo</th></tr></thead>
-        <tbody><tr><td>Pan (1 kg)</td><td>$2.200</td><td class="num"><span data-sats-cur="BRL" data-sats-amt="2.60">&hellip;</span></td></tr><tr><td>Leche (1 litro)</td><td>$1.500</td><td class="num"><span data-sats-cur="BRL" data-sats-amt="1.80">&hellip;</span></td></tr><tr><td>Huevos (12)</td><td>$3.400</td><td class="num"><span data-sats-cur="BRL" data-sats-amt="4.00">&hellip;</span></td></tr><tr><td>Carne (1 kg)</td><td>$12.000</td><td class="num"><span data-sats-cur="BRL" data-sats-amt="14.20">&hellip;</span></td></tr><tr><td>Café</td><td>$3.000</td><td class="num"><span data-sats-cur="BRL" data-sats-amt="3.55">&hellip;</span></td></tr><tr><td>Vino (botella)</td><td>$5.500</td><td class="num"><span data-sats-cur="BRL" data-sats-amt="6.50">&hellip;</span></td></tr><tr><td>Nafta (1 litro)</td><td>$1.300</td><td class="num"><span data-sats-cur="BRL" data-sats-amt="1.55">&hellip;</span></td></tr><tr><td>Plan de celular (mensual)</td><td>$12.000</td><td class="num"><span data-sats-cur="BRL" data-sats-amt="14.20">&hellip;</span></td></tr></tbody>
+        <tbody><tr><td>Pan (1 kg)</td><td>$3.900</td><td class="num"><span data-sats-cur="ARS" data-sats-amt="3900">3.319 sats</span></td></tr><tr><td>Leche (1 litro)</td><td>$2.700</td><td class="num"><span data-sats-cur="ARS" data-sats-amt="2700">2.298 sats</span></td></tr><tr><td>Huevos (12)</td><td>$6.000</td><td class="num"><span data-sats-cur="ARS" data-sats-amt="6000">5.107 sats</span></td></tr><tr><td>Carne (1 kg)</td><td>$21.500</td><td class="num"><span data-sats-cur="ARS" data-sats-amt="21500">18.299 sats</span></td></tr><tr><td>Café</td><td>$5.400</td><td class="num"><span data-sats-cur="ARS" data-sats-amt="5400">4.596 sats</span></td></tr><tr><td>Vino (botella)</td><td>$9.800</td><td class="num"><span data-sats-cur="ARS" data-sats-amt="9800">8.341 sats</span></td></tr><tr><td>Nafta (1 litro)</td><td>$2.300</td><td class="num"><span data-sats-cur="ARS" data-sats-amt="2300">1.958 sats</span></td></tr><tr><td>Plan de celular (mensual)</td><td>$21.500</td><td class="num"><span data-sats-cur="ARS" data-sats-amt="21500">18.299 sats</span></td></tr></tbody>
       </table>
       <p style="font-size:13px;color:var(--muted)">Los precios son promedios nacionales aproximados y varían mucho según ciudad y comercio. Pon el tuyo en la calculadora de arriba &mdash; ese es el número que realmente significa algo.</p>
       <h2>Un país que ya piensa en una segunda unidad</h2>
@@ -105,7 +105,7 @@
       <p>Bitcoin encaja en un hábito ya existente en vez de crear uno nuevo, y precisamente por eso la adopción argentina se ve distinta a la de otros lugares. La pregunta no es "¿por qué usaría una segunda unidad de cuenta?" &mdash; eso ya está resuelto. La pregunta es solo cuál segunda unidad: dólares físicos, stablecoins en dólares, o Bitcoin. Cada opción tiene un compromiso distinto entre accesibilidad, volatilidad y riesgo de contraparte, y los argentinos debaten esos compromisos con más soltura práctica que la mayoría de conferencias de Bitcoin.</p>
       <h2>¿Qué tipo de cambio? Lo cambia todo</h2>
       <p>Una nota técnica importante sobre las cifras de arriba. Argentina ha mantenido históricamente varios tipos de cambio a la vez, con una brecha grande entre el oficial y el del mercado paralelo. El tipo que uses cambia drásticamente la cifra en satoshis &mdash; a veces por un factor de dos.</p>
-      <p>Como conseguir un precio fiable en vivo en pesos es genuinamente difícil, las cifras en satoshis de esta página se calculan mediante una moneda proxy en vez de una cotización directa del peso. Es una limitación real y prefiero decirlo que ocultarlo: <strong>trata estas cifras como ilustrativas del método, no como una lista de precios argentina exacta.</strong> Para una cifra en la que puedas confiar, introduce tu precio real en pesos en el <a href="/es/">conversor principal</a> y elige una moneda que puedas verificar localmente.</p>
+      <p>Las cifras en satoshis de esta p&aacute;gina se calculan a partir del precio en vivo de Bitcoin en pesos argentinos, no a trav&eacute;s de una moneda sustituta, as&iacute; que la conversi&oacute;n en s&iacute; es exacta. <strong>Lo que sigue siendo incierto es la columna en pesos: los precios en Argentina se mueven r&aacute;pido, y las cifras de abajo son medias nacionales orientativas, no una lista de precios que puedas exigirle a una tienda.</strong> Para una cifra en la que puedas confiar, introduce tu precio real en pesos en el <a href="/es/">conversor principal</a> y elige una moneda que puedas verificar localmente.</p>
       <p>Esta es también una lección más amplia sobre las comparaciones denominadas en sats en cualquier país con un tipo de cambio gestionado o múltiple. La cifra en satoshis hereda cada distorsión de la cotización de la moneda local subyacente. Si esa cotización está determinada políticamente y no por el mercado, también lo está tu cifra en satoshis &mdash; y parecerá precisa sin serlo en absoluto.</p>
       <h2>Horas de trabajo, no solo sats</h2>
       <p>La cifra en sats te habla de Bitcoin. No te dice si la vida en Argentina es asequible. Para eso, el denominador útil es el tiempo.</p>
@@ -115,9 +115,19 @@
         <p><strong>La advertencia honesta.</strong> Comparar una moneda que se deprecia contra Bitcoin durante un periodo en que Bitcoin subió siempre favorecerá a Bitcoin. Bitcoin también ha caído más del 70&#37; desde su máximo en varias ocasiones, y durante esos tramos fue el peor lugar donde estar. Nada aquí es una predicción, y nada aquí es asesoramiento financiero.</p>
       </div>
       <a class="cta" href="/es/">Crea tu propia cesta argentina en sats &rarr;</a>
+
+      <section class="sources" id="sources">
+        <h2>Fuentes y método</h2>
+        <p><strong>Cómo se calculan las cifras en satoshis.</strong> Ningún número de la columna de satoshis está escrito a mano. Cada uno es el precio local dividido entre el precio actual de Bitcoin y multiplicado por 100.000.000, porque un bitcoin son cien millones de satoshis, la unidad mínima definida en <a href="https://bitcoin.org/en/bitcoin-paper" target="_blank" rel="nofollow noopener">el whitepaper de Bitcoin</a>. El tipo de cambio se obtiene de <a href="https://blockchain.info/ticker" target="_blank" rel="nofollow noopener">Blockchain.info</a> y se actualiza cada sesenta segundos, con Coinbase, Kraken y Bitstamp como respaldo. Si tu navegador no puede acceder a ninguno, las cifras que ves son las calculadas el 3 de septiembre de 2026, cuando un bitcoin valía 77.772,39 dólares.</p>
+        <p><strong>De dónde salen los precios locales.</strong> Los precios de la cesta son medias nacionales orientativas revisadas el 3 de septiembre de 2026, no los de un supermercado concreto en un día concreto. Varían mucho por ciudad, tienda y temporada, y se contrastan con <a href="https://www.numbeo.com/cost-of-living/country_result.jsp?country=Argentina" target="_blank" rel="nofollow noopener">los datos de coste de vida de Numbeo para Argentina</a>, que son colaborativos y llevan la misma advertencia. La calculadora de arriba existe justamente para que los sustituyas por los precios que tú pagas.</p>
+        <p><strong>De dónde sale el contexto de inflación.</strong> Lo que se afirma aquí sobre inflación, devaluación y la dirección del peso se contrasta con <a href="https://data.worldbank.org/indicator/FP.CPI.TOTL.ZG?locations=AR" target="_blank" rel="nofollow noopener">las series de precios al consumo del Banco Mundial y el FMI para Argentina</a>.</p>
+        <p><strong>Una nota sobre la moneda usada aquí.</strong> Hasta el 3 de septiembre de 2026 esta p&aacute;gina converti&iacute;a a trav&eacute;s de una moneda sustituta, lo que hac&iacute;a que cada cifra en satoshis fuera unas cinco veces menor de lo debido. Ahora usa directamente el precio en vivo de Bitcoin en pesos argentinos, y los precios en pesos se recalcularon a la vez. Argentina sigue teniendo varios tipos de cambio simult&aacute;neos, as&iacute; que una comparaci&oacute;n en d&oacute;lares hecha desde esta p&aacute;gina depende de cu&aacute;l uses; las cifras en satoshis no, porque nunca pasan por el d&oacute;lar.</p>
+        <p><strong>Quién escribe esto, y qué no es.</strong> <a href="../../about.html">Johan Demmers</a>, desarrollador independiente en los Países Bajos. No soy asesor financiero ni tengo licencia para dar consejos de inversión. Nada en esta página es una previsión ni una recomendación. Si crees que una cifra está mal, <a href="../../contact.html">escríbeme</a> y la corrijo.</p>
+        <p class="sources-stamp">Publicado el 12 de agosto de 2026 &middot; cifras y precios revisados por última vez el 3 de septiembre de 2026</p>
+      </section>
       <h2>Preguntas frecuentes</h2>
       <h3>¿Cuántos satoshis es una cesta de compra argentina?</h3>
-      <p>La cesta de arriba suma entre 40.000 y 42.000 pesos a precios recientes. La cifra en satoshis se calcula mediante una moneda proxy y debe tratarse como ilustrativa, no exacta.</p>
+      <p>La cesta de ocho productos de arriba suma unos 73.100 pesos a los precios mostrados. La cifra en satoshis que aparece al lado se calcula con el precio en vivo de Bitcoin en pesos, as&iacute; que es exacta para esos precios; los precios en pesos son medias nacionales y se mueven r&aacute;pido.</p>
       <h3>¿Por qué la cifra argentina es menos fiable que otras?</h3>
       <p>Porque Argentina ha tenido históricamente varios tipos de cambio simultáneos con brechas grandes entre ellos. El tipo que uses puede cambiar el resultado por un factor de dos.</p>
       <h3>¿Los argentinos usan realmente Bitcoin para la compra?</h3>
@@ -152,7 +162,7 @@
 
   <aside class="ad-rail"><div class="ad-sticky"></div></aside>
 </div>
-<script src="../../assets/sats.js?v=4"></script>
+<script src="../../assets/sats.js?v=5"></script>
 <script src="../../assets/nav.js?v=10" defer></script>
 <script src="../../assets/wallet-picks.js?v=8" defer></script>
 </body>

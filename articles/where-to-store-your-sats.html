@@ -23,14 +23,14 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="../assets/site.css?v=5">
+<link rel="stylesheet" href="../assets/site.css?v=6">
 <script type="application/ld+json">
 {"@context":"https://schema.org","@type":"Article",
 "headline":"Where to Store Your Sats","description":"Trezor vs BitBox vs leaving it on the exchange: when you actually need a hardware wallet, what it protects you from, and an honest comparison of the two main options.",
 "author":{"@type":"Person","name":"Johan Demmers"},
 "publisher":{"@type":"Organization","name":"Satmeter"},
 "copyrightHolder":{"@type":"Organization","name":"Satmeter"},
-"datePublished":"2026-08-12","dateModified":"2026-08-12",
+"datePublished":"2026-08-12","dateModified": "2026-09-03",
 "mainEntityOfPage":{"@type":"WebPage","@id":"https://satmeter.io/articles/where-to-store-your-sats.html"}}
 </script>
 <script type="application/ld+json">
@@ -76,7 +76,7 @@
     <span class="kicker">Self Custody</span>
     <h1><span class="gradient-text">Where to Store Your Sats</span></h1>
     <p class="standfirst">A hardware wallet isn't for everyone at every amount. Here's how to tell if you need one, and an honest look at the two we'd actually consider.</p>
-    <p class="byline">By Johan Demmers &middot; Updated <span id="artDate">12 August 2026</span> &middot; 8 min read</p>
+    <p class="byline">By <a href="../about.html">Johan Demmers</a> &middot; Published <time datetime="2026-08-12">12 August 2026</time> &middot; updated <span id="artDate"><time datetime="2026-09-03">3 September 2026</time></span> &middot; 8 min read</p>
 
     <div class="card">
       <div class="callout">
@@ -145,6 +145,14 @@
 
       <a class="cta" href="/">Convert your holdings into sats &rarr;</a>
 
+
+      <section class="sources" id="sources">
+        <h2>Sources and method</h2>
+        <p><strong>How the satoshi figures are calculated.</strong> Nothing in the satoshi column is typed in by hand. Each one is the local price divided by Bitcoin&rsquo;s current price in US dollars and multiplied by 100,000,000, because one bitcoin is one hundred million satoshis &mdash; the smallest unit defined in <a href="https://bitcoin.org/en/bitcoin-paper" target="_blank" rel="nofollow noopener">the Bitcoin white paper</a>. The exchange rate is fetched from <a href="https://blockchain.info/ticker" target="_blank" rel="nofollow noopener">Blockchain.info</a> and refreshed every sixty seconds, with Coinbase, Kraken and Bitstamp as fallbacks. If your browser cannot reach any of them, the figures you see are the ones calculated on 3 September 2026, when one bitcoin was $77,772.39.</p>
+        <p><strong>Where the Bitcoin facts come from.</strong> The unit definitions and the supply schedule described here come from <a href="https://bitcoin.org/en/bitcoin-paper" target="_blank" rel="nofollow noopener">the Bitcoin white paper</a> and from the Bitcoin protocol itself, not from any exchange or vendor. Where hardware wallets are mentioned, the links are affiliate links: if you buy through one, this site earns a commission at no extra cost to you. That does not change which devices are recommended or what is said about them.</p>
+        <p><strong>Who wrote this, and what it is not.</strong> <a href="../about.html">Johan Demmers</a>, an independent developer in the Netherlands. I am not a financial adviser and hold no licence to give investment advice. Nothing on this page is a forecast, a recommendation, or a claim about what Bitcoin will do next. If you think a figure here is wrong, <a href="../contact.html">tell me</a> and I will correct it.</p>
+        <p class="sources-stamp">Published 12 August 2026 &middot; figures and prices last reviewed 3 September 2026</p>
+      </section>
       <h2>Frequently asked questions</h2>
       <h3>Do I need a hardware wallet for a small amount of sats?</h3>
       <p>Usually not. If losing the amount wouldn't meaningfully hurt, the hassle of a hardware wallet often isn't worth it yet. Most people move to self-custody once their holdings would sting to lose, commonly a few hundred dollars and up.</p>
@@ -185,7 +193,7 @@
 
   <aside class="ad-rail"><div class="ad-sticky"></div></aside>
 </div>
-<script src="../assets/sats.js?v=4"></script>
+<script src="../assets/sats.js?v=5"></script>
 <script src="../assets/nav.js?v=10" defer></script>
 <script src="../assets/wallet-picks.js?v=8" defer></script>
 </body>

@@ -29,7 +29,7 @@
   "author":{"@type":"Person","name":"Johan Demmers"},
   "publisher":{"@type":"Organization","name":"Satmeter"},
   "copyrightHolder":{"@type":"Organization","name":"Satmeter"},
-  "datePublished":"2026-08-12","dateModified":"2026-08-12",
+  "datePublished":"2026-08-12","dateModified": "2026-09-03",
   "mainEntityOfPage":{"@type":"WebPage","@id":"https://satmeter.io/articles/bitcoin-big-mac-index.html"}
 }
 </script>
@@ -43,7 +43,7 @@
 }
 </script>
 
-<link rel="stylesheet" href="../assets/site.css?v=5">
+<link rel="stylesheet" href="../assets/site.css?v=6">
 
 <!-- ============================================================
      CLOUDFLARE WEB ANALYTICS
@@ -85,7 +85,7 @@
     <span class="kicker">Bitcoin Index</span>
     <h1><span class="gradient-text">The Bitcoin Big Mac Index</span></h1>
     <p class="standfirst">The Economist compares currencies with a burger. Do the same in satoshis and you get something a dollar price can never show you.</p>
-    <p class="byline">By Johan Demmers &middot; Updated <span id="artDate">12 August 2026</span> &middot; 6 min read</p>
+    <p class="byline">By <a href="../about.html">Johan Demmers</a> &middot; Published <time datetime="2026-08-12">12 August 2026</time> &middot; updated <span id="artDate"><time datetime="2026-09-03">3 September 2026</time></span> &middot; 6 min read</p>
 
     <div class="card">
       <p>The Big Mac Index was invented by <em>The Economist</em> in 1986 as a light-hearted way to compare currencies. The idea is simple: a Big Mac contains roughly the same ingredients and the same labour everywhere, so its price is a rough proxy for what money is actually worth in a given country.</p>
@@ -163,6 +163,14 @@
       <p>The Big Mac is the famous one, but it is not special. Bread, coffee, a litre of milk, a cinema ticket, a monthly phone plan — all of them work the same way, and some are more useful because you buy them weekly rather than occasionally.</p>
       <a class="cta" href="/">Open the full converter &mdash; 14 everyday items, 21 currencies &rarr;</a>
 
+
+      <section class="sources" id="sources">
+        <h2>Sources and method</h2>
+        <p><strong>How the satoshi figures are calculated.</strong> Nothing in the satoshi column is typed in by hand. Each one is the local price divided by Bitcoin&rsquo;s current price in US dollars and multiplied by 100,000,000, because one bitcoin is one hundred million satoshis &mdash; the smallest unit defined in <a href="https://bitcoin.org/en/bitcoin-paper" target="_blank" rel="nofollow noopener">the Bitcoin white paper</a>. The exchange rate is fetched from <a href="https://blockchain.info/ticker" target="_blank" rel="nofollow noopener">Blockchain.info</a> and refreshed every sixty seconds, with Coinbase, Kraken and Bitstamp as fallbacks. If your browser cannot reach any of them, the figures you see are the ones calculated on 3 September 2026, when one bitcoin was $77,772.39.</p>
+        <p><strong>Where the prices come from.</strong> The prices used here are indicative averages reviewed on 3 September 2026, cross-checked against <a href="https://www.numbeo.com/cost-of-living/" target="_blank" rel="nofollow noopener">Numbeo's cost-of-living database</a> and, for United States figures, against <a href="https://www.bls.gov/cpi/" target="_blank" rel="nofollow noopener">the US Bureau of Labor Statistics consumer price index</a>. They are not a single retailer&rsquo;s prices and they move. The converter on the home page lets you substitute the price you actually pay, which is the only number that means anything for your own budget.</p>
+        <p><strong>Who wrote this, and what it is not.</strong> <a href="../about.html">Johan Demmers</a>, an independent developer in the Netherlands. I am not a financial adviser and hold no licence to give investment advice. Nothing on this page is a forecast, a recommendation, or a claim about what Bitcoin will do next. If you think a figure here is wrong, <a href="../contact.html">tell me</a> and I will correct it.</p>
+        <p class="sources-stamp">Published 12 August 2026 &middot; figures and prices last reviewed 3 September 2026</p>
+      </section>
       <h2>Frequently asked questions</h2>
       <h3>How many satoshis is a Big Mac?</h3>
       <p>At a Bitcoin price of $100,000, an $11.00 Big Mac meal is about 11,000 satoshis. The exact figure changes every minute with Bitcoin's price, so use the live calculator above.</p>
@@ -203,7 +211,7 @@
 
 </div>
 
-<script src="../assets/sats.js?v=4"></script>
+<script src="../assets/sats.js?v=5"></script>
 <script src="../assets/nav.js?v=10" defer></script>
 <script src="../assets/wallet-picks.js?v=8" defer></script>
 </body>

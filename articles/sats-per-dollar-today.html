@@ -20,14 +20,14 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="../assets/site.css?v=5">
+<link rel="stylesheet" href="../assets/site.css?v=6">
 <script type="application/ld+json">
 {"@context":"https://schema.org","@type":"Article",
 "headline":"How Many Sats Is One Dollar?","description":"One dollar in satoshis, calculated live. The simple formula, a conversion table for round Bitcoin prices, the same maths in twelve currencies, and the three mistakes people make.",
 "author":{"@type":"Person","name":"Johan Demmers"},
 "publisher":{"@type":"Organization","name":"Satmeter"},
 "copyrightHolder":{"@type":"Organization","name":"Satmeter"},
-"datePublished":"2026-08-12","dateModified":"2026-08-12",
+"datePublished":"2026-08-12","dateModified": "2026-09-03",
 "mainEntityOfPage":{"@type":"WebPage","@id":"https://satmeter.io/articles/sats-per-dollar-today.html"}}
 </script>
 <script type="application/ld+json">
@@ -73,11 +73,11 @@
     <span class="kicker">Live Conversion</span>
     <h1><span class="gradient-text">How Many Sats Is One Dollar?</span></h1>
     <p class="standfirst">Divide a hundred million by the Bitcoin price. That is the whole formula — here it is, running live.</p>
-    <p class="byline"><span class="live-dot"></span>Live figures &middot; recalculated <span data-updated>&hellip;</span> from <span data-source>&hellip;</span> &middot; by Johan Demmers</p>
+    <p class="byline"><span class="live-dot"></span>Live figures &middot; recalculated <span data-updated>3 September 2026</span> from <span data-source>Blockchain.info</span> &middot; by <a href="../about.html">Johan Demmers</a> &middot; Published <time datetime="2026-08-12">12 August 2026</time> &middot; updated <time datetime="2026-09-03">3 September 2026</time></p>
 
     <div class="card">
       <p>This is the most useful conversion in Bitcoin, and it takes one line to state: <strong>divide 100,000,000 by the Bitcoin price.</strong> That is how many satoshis one dollar buys.</p>
-      <p>Right now, one US dollar is worth <strong data-sats-usd="1">&hellip;</strong>, with Bitcoin at <strong data-btc-price="USD">&hellip;</strong> (<span data-change></span> over 24 hours).</p>
+      <p>Right now, one US dollar is worth <strong data-sats-usd="1">1,286 sats</strong>, with Bitcoin at <strong data-btc-price="USD">$77,772.39</strong> (<span data-change></span> over 24 hours).</p>
 
       <div class="widget">
         <div class="wlabel">Convert any amount into satoshis</div>
@@ -111,7 +111,7 @@
       <p>The method is identical, you just need Bitcoin's price in your own currency. The widget above handles twelve of them. A few live examples at current prices:</p>
       <table>
         <thead><tr><th>Amount</th><th>Currency</th><th>In satoshis, live</th></tr></thead>
-        <tbody><tr><td>1.00</td><td>EUR</td><td class="num"><span data-sats-cur="EUR" data-sats-amt="1">&hellip;</span></td></tr><tr><td>1.00</td><td>GBP</td><td class="num"><span data-sats-cur="GBP" data-sats-amt="1">&hellip;</span></td></tr><tr><td>100</td><td>INR</td><td class="num"><span data-sats-cur="INR" data-sats-amt="100">&hellip;</span></td></tr><tr><td>1,000</td><td>JPY</td><td class="num"><span data-sats-cur="JPY" data-sats-amt="1000">&hellip;</span></td></tr><tr><td>10</td><td>BRL</td><td class="num"><span data-sats-cur="BRL" data-sats-amt="10">&hellip;</span></td></tr><tr><td>1,000</td><td>NGN</td><td class="num"><span data-sats-cur="NGN" data-sats-amt="1000">&hellip;</span></td></tr></tbody>
+        <tbody><tr><td>1.00</td><td>EUR</td><td class="num"><span data-sats-cur="EUR" data-sats-amt="1">1,493 sats</span></td></tr><tr><td>1.00</td><td>GBP</td><td class="num"><span data-sats-cur="GBP" data-sats-amt="1">1,736 sats</span></td></tr><tr><td>100</td><td>INR</td><td class="num"><span data-sats-cur="INR" data-sats-amt="100">1,362 sats</span></td></tr><tr><td>1,000</td><td>JPY</td><td class="num"><span data-sats-cur="JPY" data-sats-amt="1000">8,206 sats</span></td></tr><tr><td>10</td><td>BRL</td><td class="num"><span data-sats-cur="BRL" data-sats-amt="10">2,525 sats</span></td></tr><tr><td>1,000</td><td>NGN</td><td class="num"><span data-sats-cur="NGN" data-sats-amt="1000">935 sats</span></td></tr></tbody>
       </table>
 
       <p>Note that these are not exchange-rate conversions in the usual sense. Each row is computed from Bitcoin's price <em>in that currency</em>, sourced live. That side-steps the question of whose foreign-exchange rate to trust, which is a quietly useful property.</p>
@@ -128,6 +128,14 @@
       </ol>
 
       <a class="cta" href="/">See what a whole shopping list costs in sats &rarr;</a>
+
+      <section class="sources" id="sources">
+        <h2>Sources and method</h2>
+        <p><strong>How the satoshi figures are calculated.</strong> Nothing in the satoshi column is typed in by hand. Each one is the local price divided by Bitcoin&rsquo;s current price in euros and multiplied by 100,000,000, because one bitcoin is one hundred million satoshis &mdash; the smallest unit defined in <a href="https://bitcoin.org/en/bitcoin-paper" target="_blank" rel="nofollow noopener">the Bitcoin white paper</a>. The exchange rate is fetched from <a href="https://blockchain.info/ticker" target="_blank" rel="nofollow noopener">Blockchain.info</a> and refreshed every sixty seconds, with Coinbase, Kraken and Bitstamp as fallbacks. If your browser cannot reach any of them, the figures you see are the ones calculated on 3 September 2026, when one bitcoin was $77,772.39.</p>
+        <p><strong>Where the prices come from.</strong> The prices used here are indicative averages reviewed on 3 September 2026, cross-checked against <a href="https://www.numbeo.com/cost-of-living/" target="_blank" rel="nofollow noopener">Numbeo's cost-of-living database</a> and, for United States figures, against <a href="https://www.bls.gov/cpi/" target="_blank" rel="nofollow noopener">the US Bureau of Labor Statistics consumer price index</a>. They are not a single retailer&rsquo;s prices and they move. The converter on the home page lets you substitute the price you actually pay, which is the only number that means anything for your own budget.</p>
+        <p><strong>Who wrote this, and what it is not.</strong> <a href="../about.html">Johan Demmers</a>, an independent developer in the Netherlands. I am not a financial adviser and hold no licence to give investment advice. Nothing on this page is a forecast, a recommendation, or a claim about what Bitcoin will do next. If you think a figure here is wrong, <a href="../contact.html">tell me</a> and I will correct it.</p>
+        <p class="sources-stamp">Published 12 August 2026 &middot; figures and prices last reviewed 3 September 2026</p>
+      </section>
       <h2>Frequently asked questions</h2>
       <h3>How many satoshis is one US dollar?</h3>
       <p>Divide 100,000,000 by the current Bitcoin price in dollars. At a $100,000 Bitcoin price one dollar is 1,000 satoshis; at $50,000 it is 2,000 satoshis.</p>
@@ -167,7 +175,7 @@
 
   <aside class="ad-rail"><div class="ad-sticky"></div></aside>
 </div>
-<script src="../assets/sats.js?v=4"></script>
+<script src="../assets/sats.js?v=5"></script>
 <script src="../assets/nav.js?v=10" defer></script>
 <script src="../assets/wallet-picks.js?v=8" defer></script>
 </body>

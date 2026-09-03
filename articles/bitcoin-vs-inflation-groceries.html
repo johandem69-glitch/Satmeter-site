@@ -20,14 +20,14 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="../assets/site.css?v=5">
+<link rel="stylesheet" href="../assets/site.css?v=6">
 <script type="application/ld+json">
 {"@context":"https://schema.org","@type":"Article",
 "headline":"Bitcoin vs Inflation: What Groceries Show","description":"Does Bitcoin protect you from inflation? An honest examination using grocery prices — the two things called inflation, the strongest defensible version of the claim, and the three ways sats denomination misleads.",
 "author":{"@type":"Person","name":"Johan Demmers"},
 "publisher":{"@type":"Organization","name":"Satmeter"},
 "copyrightHolder":{"@type":"Organization","name":"Satmeter"},
-"datePublished":"2026-08-12","dateModified":"2026-08-12",
+"datePublished":"2026-08-12","dateModified": "2026-09-03",
 "mainEntityOfPage":{"@type":"WebPage","@id":"https://satmeter.io/articles/bitcoin-vs-inflation-groceries.html"}}
 </script>
 <script type="application/ld+json">
@@ -73,11 +73,11 @@
     <span class="kicker">Analysis</span>
     <h1><span class="gradient-text">Bitcoin vs Inflation: What Groceries Show</span></h1>
     <p class="standfirst">The most repeated claim in Bitcoin, examined with the most boring possible evidence: what food costs.</p>
-    <p class="byline"><span class="live-dot"></span>Live figures &middot; recalculated <span data-updated>&hellip;</span> from <span data-source>&hellip;</span> &middot; by Johan Demmers</p>
+    <p class="byline"><span class="live-dot"></span>Live figures &middot; recalculated <span data-updated>3 September 2026</span> from <span data-source>Blockchain.info</span> &middot; by <a href="../about.html">Johan Demmers</a> &middot; Published <time datetime="2026-08-12">12 August 2026</time> &middot; updated <time datetime="2026-09-03">3 September 2026</time></p>
 
     <div class="card">
       <p>"Bitcoin protects you from inflation" is one of the most repeated claims in finance, and one of the least carefully examined. This page tries to examine it properly, using the most boring possible evidence: what food actually costs.</p>
-      <p>Right now, the fourteen-item basket used across this site totals about $113, which is <strong data-sats-usd="113.19">&hellip;</strong>.</p>
+      <p>Right now, the fourteen-item basket used across this site totals about $113, which is <strong data-sats-usd="113.19">145,540 sats</strong>.</p>
       <div class="widget">
         <div class="wlabel">Price the whole basket in your currency</div>
         <div class="wrow">
@@ -131,6 +131,14 @@
       <p>You do not need to trust anyone on this, including me. Record three numbers once a month: your real local basket cost, the Bitcoin price in your currency, and the date. Never two &mdash; always three, because with only the sats figure you cannot attribute a change and will end up confirming whatever you already believed.</p>
       <p>After a year you will have something better than any commentary: your own series, from your own shop, with your own start date rather than one chosen to make a point. That is the only version of this analysis that is genuinely yours.</p>
       <a class="cta" href="/">Start your own basket record &rarr;</a>
+
+      <section class="sources" id="sources">
+        <h2>Sources and method</h2>
+        <p><strong>How the satoshi figures are calculated.</strong> Nothing in the satoshi column is typed in by hand. Each one is the local price divided by Bitcoin&rsquo;s current price in US dollars and multiplied by 100,000,000, because one bitcoin is one hundred million satoshis &mdash; the smallest unit defined in <a href="https://bitcoin.org/en/bitcoin-paper" target="_blank" rel="nofollow noopener">the Bitcoin white paper</a>. The exchange rate is fetched from <a href="https://blockchain.info/ticker" target="_blank" rel="nofollow noopener">Blockchain.info</a> and refreshed every sixty seconds, with Coinbase, Kraken and Bitstamp as fallbacks. If your browser cannot reach any of them, the figures you see are the ones calculated on 3 September 2026, when one bitcoin was $77,772.39.</p>
+        <p><strong>Where the inflation figures come from.</strong> Consumer-price changes cited here are checked against <a href="https://www.bls.gov/cpi/" target="_blank" rel="nofollow noopener">the US Bureau of Labor Statistics consumer price index</a> for the United States and against World Bank and IMF series for other countries. Grocery price levels are cross-checked against <a href="https://www.numbeo.com/cost-of-living/" target="_blank" rel="nofollow noopener">Numbeo's cost-of-living database</a>. Where a comparison depends on the start date chosen, that is stated in the text, because choosing the start date is how this particular argument is usually won unfairly.</p>
+        <p><strong>Who wrote this, and what it is not.</strong> <a href="../about.html">Johan Demmers</a>, an independent developer in the Netherlands. I am not a financial adviser and hold no licence to give investment advice. Nothing on this page is a forecast, a recommendation, or a claim about what Bitcoin will do next. If you think a figure here is wrong, <a href="../contact.html">tell me</a> and I will correct it.</p>
+        <p class="sources-stamp">Published 12 August 2026 &middot; figures and prices last reviewed 3 September 2026</p>
+      </section>
       <h2>Frequently asked questions</h2>
       <h3>Does Bitcoin protect against inflation?</h3>
       <p>It has a fixed issuance schedule, so it is immune to monetary expansion. It has no mechanism to protect you from price inflation caused by supply chains, energy, harvests or tariffs. Conflating the two turns a narrow claim into an indefensible one.</p>
@@ -170,7 +178,7 @@
 
   <aside class="ad-rail"><div class="ad-sticky"></div></aside>
 </div>
-<script src="../assets/sats.js?v=4"></script>
+<script src="../assets/sats.js?v=5"></script>
 <script src="../assets/nav.js?v=10" defer></script>
 <script src="../assets/wallet-picks.js?v=8" defer></script>
 </body>

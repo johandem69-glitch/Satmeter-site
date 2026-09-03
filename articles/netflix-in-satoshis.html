@@ -20,14 +20,14 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="../assets/site.css?v=5">
+<link rel="stylesheet" href="../assets/site.css?v=6">
 <script type="application/ld+json">
 {"@context":"https://schema.org","@type":"Article",
 "headline":"What Netflix Costs in Satoshis","description":"Netflix and other subscriptions priced in satoshis, calculated live, with a seven-country comparison — plus why sats per hour watched is a far more useful number than sats per month.",
 "author":{"@type":"Person","name":"Johan Demmers"},
 "publisher":{"@type":"Organization","name":"Satmeter"},
 "copyrightHolder":{"@type":"Organization","name":"Satmeter"},
-"datePublished":"2026-08-12","dateModified":"2026-08-12",
+"datePublished":"2026-08-12","dateModified": "2026-09-03",
 "mainEntityOfPage":{"@type":"WebPage","@id":"https://satmeter.io/articles/netflix-in-satoshis.html"}}
 </script>
 <script type="application/ld+json">
@@ -73,11 +73,11 @@
     <span class="kicker">Subscriptions</span>
     <h1><span class="gradient-text">What Netflix Costs in Satoshis</span></h1>
     <p class="standfirst">The most revealing thing to price in sats isn't the amount. It's that it repeats, silently, forever.</p>
-    <p class="byline"><span class="live-dot"></span>Live figures &middot; recalculated <span data-updated>&hellip;</span> from <span data-source>&hellip;</span> &middot; by Johan Demmers</p>
+    <p class="byline"><span class="live-dot"></span>Live figures &middot; recalculated <span data-updated>3 September 2026</span> from <span data-source>Blockchain.info</span> &middot; by <a href="../about.html">Johan Demmers</a> &middot; Published <time datetime="2026-08-12">12 August 2026</time> &middot; updated <time datetime="2026-09-03">3 September 2026</time></p>
 
     <div class="card">
       <p>Subscriptions are the most revealing thing you can price in satoshis, and it is not because of the amount. It is because they repeat, silently, forever.</p>
-      <p>A standard Netflix plan runs about $17.99 a month in the United States. That is currently <strong data-sats-usd="17.99">&hellip;</strong> per month, or <strong data-sats-usd="215.88">&hellip;</strong> a year.</p>
+      <p>A standard Netflix plan runs about $17.99 a month in the United States. That is currently <strong data-sats-usd="17.99">23,132 sats</strong> per month, or <strong data-sats-usd="215.88">277,579 sats</strong> a year.</p>
 
       <div class="widget">
         <div class="wlabel">How many sats is your subscription?</div>
@@ -93,7 +93,7 @@
       <p>Streaming prices are regionally tiered, sometimes dramatically, which makes this comparison genuinely surprising.</p>
       <table>
         <thead><tr><th>Country</th><th>Standard plan / month</th><th>In satoshis, live</th></tr></thead>
-        <tbody><tr><td>United States</td><td>$17.99</td><td class="num"><span data-sats-cur="USD" data-sats-amt="17.99">&hellip;</span></td></tr><tr><td>United Kingdom</td><td>&pound;12.99</td><td class="num"><span data-sats-cur="GBP" data-sats-amt="12.99">&hellip;</span></td></tr><tr><td>Netherlands</td><td>&euro;13.99</td><td class="num"><span data-sats-cur="EUR" data-sats-amt="13.99">&hellip;</span></td></tr><tr><td>Brazil</td><td>R$44.90</td><td class="num"><span data-sats-cur="BRL" data-sats-amt="44.90">&hellip;</span></td></tr><tr><td>Turkey</td><td>&#8378;230</td><td class="num"><span data-sats-cur="TRY" data-sats-amt="230">&hellip;</span></td></tr><tr><td>India</td><td>&#8377;499</td><td class="num"><span data-sats-cur="INR" data-sats-amt="499">&hellip;</span></td></tr><tr><td>Nigeria</td><td>&#8358;5,500</td><td class="num"><span data-sats-cur="NGN" data-sats-amt="5500">&hellip;</span></td></tr></tbody>
+        <tbody><tr><td>United States</td><td>$17.99</td><td class="num"><span data-sats-cur="USD" data-sats-amt="17.99">23,132 sats</span></td></tr><tr><td>United Kingdom</td><td>&pound;12.99</td><td class="num"><span data-sats-cur="GBP" data-sats-amt="12.99">22,550 sats</span></td></tr><tr><td>Netherlands</td><td>&euro;13.99</td><td class="num"><span data-sats-cur="EUR" data-sats-amt="13.99">20,883 sats</span></td></tr><tr><td>Brazil</td><td>R$44.90</td><td class="num"><span data-sats-cur="BRL" data-sats-amt="44.90">11,335 sats</span></td></tr><tr><td>Turkey</td><td>&#8378;230</td><td class="num"><span data-sats-cur="TRY" data-sats-amt="230">6,121 sats</span></td></tr><tr><td>India</td><td>&#8377;499</td><td class="num"><span data-sats-cur="INR" data-sats-amt="499">6,794 sats</span></td></tr><tr><td>Nigeria</td><td>&#8358;5,500</td><td class="num"><span data-sats-cur="NGN" data-sats-amt="5500">5,140 sats</span></td></tr></tbody>
       </table>
 
       <p style="font-size:13px;color:var(--muted)">Plan names, tiers and prices change frequently and vary by region. Figures are indicative &mdash; use your actual bill in the calculator above.</p>
@@ -123,6 +123,14 @@
       </div>
 
       <a class="cta" href="/">Add your subscriptions to the converter &rarr;</a>
+
+      <section class="sources" id="sources">
+        <h2>Sources and method</h2>
+        <p><strong>How the satoshi figures are calculated.</strong> Nothing in the satoshi column is typed in by hand. Each one is the local price divided by Bitcoin&rsquo;s current price in US dollars and multiplied by 100,000,000, because one bitcoin is one hundred million satoshis &mdash; the smallest unit defined in <a href="https://bitcoin.org/en/bitcoin-paper" target="_blank" rel="nofollow noopener">the Bitcoin white paper</a>. The exchange rate is fetched from <a href="https://blockchain.info/ticker" target="_blank" rel="nofollow noopener">Blockchain.info</a> and refreshed every sixty seconds, with Coinbase, Kraken and Bitstamp as fallbacks. If your browser cannot reach any of them, the figures you see are the ones calculated on 3 September 2026, when one bitcoin was $77,772.39.</p>
+        <p><strong>Where the prices come from.</strong> The prices used here are indicative averages reviewed on 3 September 2026, cross-checked against <a href="https://www.numbeo.com/cost-of-living/" target="_blank" rel="nofollow noopener">Numbeo's cost-of-living database</a> and, for United States figures, against <a href="https://www.bls.gov/cpi/" target="_blank" rel="nofollow noopener">the US Bureau of Labor Statistics consumer price index</a>. They are not a single retailer&rsquo;s prices and they move. The converter on the home page lets you substitute the price you actually pay, which is the only number that means anything for your own budget.</p>
+        <p><strong>Who wrote this, and what it is not.</strong> <a href="../about.html">Johan Demmers</a>, an independent developer in the Netherlands. I am not a financial adviser and hold no licence to give investment advice. Nothing on this page is a forecast, a recommendation, or a claim about what Bitcoin will do next. If you think a figure here is wrong, <a href="../contact.html">tell me</a> and I will correct it.</p>
+        <p class="sources-stamp">Published 12 August 2026 &middot; figures and prices last reviewed 3 September 2026</p>
+      </section>
       <h2>Frequently asked questions</h2>
       <h3>How many satoshis is a Netflix subscription?</h3>
       <p>At a $100,000 Bitcoin price a $17.99 plan is about 17,990 satoshis a month, or roughly 215,900 satoshis a year. The live figure above uses the current price.</p>
@@ -162,7 +170,7 @@
 
   <aside class="ad-rail"><div class="ad-sticky"></div></aside>
 </div>
-<script src="../assets/sats.js?v=4"></script>
+<script src="../assets/sats.js?v=5"></script>
 <script src="../assets/nav.js?v=10" defer></script>
 <script src="../assets/wallet-picks.js?v=8" defer></script>
 </body>
