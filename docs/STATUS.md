@@ -1,6 +1,6 @@
 # Satmeter.io — waar we staan
 
-Laatst bijgewerkt: 3 september 2026
+Laatst bijgewerkt: 7 september 2026
 
 ---
 
@@ -1134,3 +1134,74 @@ ernaast.
 - Op de homepage kan de bezoeker uit 21 valuta kiezen (eigen inline script),
   maar `ARS` zit daar niet bij terwijl er wel een Argentinie-gids is. Kleine
   toevoeging, apart van `assets/sats.js`, nog niet gedaan.
+
+## 7 september: "Pagina met omleiding"-mail geduid, homepage-linklijst voor de 14 niet-geindexeerde pagina's
+
+Johan kreeg een Search Console-mail: "Nieuwe reden waarom je pagina's niet
+kunnen worden geindexeerd - Pagina met omleiding". Dat is precies wat op
+23 augustus in dit document werd voorspeld: de 301 van `/index.html` naar `/`
+is aangekomen bij Google, en een redirect-URL wordt nooit zelf geindexeerd.
+Er is niets kapot. De melding gaat over 1 pagina.
+
+**Live gecontroleerd op 7 september:**
+
+- Alle 38 sitemap-URL's geven status 200. Geen enkele redirect in de sitemap.
+- `/index.html` -> `/`, `/es/index.html` -> `/es/`, `/es` -> `/es/`,
+  `/articles` -> `/articles/`. Allemaal correcte canonicalisatie.
+- Canonicals op alle 38 URL's wijzen naar zichzelf. Hreflang en/es klopt.
+- Geen enkele interne link wijst naar een URL die omleidt.
+- robots.txt staat `Allow: /` en `Mediapartners-Google`, sitemap gelinkt.
+
+**Het echte cijfer in de mail is een ander.** De vier redenen in Search
+Console: alternatieve pagina met canonical (1), pagina met omleiding (1),
+gecrawld maar niet geindexeerd (1) en **gevonden maar nog niet geindexeerd
+(14)**. Alleen die laatste kost bereik: Google kent de URL's uit de sitemap
+maar heeft ze nog niet gecrawld.
+
+**Waarom die 14 blijven liggen: interne links.** De inkomende interne links
+per artikel zijn geteld over alle 38 pagina's. De zwakste pagina's kregen hun
+enige of bijna enige link van de gidsenhub:
+
+- `how-many-sats-is-a-gallon-of-gas.html` - 1 inkomende link
+- `bitcoin-halving-countdown-grocery-prices.html`, `how-many-sats-is-a-cinema-ticket.html`,
+  `how-many-sats-is-a-dozen-eggs.html`, `monthly-phone-plan-in-satoshis.html`,
+  `groceries-in-bitcoin-iran.html` - 2 elk
+
+De homepage linkte in gewone HTML maar naar 6 artikelen. De landengidsen
+stonden verder alleen in de dropdown die `assets/nav.js` met JavaScript
+opbouwt. Voor een bezoeker is dat prima, voor een crawler is een link die pas
+na het uitvoeren van JavaScript bestaat een zwakker signaal dan een `<a>` in
+de broncode.
+
+**Wat er is veranderd (alleen `index.html`):**
+
+1. Nieuw blok `<nav class="all-guides">` onder "Read more", met alle 29 gidsen
+   als gewone HTML-links, gegroepeerd zoals op de gidsenhub (Live indexes,
+   Everyday items, Self custody, Subscriptions & bills, Country guides,
+   Understanding sats). Elke gids staat nu op 1 klik van de sterkste pagina.
+2. Bijbehorende CSS in de inline `<style>` van `index.html`.
+3. Twee sleutels toegevoegd aan de Engelse i18n-dictionary: `allGuidesTitle`
+   en `allGuidesHint`. Nodig omdat `T()` bij een onbekende sleutel de sleutel
+   zelf teruggeeft en de kop dan letterlijk "allGuidesTitle" zou tonen.
+
+Geen versiebump nodig: `site.css`, `nav.js` en `wallet-picks.js` zijn niet
+aangeraakt.
+
+**Gecontroleerd:** 29 links, allemaal uniek, alle doelbestanden bestaan en
+staan alle 29 in de sitemap. Div/ul/li-tags sluiten. Alle inline scripts door
+`node --check`, alle drie de JSON-LD-blokken door een JSON-parser.
+
+**Wat Johan zelf moet doen in Search Console:**
+
+- Niet op "Fix valideren" klikken bij "Pagina met omleiding". Daar valt niets
+  te valideren, dat is het bedoelde eindresultaat.
+- Wel: Pagina's -> "Gevonden - momenteel niet geindexeerd" -> per URL de
+  URL-inspectietool -> "Indexering aanvragen". Dat is de enige knop die die
+  14 echt versnelt.
+- Daarna de sitemap opnieuw indienen, zodat Google een reden heeft om de
+  homepage met de nieuwe links opnieuw op te halen.
+
+**Wat dit niet oplost.** Interne links helpen Google de pagina's vinden en
+wegen, maar een jonge site zonder externe links en zonder publiek blijft
+traag geindexeerd worden. Dat is hetzelfde punt als bij AdSense: bereik is
+het knelpunt, niet de code.

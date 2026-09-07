@@ -1137,6 +1137,22 @@
     max-width:620px;
     line-height:1.6;
   }
+
+  /* All-guides index: every guide is one click from the homepage, in plain HTML */
+  .all-guides{
+    display:grid;grid-template-columns:repeat(auto-fit,minmax(215px,1fr));
+    gap:22px 28px;margin:0 0 34px;padding:22px 24px;
+    background:var(--surface);border:1px solid var(--border);
+    border-radius:var(--radius);box-shadow:var(--shadow-sm);
+  }
+  .all-guides h3{
+    margin:0 0 10px;font-size:12px;font-weight:700;letter-spacing:.06em;
+    text-transform:uppercase;color:var(--muted);
+  }
+  .all-guides ul{list-style:none;margin:0;padding:0;}
+  .all-guides li{margin:0 0 7px;}
+  .all-guides a{color:var(--text-2);text-decoration:none;font-size:13.5px;line-height:1.45;}
+  .all-guides a:hover{color:var(--blue);text-decoration:underline;}
 </style>
 
 <!-- ============================================================
@@ -1361,6 +1377,73 @@
     <a href="articles/index.html" style="font-weight:600">Browse all 29 guides and live indexes &rarr;</a>
   </p>
 
+  <div class="items-header">
+    <h2 data-i18n="allGuidesTitle">All 29 guides</h2>
+    <span class="hint" data-i18n="allGuidesHint">Every guide and live index on Satmeter, in one place.</span>
+  </div>
+  <nav class="all-guides" aria-label="All guides">
+    <div class="ag-group">
+      <h3>Live indexes</h3>
+      <ul>
+        <li><a href="articles/sats-grocery-index.html">The Sats Grocery Index</a></li>
+        <li><a href="articles/sats-per-dollar-today.html">How Many Sats Is One Dollar?</a></li>
+      </ul>
+    </div>
+    <div class="ag-group">
+      <h3>Everyday items</h3>
+      <ul>
+        <li><a href="articles/bitcoin-big-mac-index.html">The Bitcoin Big Mac Index</a></li>
+        <li><a href="articles/how-many-sats-is-a-coffee.html">How Many Sats Is a Coffee?</a></li>
+        <li><a href="articles/how-many-sats-is-a-loaf-of-bread.html">How Many Sats Is a Loaf of Bread?</a></li>
+        <li><a href="articles/how-many-sats-is-a-dozen-eggs.html">How Many Sats Is a Dozen Eggs?</a></li>
+        <li><a href="articles/how-many-sats-is-a-gallon-of-gas.html">How Many Sats Is a Gallon of Gas?</a></li>
+        <li><a href="articles/how-many-sats-is-a-beer.html">How Many Sats Is a Beer?</a></li>
+        <li><a href="articles/how-many-sats-is-a-cinema-ticket.html">How Many Sats Is a Cinema Ticket?</a></li>
+      </ul>
+    </div>
+    <div class="ag-group">
+      <h3>Self custody</h3>
+      <ul>
+        <li><a href="articles/where-to-store-your-sats.html">Where to Store Your Sats</a></li>
+      </ul>
+    </div>
+    <div class="ag-group">
+      <h3>Subscriptions &amp; bills</h3>
+      <ul>
+        <li><a href="articles/netflix-in-satoshis.html">What Netflix Costs in Satoshis</a></li>
+        <li><a href="articles/monthly-phone-plan-in-satoshis.html">A Monthly Phone Plan in Satoshis</a></li>
+      </ul>
+    </div>
+    <div class="ag-group">
+      <h3>Country guides</h3>
+      <ul>
+        <li><a href="articles/groceries-in-bitcoin-united-states.html">Groceries in Bitcoin: United States</a></li>
+        <li><a href="articles/groceries-in-bitcoin-nigeria.html">Groceries in Bitcoin: Nigeria</a></li>
+        <li><a href="articles/groceries-in-bitcoin-argentina.html">Groceries in Bitcoin: Argentina</a></li>
+        <li><a href="articles/groceries-in-bitcoin-turkey.html">Groceries in Bitcoin: Turkey</a></li>
+        <li><a href="articles/groceries-in-bitcoin-india.html">Groceries in Bitcoin: India</a></li>
+        <li><a href="articles/groceries-in-bitcoin-brazil.html">Groceries in Bitcoin: Brazil</a></li>
+        <li><a href="articles/groceries-in-bitcoin-el-salvador.html">Groceries in Bitcoin: El Salvador</a></li>
+        <li><a href="articles/groceries-in-bitcoin-venezuela.html">Groceries in Bitcoin: Venezuela</a></li>
+        <li><a href="articles/groceries-in-bitcoin-lebanon.html">Groceries in Bitcoin: Lebanon</a></li>
+        <li><a href="articles/groceries-in-bitcoin-south-africa.html">Groceries in Bitcoin: South Africa</a></li>
+        <li><a href="articles/groceries-in-bitcoin-pakistan.html">Groceries in Bitcoin: Pakistan</a></li>
+        <li><a href="articles/groceries-in-bitcoin-vietnam.html">Groceries in Bitcoin: Vietnam</a></li>
+        <li><a href="articles/groceries-in-bitcoin-iran.html">Groceries in Bitcoin: Iran</a></li>
+      </ul>
+    </div>
+    <div class="ag-group">
+      <h3>Understanding sats</h3>
+      <ul>
+        <li><a href="articles/what-is-a-satoshi.html">What Is a Satoshi?</a></li>
+        <li><a href="articles/how-to-think-in-sats.html">How to Think in Sats</a></li>
+        <li><a href="articles/bitcoin-vs-inflation-groceries.html">Bitcoin vs Inflation</a></li>
+        <li><a href="articles/bitcoin-halving-countdown-grocery-prices.html">Bitcoin Halving Countdown</a></li>
+      </ul>
+    </div>
+  </nav>
+
+
   <div class="faq">
     <h2 data-i18n="faqTitle">Frequently asked questions</h2>
     <details open>
@@ -1469,6 +1552,7 @@
       satsInBtc:"sats in 1 BTC", itemsTracked:"items tracked", liveWord:"Live", priceAlways:"price, always",
       lmTitle:"Choose your location and language", lmSub:"Prices switch to the currency of the region you pick. You can change the currency separately at any time.", lmSearchPh:"Search language, country or currency\u2026", lmFoot:"Your choice is remembered on this device. Bitcoin has one global price \u2014 only the display currency changes.",
       readMoreTitle:"Read more", readMoreHint:"Guides and indexes built on the same live price data.",
+      allGuidesTitle:"All 29 guides", allGuidesHint:"Every guide and live index on Satmeter, in one place.",
       faqTitle:"Frequently asked questions",
       q1:"How many sats is a cup of coffee?",
       a1:"It depends on the live Bitcoin price and what coffee costs where you are. This page divides the item's price by the current BTC price to show the exact number of satoshis right now. At a $100,000 BTC price, a $4.00 coffee is roughly 4,000 sats.",
